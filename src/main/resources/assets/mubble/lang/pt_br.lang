@@ -243,7 +243,7 @@ entity.chincho.name=Chincho
 
 --- SUBTITLES ---
 subtitles.block.question_block.loot.power_up=Bloco de ? dropou um power up
-subtitles.block.question_block.loot.coinBloco de ? dropa uma moeda
+subtitles.block.question_block.loot.coin=Bloco de ? dropa uma moeda
 subtitles.block.note_block.jump=Note Block used
 subtitles.block.rewind_block.disappear=Bloco de Rewind desaparece
 subtitles.block.rewind_block.reappear=Bloco de Rewind reaparece
