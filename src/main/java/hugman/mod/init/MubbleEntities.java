@@ -2,10 +2,8 @@ package hugman.mod.init;
 
 import hugman.mod.Main;
 import hugman.mod.entity.EntityChincho;
-import hugman.mod.entity.EntityFlyingBlock;
 import hugman.mod.entity.EntityToad;
 import hugman.mod.util.Reference;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.ResourceLocation;
