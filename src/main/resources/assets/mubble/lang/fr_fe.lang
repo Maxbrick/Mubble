@@ -1,18 +1,51 @@
 --- CREATIVE TABS ---
-itemGroup.mubble_blocks_tab=blauc Mubble
-itemGroup.mubble_items_tab=trucs Mubble
-itemGroup.mubble_costumes_tab=costum Mubble
+itemGroup.mubble_blocks=blauc Mubble
+itemGroup.mubble_items=trucs Mubble
+itemGroup.mubble_costumes=costum Mubble
 
 --- BLOCKS ---
 tile.vanadium_block.name=cube joli et mjenta
 tile.vanadium_ore.name=minrai cool et mjenta
 tile.red_bricks.name=brik rouj
+tile.red_brick_stairs.name=escalator de briqe rouj
 tile.white_bricks.name=brik blanch
+tile.white_brick_stairs.name=escalator de briqe blan
 tile.blunite.name=blunit
+tile.blunite_stairs.name=escalator en blunit
+tile.blunite_wall.name=mur d blunit
 tile.polished_blunite.name=blunit tou bo tou propr
-tile.carbonite.name=crbonit
+tile.polished_blunite_stairs.name=mur de blunit propre
+tile.carbonite.name=crbolit
+tile.carbonite_stairs.name=scalier en carbolit
+tile.carbonite_wall.name=mur en carbolit
 tile.polished_carbonite.name=cobnite bo
+//tile.polished_carbonite_stairs.name=<newline>
 tile.footblock.name=blok foutbol
+//tile.white_cloud_block.name=<newline>
+//tile.light_gray_cloud_block.name=<newline>
+//tile.gray_cloud_block.name=<newline>
+//tile.black_cloud_block.name=<newline>
+//tile.tomato.name=<newline>
+//tile.salad.name=<newline>
+//tile.cheese_block.name=<newline>
+//tile.unstable_stone.name=<newline>
+//tile.ultimatum_portal.name=<newline>
+//tile.blue_balloon.name=<newline>
+//tile.light_blue_balloon.name=<newline>
+//tile.cyan_balloon.name=<newline>
+//tile.green_balloon.name=<newline>
+//tile.lime_balloon.name=<newline>
+//tile.yellow_balloon.name=<newline>
+//tile.orange_balloon.name=<newline>
+//tile.red_balloon.name=<newline>
+//tile.pink_balloon.name=<newline>
+//tile.magenta_balloon.name=<newline>
+//tile.purple_balloon.name=<newline>
+//tile.brown_balloon.name=<newline>
+//tile.white_balloon.name=<newline>
+//tile.light_gray_balloon.name=<newline>
+//tile.gray_balloon.name=<newline>
+//tile.black_balloon.name=<newline>
 
 tile.question_block.name=bloc???
 tile.empty_block.name=bloc san rien lol
@@ -27,63 +60,155 @@ tile.ice_flower.name=fleu de glas
 tile.boomerang_flower.name=fleu boumrangue
 tile.cloud_flower.name=fleu nuaj
 tile.gold_flower.name=fleur dore!!
-tile.cloud_block.name=blok nuaj
-tile.blue_mushroom.name=jampinon ble
-tile.green_mushroom.name=jampinon ver
-tile.yellow_mushroom.name=jampinon jone
-tile.purple_mushroom.name=jampinon violet
-tile.blue_mushroom_block.name=blok jampinon ble
-tile.green_mushroom_block.name=bloc jampinon ver
-tile.yellow_mushroom_block.name=bloc jampinon jon
-tile.purple_mushroom_block.name=bloc jampinon violet
+//tile.blue_mushroom.name=<newline>
+//tile.light_blue_mushroom.name=<newline>
+//tile.cyan_mushroom.name=<newline>
+//tile.green_mushroom.name=<newline>
+//tile.lime_mushroom.name=<newline>
+//tile.yellow_mushroom.name=<newline>
+//tile.orange_mushroom.name=<newline>
+//tile.pink_mushroom.name=<newline>
+//tile.magenta_mushroom.name=<newline>
+//tile.purple_mushroom.name=<newline>
+//tile.white_mushroom.name=<newline>
+//tile.light_gray_mushroom.name=<newline>
+//tile.gray_mushroom.name=<newline>
+//tile.black_mushroom.name=<newline>
+//tile.blue_mushroom_block.name=<newline>
+//tile.light_blue_mushroom_block.name=<newline>
+//tile.cyan_mushroom_block.name=<newline>
+//tile.green_mushroom_block.name=<newline>
+//tile.lime_mushroom_block.name=<newline>
+//tile.yellow_mushroom_block.name=<newline>
+//tile.orange_mushroom_block.name=<newline>
+//tile.pink_mushroom_block.name=<newline>
+//tile.magenta_mushroom_block.name=<newline>
+//tile.purple_mushroom_block.name=<newline>
+//tile.white_mushroom_block.name=<newline>
+//tile.light_gray_mushroom_block.name=<newline>
+//tile.gray_mushroom_block.name=<newline>
+//tile.black_mushroom_block.name=<newline>
 
-tile.blue_tetris_block.name=blok taitri beul
-tile.light_blue_tetris_block.name=blok titri beul cler
-tile.green_tetris_block.name=bloc taitri ver cool
-tile.yellow_tetris_block.name=bloc tirti jon
-tile.orange_tetris_block.name=blok taitri ranj
-tile.red_tetris_block.name=blok tetri rouj
-tile.pink_tetris_block.name=blok taitri roz
-tile.gray_tetris_block.name=bloc taitri grise
+//tile.blue_tetris_block.name=<newline>
+//tile.light_blue_tetris_block.name=<newline>
+//tile.cyan_tetris_block.name=<newline>
+//tile.green_tetris_block.name=<newline>
+//tile.lime_tetris_block.name=<newline>
+//tile.yellow_tetris_block.name=<newline>
+//tile.orange_tetris_block.name=<newline>
+//tile.red_tetris_block.name=<newline>
+//tile.pink_tetris_block.name=<newline>
+//tile.magenta_tetris_block.name=<newline>
+//tile.purple_tetris_block.name=<newline>
+//tile.brown_tetris_block.name=<newline>
+//tile.white_tetris_block.name=<newline>
+//tile.light_gray_tetris_block.name=<newline>
+//tile.gray_tetris_block.name=<newline>
+//tile.black_tetris_block.name=<newline>
 tile.tetris_glass.name=ver titri
 tile.japanese_tetris_cushion.name=cousin CHINOIIS:!$ ahahha (tetri)
 tile.rainbow_tetris_scaffolding.name=shafaudaj tirtris ARC EN CIELLLLL!! tro bo lai arc en cie
 tile.monochrome_tetris_scaffolding.name=shafaudag tirtri pa bo c noir et blen c vieu
 
-tile.iron_scaffolding.name=chafaudaj an faire
-tile.purple_bricks.name=brik volete
-tile.cyan_bricks.name=brik sian
-tile.elder_pebbles.name=vieu galai come su la plaj de diepp
-tile.space_matter.name=matiare martiéne
-
 tile.vampire_stone.name=cayou vampir
 tile.medusa_stone.name=cayoue de la madane serpen
 tile.medusa_bricks.name=brik chai madame serpens!
+//tile.medusa_brick_stairs.name=<newline>
 tile.blue_candy_cane_pillar.name=piler de bonbon de noel sauf que c ble
+//tile.light_blue_candy_cane_pillar.name=<newline>
+//tile.cyan_candy_cane_pillar.name=<newline>
 tile.green_candy_cane_pillar.name=pylier de bonbon de noel sof que c ver
+//tile.lime_candy_cane_pillar.name=<newline>
 tile.yellow_candy_cane_pillar.name=piler de bonbon de noel sauf que c jonne
+//tile.orange_candy_cane_pillar.name=<newline>
 tile.red_candy_cane_pillar.name=pyer de bombon de noel sauf que c rouj
+//tile.pink_candy_cane_pillar.name=<newline>
+//tile.magenta_candy_cane_pillar.name=<newline>
 tile.purple_candy_cane_pillar.name=piler de bobon de novel sauf que c pourpr
+//tile.brown_candy_cane_pillar.name=<newline>
+//tile.white_candy_cane_pillar.name=<newline>
+//tile.light_gray_candy_cane_pillar.name=<newline>
+//tile.gray_candy_cane_pillar.name=<newline>
+//tile.black_candy_cane_pillar.name=<newline>
 
+//tile.green_hill_grass_block.name=<newline>
+//tile.green_hill_dirt.name=<newline>
+//tile.marble_zone_stone.name=<newline>
+//tile.yellow_studiopolis_clapper.name=<newline>
+//tile.blue_studiopolis_clapper.name=<newline>
+//tile.spring.name=<newline>
+
+//tile.scarlet_grass_block.name=<newline>
+//tile.scarlet_grass.name=<newline>
+//tile.scarlet_mushroom.name=<newline>
+//tile.scarlet_orchid.name=<newline>
+
+tile.iron_scaffolding.name=chafaudaj an faire
+tile.purple_bricks.name=brik volete
+//tile.purple_brick_stairs.name=<newline>
+tile.cyan_bricks.name=brik sian
+//tile.cyan_brick_stairs.name=<newline>
+tile.elder_pebbles.name=vieu galai come su la plaj de diepp
+tile.space_matter.name=matiare martiéne
+//tile.space_obsidian.name=<newline>
+
+//tile.blue_puyo.name=<newline>
+//tile.turquoise_puyo.name=<newline>
+//tile.green_puyo.name=<newline>
+//tile.yellow_puyo.name=<newline>
+//tile.red_puyo.name=<newline>
+//tile.purple_puyo.name=<newline>
+//tile.garbage_puyo.name=<newline>
+//tile.point_puyo.name=<newline>
+//tile.hard_puyo.name=<newline>
+//tile.iron_puyo.name=<newline>
+//tile.puyo_block.name=<newline>
+
+//tile.rewind_block.name=<newline>
 tile.koretato_block.name=patete qui vi
 
 --- ITEMS ---
 item.vanadium.name=mincraf minerai cool pourpré
+item.bandage.name=pensmen
 item.wheat_flour.name=farin
 item.caramel_cube.name=cub carmiel
 item.crepe.name=craipe
 item.chocolate_crepe.name=craipe au nutela
 item.caramel_crepe.name=craipe au caramale
 item.candy_cane.name=c le bon bon de noel sa
-item.bandage.name=pensmen
+item.burger.name=borgor
+//item.tomato.name=<newline>
+//item.salad.name=<newline>
+//item.cheese.name=<newline>
+//item.totem_of_ascending.name=<newline>
 
 item.super_mushroom.name=coul champignon
 item.peach.name=g la paich!! ahaha
 item.cape_feather.name=plum supere sot
+//item.super_cape_feather.name=<newline>
 item.super_star.name=supare etoile
 item.yellow_coin.name=fric jaunne
 item.red_coin.name=flouz rouj
 item.blue_coin.name=firc lbeu ohoh
+
+item.smash_ball.name=boul smash bros
+
+//item.annoying_dog.name=<newline>
+
+item.record_blank.name=diske rien dedans
+item.record.champions_road.desc=Super Mario 3D World - Champion's Road
+item.record.fly_octo_fly.desc=Splatoon 2 - Fly Octo Fly
+item.record.vampire_killer.desc=Castlevania Judgement - Vampire Killer
+
+item.record.nb_sweden.desc=C418 - Sweden (NoteBlock Remix)
+item.record.nb_buoy_base_galaxy.desc=Super Mario Galaxy - Buoy Base Galaxy (NoteBlock Remix)
+item.record.nb_waluigi_pinball.desc=Mario Kart DS - Waluigi Pinball (NoteBlock Remix)
+item.record.nb_harvest_hazards.desc=Donkey Kong Country: Tropical Freeze - Harvest Hazards (NoteBlock Remix)
+
+--- COSTUMES ---
+item.headphones.name=ecouteur
+//item.christmas_hat.name=<newline>
+
 item.cappy.name=capi
 item.luigi_cap.name=casqut luiji
 item.wario_cap.name=casqeut a worio
@@ -93,25 +218,24 @@ item.wing_cap.name=caskette ailé
 item.gooigi_cap.name=casett de goiii lo!l c du slim block en fait??!
 item.princess_peach_crown.name=couron disi
 item.princess_daisy_crown.name=couraun peeach
+//item.rosalina_crown.name=<newline>
 item.pink_gold_peach_crown.name=couraun pech ros dorai
-item.super_crown.name=couraune bien supair coule. 
+item.super_crown.name=couraune bien supair coule.
+//item.broque_monsieur_head.name=<newline>
 
 item.bandana.name=banade
 
-item.smash_ball.name=boul smash bros
+//item.snorlax_hat.name=<newline>
 
-item.headphones.name=ecouteur
-item.record_blank.name=diske rien dedans
-item.record.champions_road.desc=Super Mario 3D World - Champion's Road
-item.record.fly_octo_fly.desc=Splatoon 2 - Fly Octo Fly
-item.record.vampire_killer.desc=Castlevania Judgement - Vampire Killer
+//item.top_hat.name=<newline>
+
+item.ralsei_hat.name=chapo de ralsi
+//item.king_round_mask.name=<newline>
+
+//item.baldi_head.name=<newline>
 
 item.mayro_cap.name=kaetse maryo
 item.noteblock_head.name=tete nau tblok
-item.record.nb_sweden.desc=C418 - Sweden (NoteBlock Remix)
-item.record.nb_buoy_base_galaxy.desc=Super Mario Galaxy - Buoy Base Galaxy (NoteBlock Remix)
-item.record.nb_waluigi_pinball.desc=Mario Kart DS - Waluigi Pinball (NoteBlock Remix)
-item.record.nb_harvest_hazards.desc=Donkey Kong Country: Tropical Freeze - Harvest Hazards (NoteBlock Remix)
 
 --- ENTITIES ---
 entity.toad.name=BUP BUP
@@ -120,8 +244,18 @@ entity.chincho.name=chienchau
 --- SUBTITLES ---
 subtitles.block.question_block.loot.super_mushroom=cool champi sorti ? blok
 subtitles.block.question_block.loot.coin=fric sorti ? bloc
+//subtitles.block.note_block.jump=<newline>
+//subtitles.block.rewind_block.disappear=<newline>
+//subtitles.block.rewind_block.reappear=<newline>
+//subtitles.item.annoying_dog.disappear=<newline>
+//subtitles.item.annoying_dog.waf=<newline>
 subtitles.item.cape_feather.use=plum sauper so qq a utiliser sa
 subtitles.item.smash_ball.use=ball mach qq la utilise
+//subtitles.costume.cappy.ambient=<newline>
+//subtitles.costume.cappy.ambient.nether=<newline>
+//subtitles.costume.cappy.equip=<newline>
+//subtitles.costume.cappy.happy=<newline>
+//subtitles.costume.cappy.help=<newline>
 subtitles.entity.toad.ambient=tod chucoht
 subtitles.entity.toad.hurt=toad a mal
 subtitles.entity.toad.death=toad a trai mal
@@ -141,6 +275,10 @@ advancements.mubble.get_vanadium.title=je sui blinder
 advancements.mubble.get_vanadium.description=trouv du truc la qi brillai et pourpré
 advancements.mubble.get_tetris_block.title=la majie du jeu sur fb
 advancements.mubble.get_tetris_block.description=tu te souvien du jeu ou fallai construir non pa minecraft s un vieu jeu sur vielle console bah il fau un de c bloks jcroi
+
+--- COMMANDS ---
+commands.motion.usage=/motion <entity> <set|add> [dX] [dY] [dZ]
+//commands.motion.success=<newline>
 
 
 

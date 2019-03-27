@@ -1,23 +1,29 @@
 package hugman.mod.util.handlers;
 
 import hugman.mod.Main;
-import hugman.mod.init.BiomeInit;
-import hugman.mod.init.BlockInit;
-import hugman.mod.init.CostumeInit;
-//import hugman.mod.init.DimensionInit;
-import hugman.mod.init.EntityInit;
-import hugman.mod.init.ItemInit;
-import hugman.mod.init.RecipeInit;
+import hugman.mod.entity.EntityFlyingBlock;
+import hugman.mod.init.MubbleBiomes;
+import hugman.mod.init.MubbleBlocks;
+import hugman.mod.init.MubbleCommands;
+import hugman.mod.init.MubbleCostumes;
+import hugman.mod.init.MubbleEntities;
+import hugman.mod.init.MubbleItems;
+import hugman.mod.init.MubbleRecipes;
+import hugman.mod.util.Reference;
 import hugman.mod.util.interfaces.IHasModel;
 import hugman.mod.world.gen.WorldGenCustomOres;
 import hugman.mod.world.gen.WorldGenCustomStructures;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
@@ -26,20 +32,20 @@ public class RegistryHandler
 	@SubscribeEvent
 	public static void onBlockRegister(RegistryEvent.Register<Block> event)
 	{
-		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
+		event.getRegistry().registerAll(MubbleBlocks.BLOCKS.toArray(new Block[0]));
 	}
 	
 	@SubscribeEvent
 	public static void onItemRegister(RegistryEvent.Register<Item> event)
 	{
-		event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
-		event.getRegistry().registerAll(CostumeInit.COSTUMES.toArray(new Item[0]));
+		event.getRegistry().registerAll(MubbleItems.ITEMS.toArray(new Item[0]));
+		event.getRegistry().registerAll(MubbleCostumes.COSTUMES.toArray(new Item[0]));
 	}
 
 	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event)
 	{
-		for(Block block : BlockInit.BLOCKS)
+		for(Block block : MubbleBlocks.BLOCKS)
 		{
 			if(block instanceof IHasModel)
 			{
@@ -47,7 +53,7 @@ public class RegistryHandler
 			}
 		}
 		
-		for(Item item : ItemInit.ITEMS)
+		for(Item item : MubbleItems.ITEMS)
 		{
 			if(item instanceof IHasModel)
 			{
@@ -55,7 +61,7 @@ public class RegistryHandler
 			}
 		}
 		
-		for(Item costume : CostumeInit.COSTUMES)
+		for(Item costume : MubbleCostumes.COSTUMES)
 		{
 			if(costume instanceof IHasModel)
 			{
@@ -64,34 +70,50 @@ public class RegistryHandler
 		}
 	}
 	
+	@SubscribeEvent
+    public static void onEntityRegistry(RegistryEvent.Register<EntityEntry> event) {
+        event.getRegistry().register(EntityEntryBuilder.create()
+                .entity(EntityFlyingBlock.class)
+                .id(new ResourceLocation(Reference.MODID, "flying_block"), 0)
+                .name(Reference.MODID + ".flying_block")
+                .tracker(256, 1, true)
+                .build()
+        );
+    }
+	
 	public static void preInitRegistries()
 	{
 		SoundHandler.registerSounds();
 		
 		GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
 		GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
-		BiomeInit.registerBiomes();
-		//DimensionInit.registerDimensions();
+		MubbleBiomes.registerBiomes();
 		
-		EntityInit.registerEntities();
+		MubbleEntities.registerEntities();
 		Main.proxy.registerEntityRenderers();
 	}
 	
 	public static void initRegistries()
 	{
-		RecipeInit.addRecipes();
+		MubbleRecipes.addRecipes();
 	}
 	
-	private static final ResourceLocation PURPLE_TETRIS_BLOCK = new ResourceLocation("mubble", "purple_tetris_block");
+	public static void serverInitRegistries(FMLServerStartingEvent event)
+	{
+		MubbleCommands.addCommands(event);
+	}
+	
+	private static final ResourceLocation CLOUD_BLOCK = new ResourceLocation("mubble", "cloud_block");
+	private static final ResourceLocation MUSHROOM_KINGDOM = new ResourceLocation("mubble", "Mushroom Kingdom");
 	
 	@SubscribeEvent
 	public static void onMissingBlockMappings(final RegistryEvent.MissingMappings<Block> event)
 	{
 	    for (final RegistryEvent.MissingMappings.Mapping<Block> mapping : event.getMappings())
 	    {
-	        if (RegistryHandler.PURPLE_TETRIS_BLOCK.equals(mapping.key))
+	        if (RegistryHandler.CLOUD_BLOCK.equals(mapping.key))
 	        {
-	            mapping.remap(BlockInit.PINK_TETRIS_BLOCK);
+	            mapping.remap(MubbleBlocks.WHITE_CLOUD_BLOCK);
 	            return;
 	        }
 	    }
@@ -102,9 +124,22 @@ public class RegistryHandler
 	{
 	    for (final RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getMappings())
 	    {
-	        if (RegistryHandler.PURPLE_TETRIS_BLOCK.equals(mapping.key))
+	        if (RegistryHandler.CLOUD_BLOCK.equals(mapping.key))
 	        {
-	            mapping.remap(Item.getItemFromBlock(BlockInit.PINK_TETRIS_BLOCK));
+	            mapping.remap(Item.getItemFromBlock(MubbleBlocks.WHITE_CLOUD_BLOCK));
+	            return;
+	        }
+	    }
+	}
+	
+	@SubscribeEvent
+	public static void onMissingBiomeMappings(final RegistryEvent.MissingMappings<Biome> event)
+	{
+	    for (final RegistryEvent.MissingMappings.Mapping<Biome> mapping : event.getMappings())
+	    {
+	        if (RegistryHandler.MUSHROOM_KINGDOM.equals(mapping.key))
+	        {
+	            mapping.remap(MubbleBiomes.MUSHROOM_KINGDOM);
 	            return;
 	        }
 	    }
