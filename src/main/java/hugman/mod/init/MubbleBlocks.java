@@ -27,7 +27,6 @@ import hugman.mod.objects.block.BlockRotating;
 import hugman.mod.objects.block.BlockSpring;
 import hugman.mod.objects.block.BlockStairs;
 import hugman.mod.objects.block.BlockTetris;
-import hugman.mod.objects.block.BlockUnstable;
 import hugman.mod.objects.block.BlockWall;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -64,7 +63,6 @@ public class MubbleBlocks
 	public static final Block TOMATO = new BlockCrops("tomato", MubbleItems.TOMATO);
 	public static final Block SALAD = new BlockCrops("salad", MubbleItems.SALAD);
 	public static final Block CHEESE_BLOCK = new BlockBase("cheese_block", Material.CLOTH, 0.5f, 2f, SoundType.SNOW);
-	public static final Block UNSTABLE_STONE = new BlockUnstable("unstable_stone", Material.ROCK, 0.1f, 1f, SoundType.STONE);
 	public static final Block ULTIMATUM_PORTAL = new BlockPortal("ultimatum", 64);
 	public static final Block QUESTION_BLOCK = new BlockQuestion();
 	public static final Block EMPTY_BLOCK = new BlockEmpty();
@@ -164,7 +162,6 @@ public class MubbleBlocks
 	public static final Block ELDER_PEBBLES = new BlockBase("elder_pebbles", Material.ROCK, 2f, 30f, SoundType.STONE, 5);
 	public static final Block SPACE_MATTER = new BlockBase("space_matter", Material.SAND, 0.4f, 30f, MubbleSoundTypes.SPACE_MATTER, 5);
 	public static final Block SPACE_OBSIDIAN = new BlockBase("space_obsidian", Material.ROCK, -1f, 6000000.0f, SoundType.STONE, 2);
-	public static final Block REWIND_BLOCK = new BlockUnstable("rewind_block", Material.IRON, 5f, 30f, SoundType.METAL);
 	public static final Block KORETATO_BLOCK = new BlockDirectional("koretato_block", Material.GROUND, 0.4f, 10f, SoundType.SNOW);
 	public static final Block BLUE_BALLOON = new BlockBalloon("blue");
 	public static final Block LIGHT_BLUE_BALLOON = new BlockBalloon("light_blue");
