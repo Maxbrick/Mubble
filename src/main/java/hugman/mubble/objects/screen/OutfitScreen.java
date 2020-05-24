@@ -3,7 +3,7 @@ package hugman.mubble.objects.screen;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
-import hugman.mubble.objects.inventory.container.OutfitContainer;
+import hugman.mubble.objects.container.OutfitContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -11,8 +11,8 @@ import net.minecraft.client.renderer.Quaternion;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -22,9 +22,9 @@ public class OutfitScreen extends ContainerScreen<OutfitContainer>
 	private float oldMouseX;
 	private float oldMouseY;
 	
-	public OutfitScreen(PlayerEntity playerIn)
+	public OutfitScreen(OutfitContainer containerIn, PlayerInventory playerInv, ITextComponent titleIn)
 	{
-		super(new OutfitContainer(playerIn), playerIn.inventory, new TranslationTextComponent("container.outfit"));
+		super(containerIn, playerInv, titleIn);
 		this.passEvents = true;
 	}
 	
