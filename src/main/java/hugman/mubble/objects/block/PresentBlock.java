@@ -3,7 +3,7 @@ package hugman.mubble.objects.block;
 import java.util.Random;
 
 import hugman.mubble.init.data.MubbleBlockStateProperties;
-import hugman.mubble.objects.tile_entity.PresentTileEntity;
+import hugman.mubble.objects.block.block_entity.PresentBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -68,9 +68,9 @@ public class PresentBlock extends BlockWithEntity implements Waterloggable
     	if(!worldIn.isClient)
     	{
     		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-    		if(tileEntity instanceof PresentTileEntity)
+    		if(tileEntity instanceof PresentBlockEntity)
     		{
-    			player.openContainer((PresentTileEntity) tileEntity);
+    			player.openContainer((PresentBlockEntity) tileEntity);
     			player.incrementStat(Stats.OPEN_BARREL);
     		}
     	}
@@ -96,9 +96,9 @@ public class PresentBlock extends BlockWithEntity implements Waterloggable
 	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
 		BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-		if(tileEntity instanceof PresentTileEntity)
+		if(tileEntity instanceof PresentBlockEntity)
 		{
-			((PresentTileEntity) tileEntity).presentTick();
+			((PresentBlockEntity) tileEntity).presentTick();
 		}
 	}
 	
@@ -120,9 +120,9 @@ public class PresentBlock extends BlockWithEntity implements Waterloggable
 		if(stack.hasCustomName())
 		{
 			BlockEntity tileEntity = worldIn.getBlockEntity(pos);
-			if(tileEntity instanceof PresentTileEntity)
+			if(tileEntity instanceof PresentBlockEntity)
 			{
-				((PresentTileEntity) tileEntity).setCustomName(stack.getName());
+				((PresentBlockEntity) tileEntity).setCustomName(stack.getName());
 			}
 		}
 	}
@@ -160,6 +160,6 @@ public class PresentBlock extends BlockWithEntity implements Waterloggable
 	@Override
 	public BlockEntity createBlockEntity(BlockView worldIn)
 	{
-		return new PresentTileEntity();
+		return new PresentBlockEntity();
 	}
 }

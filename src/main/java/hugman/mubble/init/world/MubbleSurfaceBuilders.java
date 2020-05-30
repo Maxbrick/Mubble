@@ -3,7 +3,6 @@ package hugman.mubble.init.world;
 import hugman.mubble.Mubble;
 import hugman.mubble.init.MubbleBlocks;
 import hugman.mubble.init.data.MubbleBlockStateProperties;
-import hugman.mubble.objects.world.surface_builder.PermafrostSurfaceBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Identifier;
@@ -20,8 +19,6 @@ public class MubbleSurfaceBuilders
 	private static final BlockState SMW_DESERT_DIRT = MubbleBlocks.SMW_DESERT_GROUND_BLOCK.getDefaultState().with(MubbleBlockStateProperties.OVER, false);
 	private static final BlockState PERMAROCK = MubbleBlocks.PERMAROCK.getDefaultState();
 	private static final BlockState DIRT = Blocks.DIRT.getDefaultState();
-
-	public static final SurfaceBuilder<TernarySurfaceConfig> PERMAFROST_SURFACE_BUILDER = register("permafrost", new PermafrostSurfaceBuilder(TernarySurfaceConfig::deserialize));
 
 	public static final TernarySurfaceConfig PERMAROCK_SURFACE = new TernarySurfaceConfig(PERMAROCK, PERMAROCK, PERMAROCK);
 	public static final TernarySurfaceConfig SMW_GROUND_SURFACE = new TernarySurfaceConfig(SMW_GROUND_TOP, SMW_GROUND_DIRT, SMW_GROUND_DIRT);

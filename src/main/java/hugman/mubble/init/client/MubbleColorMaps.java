@@ -31,8 +31,8 @@ public class MubbleColorMaps
 		}, MubbleBlocks.OAK_LEAF_PILE, MubbleBlocks.JUNGLE_LEAF_PILE, MubbleBlocks.ACACIA_LEAF_PILE, MubbleBlocks.DARK_OAK_LEAF_PILE, MubbleBlocks.PALM_LEAVES, MubbleBlocks.PALM_LEAF_PILE);
 		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
 		{
-			return 16104984;
-		}, MubbleBlocks.AUTUMN_OAK_LEAVES, MubbleBlocks.AUTUMN_OAK_LEAF_PILE);
+			return 15645495;
+		}, MubbleBlocks.AUTUMN_BIRCH_LEAVES, MubbleBlocks.AUTUMN_BIRCH_LEAF_PILE);
 		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
 		{
 			return 15768259;
@@ -63,8 +63,8 @@ public class MubbleColorMaps
 		}, MubbleBlocks.OAK_LEAF_PILE, MubbleBlocks.SPRUCE_LEAF_PILE, MubbleBlocks.BIRCH_LEAF_PILE, MubbleBlocks.JUNGLE_LEAF_PILE, MubbleBlocks.ACACIA_LEAF_PILE, MubbleBlocks.DARK_OAK_LEAF_PILE, MubbleBlocks.PALM_LEAVES, MubbleBlocks.PALM_LEAF_PILE, MubbleBlocks.GREEN_HILL_GRASS_BLOCK);
 		ColorProviderRegistry.ITEM.register((item, layer) ->
 		{
-			return 16104984;
-		}, MubbleBlocks.AUTUMN_OAK_LEAVES, MubbleBlocks.AUTUMN_OAK_LEAF_PILE);
+			return 15645495;
+		}, MubbleBlocks.AUTUMN_BIRCH_LEAVES, MubbleBlocks.AUTUMN_BIRCH_LEAF_PILE);
 		ColorProviderRegistry.ITEM.register((item, layer) ->
 		{
 			return 15768259;

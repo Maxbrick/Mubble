@@ -40,7 +40,7 @@ public class MubbleGenerators
 		{
 			if(biome.getCategory().equals(Category.DESERT))
 			{
-				biome.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, MubbleFeatures.PALM_TREE.configure(MubbleFeatureConfigs.PALM_TREE_CONFIG).createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.12F, 1))));
+				biome.addFeature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.ACACIA_TREE.configure(MubbleFeatureConfigs.PALM_TREE_CONFIG).createDecoratedFeature(Decorator.COUNT_EXTRA_HEIGHTMAP.configure(new CountExtraChanceDecoratorConfig(0, 0.12F, 1))));
 			}
 		}
 	}

@@ -42,13 +42,13 @@ import hugman.mubble.objects.block.UnstableBlock;
 import hugman.mubble.objects.block.VerticalSlabBlock;
 import hugman.mubble.objects.block.WitherRosePileBlock;
 import hugman.mubble.objects.block.WoodButtonBlock;
-import hugman.mubble.objects.world.tree.AutumnOakTree;
-import hugman.mubble.objects.world.tree.PalmTree;
-import hugman.mubble.objects.world.tree.PinkCherryOakTree;
-import hugman.mubble.objects.world.tree.PinkPressGardenTree;
-import hugman.mubble.objects.world.tree.RedPressGardenTree;
-import hugman.mubble.objects.world.tree.ScarletTree;
-import hugman.mubble.objects.world.tree.WhiteCherryOakTree;
+import hugman.mubble.objects.world.tree.AutumnBirchSaplingGenerator;
+import hugman.mubble.objects.world.tree.PalmSaplingGenerator;
+import hugman.mubble.objects.world.tree.PinkCherryOakSaplingGenerator;
+import hugman.mubble.objects.world.tree.PinkPressGardenSaplingGenerator;
+import hugman.mubble.objects.world.tree.RedPressGardenSaplingGenerator;
+import hugman.mubble.objects.world.tree.ScarletSaplingGenerator;
+import hugman.mubble.objects.world.tree.WhiteCherryOakSaplingGenerator;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -256,13 +256,13 @@ public class MubbleBlocks
     public static final Block VANADIUM_ORE = register("vanadium_ore", new OreBlock(Settings.copy(Blocks.DIAMOND_ORE)), ItemGroup.BUILDING_BLOCKS, false);
     public static final Block VANADIUM_BLOCK = register("vanadium_block", new Block(Settings.copy(Blocks.DIAMOND_BLOCK)), ItemGroup.BUILDING_BLOCKS, false);
     
-    public static final Block AUTUMN_OAK_SAPLING = register("autumn_oak_sapling", new SaplingBlock(new AutumnOakTree()), ItemGroup.DECORATIONS, true);
-    public static final Block AUTUMN_OAK_LEAVES = register("autumn_oak_leaves", new LeavesBlock(pLeaves), ItemGroup.DECORATIONS, false, 30, 60);
-    public static final Block AUTUMN_OAK_LEAF_PILE = register("autumn_oak_leaf_pile", new PileBlock(FabricBlockSettings.of(Material.LEAVES).hardness(0.1F).sounds(BlockSoundGroup.GRASS).noCollision()), ItemGroup.DECORATIONS, false, 60, 20);
+    public static final Block AUTUMN_BIRCH_SAPLING = register("autumn_birch_sapling", new SaplingBlock(new AutumnBirchSaplingGenerator()), ItemGroup.DECORATIONS, true);
+    public static final Block AUTUMN_BIRCH_LEAVES = register("autumn_birch_leaves", new LeavesBlock(pLeaves), ItemGroup.DECORATIONS, false, 30, 60);
+    public static final Block AUTUMN_BIRCH_LEAF_PILE = register("autumn_birch_leaf_pile", new PileBlock(FabricBlockSettings.of(Material.LEAVES).hardness(0.1F).sounds(BlockSoundGroup.GRASS).noCollision()), ItemGroup.DECORATIONS, false, 60, 20);
     
     public static final Block CHERRY_OAK_PLANKS = register("cherry_oak_planks", new Block(Settings.copy(Blocks.DARK_OAK_PLANKS)), ItemGroup.BUILDING_BLOCKS, false, 5, 20);
-    public static final Block PINK_CHERRY_OAK_SAPLING = register("pink_cherry_oak_sapling", new SaplingBlock(new PinkCherryOakTree()), ItemGroup.DECORATIONS, true);
-    public static final Block WHITE_CHERRY_OAK_SAPLING = register("white_cherry_oak_sapling", new SaplingBlock(new WhiteCherryOakTree()), ItemGroup.DECORATIONS, true);
+    public static final Block PINK_CHERRY_OAK_SAPLING = register("pink_cherry_oak_sapling", new SaplingBlock(new PinkCherryOakSaplingGenerator()), ItemGroup.DECORATIONS, true);
+    public static final Block WHITE_CHERRY_OAK_SAPLING = register("white_cherry_oak_sapling", new SaplingBlock(new WhiteCherryOakSaplingGenerator()), ItemGroup.DECORATIONS, true);
     public static final Block CHERRY_OAK_LOG = register("cherry_oak_log", new LogBlock(MaterialColor.WOOD, Settings.copy(Blocks.OAK_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block STRIPPED_CHERRY_OAK_LOG = register("stripped_cherry_oak_log", new LogBlock(MaterialColor.WOOD, Settings.copy(CHERRY_OAK_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block CHERRY_OAK_WOOD = register("cherry_oak_wood", new LogBlock(MaterialColor.WOOD, Settings.copy(CHERRY_OAK_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
@@ -286,7 +286,7 @@ public class MubbleBlocks
     public static final Block CHERRY_OAK_WOOD_BUTTON = register("cherry_oak_wood_button", new WoodButtonBlock(pWoodenButton), ItemGroup.REDSTONE, false);
     
     public static final Block PALM_PLANKS = register("palm_planks", new Block(Settings.copy(Blocks.OAK_PLANKS)), ItemGroup.BUILDING_BLOCKS, false, 5, 20);
-    public static final Block PALM_SAPLING = register("palm_sapling", new SaplingBlock(new PalmTree()), ItemGroup.DECORATIONS, true);
+    public static final Block PALM_SAPLING = register("palm_sapling", new SaplingBlock(new PalmSaplingGenerator()), ItemGroup.DECORATIONS, true);
     public static final Block PALM_LOG = register("palm_log", new LogBlock(MaterialColor.WOOD, Settings.copy(Blocks.OAK_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block STRIPPED_PALM_LOG = register("stripped_palm_log", new LogBlock(MaterialColor.WOOD, Settings.copy(MubbleBlocks.PALM_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block PALM_WOOD = register("palm_wood", new LogBlock(MaterialColor.WOOD, Settings.copy(MubbleBlocks.PALM_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
@@ -1037,8 +1037,8 @@ public class MubbleBlocks
     public static final Block BLUE_STUDIOPOLIS_CLAPPER = register("blue_studiopolis_clapper", new DirectionalBlock(Settings.copy(Blocks.IRON_BLOCK)), ItemGroup.DECORATIONS, false);
     
     public static final Block PRESS_GARDEN_PLANKS = register("press_garden_planks", new Block(Settings.copy(Blocks.OAK_PLANKS)), ItemGroup.BUILDING_BLOCKS, false, 5, 20);
-    public static final Block RED_PRESS_GARDEN_SAPLING = register("red_press_garden_sapling", new SaplingBlock(new RedPressGardenTree()), ItemGroup.DECORATIONS, true);
-    public static final Block PINK_PRESS_GARDEN_SAPLING = register("pink_press_garden_sapling", new SaplingBlock(new PinkPressGardenTree()), ItemGroup.DECORATIONS, true);
+    public static final Block RED_PRESS_GARDEN_SAPLING = register("red_press_garden_sapling", new SaplingBlock(new RedPressGardenSaplingGenerator()), ItemGroup.DECORATIONS, true);
+    public static final Block PINK_PRESS_GARDEN_SAPLING = register("pink_press_garden_sapling", new SaplingBlock(new PinkPressGardenSaplingGenerator()), ItemGroup.DECORATIONS, true);
     public static final Block PRESS_GARDEN_LOG = register("press_garden_log", new LogBlock(MaterialColor.WOOD, Settings.copy(Blocks.OAK_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block STRIPPED_PRESS_GARDEN_LOG = register("stripped_press_garden_log", new LogBlock(MaterialColor.WOOD, Settings.copy(PRESS_GARDEN_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block PRESS_GARDEN_WOOD = register("press_garden_wood", new LogBlock(MaterialColor.WOOD, Settings.copy(PRESS_GARDEN_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
@@ -1065,7 +1065,7 @@ public class MubbleBlocks
     
     /* UNDERTALE / DELTARUNE */
     public static final Block SCARLET_PLANKS = register("scarlet_planks", new Block(Settings.copy(Blocks.OAK_PLANKS)), ItemGroup.BUILDING_BLOCKS, false, 5, 20);
-    public static final Block SCARLET_SAPLING = register("scarlet_sapling", new SaplingBlock(new ScarletTree()), ItemGroup.DECORATIONS, true);
+    public static final Block SCARLET_SAPLING = register("scarlet_sapling", new SaplingBlock(new ScarletSaplingGenerator()), ItemGroup.DECORATIONS, true);
     public static final Block SCARLET_LOG = register("scarlet_log", new LogBlock(MaterialColor.WOOD, Settings.copy(Blocks.OAK_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block STRIPPED_SCARLET_LOG = register("stripped_scarlet_log", new LogBlock(MaterialColor.WOOD, Settings.copy(SCARLET_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);
     public static final Block SCARLET_WOOD = register("scarlet_wood", new LogBlock(MaterialColor.WOOD, Settings.copy(SCARLET_LOG)), ItemGroup.BUILDING_BLOCKS, false, 5, 5);

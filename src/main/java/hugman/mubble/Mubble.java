@@ -15,9 +15,6 @@ import hugman.mubble.init.data.MubbleCommands;
 import hugman.mubble.init.data.MubbleContainerTypes;
 import hugman.mubble.init.data.MubbleTileEntityTypes;
 import hugman.mubble.init.world.MubbleBiomes;
-import hugman.mubble.init.world.MubbleCarvers;
-import hugman.mubble.init.world.MubbleDimensions;
-import hugman.mubble.init.world.MubbleFeatures;
 import hugman.mubble.init.world.MubbleGenerators;
 import hugman.mubble.init.world.MubbleSurfaceBuilders;
 import hugman.mubble.objects.event.LightsaberEvents;
@@ -48,9 +45,6 @@ public class Mubble implements ModInitializer
 		
 		// World
 		new MubbleBiomes();
-		new MubbleCarvers();
-		new MubbleDimensions();
-		new MubbleFeatures();
 		new MubbleSurfaceBuilders();
 		MubbleBiomes.initBiomeGeneration();
 		initGenerators();

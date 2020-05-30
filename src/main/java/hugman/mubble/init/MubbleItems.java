@@ -4,27 +4,9 @@ import hugman.mubble.Mubble;
 import hugman.mubble.init.data.MubbleFoods;
 import hugman.mubble.init.data.MubbleItemTiers;
 import hugman.mubble.objects.item.AxeItem;
-import hugman.mubble.objects.item.BandageItem;
-import hugman.mubble.objects.item.CapeFeatherItem;
-import hugman.mubble.objects.item.FireballItem;
-import hugman.mubble.objects.item.IceballItem;
-import hugman.mubble.objects.item.KeyItem;
-import hugman.mubble.objects.item.KirbyBallItem;
-import hugman.mubble.objects.item.LightsaberItem;
 import hugman.mubble.objects.item.PickaxeItem;
-import hugman.mubble.objects.item.ShakeInstrumentItem;
-import hugman.mubble.objects.item.SmallBulbItem;
-import hugman.mubble.objects.item.SmashBallItem;
-import hugman.mubble.objects.item.SuperStarItem;
-import hugman.mubble.objects.item.TotemOfAscendingItem;
-import io.github.kvverti.bannerpp.api.LoomPatternItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.item.SwordItem;
+import hugman.mubble.objects.item.*;
+import net.minecraft.item.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -66,8 +48,7 @@ public class MubbleItems
     public static final Item PERMAFROST_BRICK = register("permafrost_brick", new Item(new Item.Settings().group(ItemGroup.MATERIALS)));
     public static final Item BANDAGE = register("bandage", new BandageItem(new Item.Settings().group(ItemGroup.MISC).maxCount(16)));
     public static final Item TOTEM_OF_ASCENDING = register("totem_of_ascending", new TotemOfAscendingItem(new Item.Settings().group(ItemGroup.COMBAT).maxCount(1).rarity(Rarity.UNCOMMON)));
-    public static final Item STAR_BANNER_PATTERN = register("star_banner_pattern", new LoomPatternItem(MubbleBannerPatterns.STAR, new Item.Settings().maxCount(1).group(ItemGroup.MISC).rarity(Rarity.RARE)));
-    
+
     /* SUPER MARIO */
     public static final Item SUPER_MUSHROOM = register("super_mushroom", new Item(new Item.Settings().group(ItemGroup.FOOD).food(MubbleFoods.SUPER_MUSHROOM)));
     public static final Item PEACH = register("peach", new Item(new Item.Settings().group(ItemGroup.FOOD).food(MubbleFoods.PEACH)));
