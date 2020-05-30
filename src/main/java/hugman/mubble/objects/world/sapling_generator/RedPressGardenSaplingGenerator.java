@@ -1,4 +1,4 @@
-package hugman.mubble.objects.world.tree;
+package hugman.mubble.objects.world.sapling_generator;
 
 import hugman.mubble.init.world.MubbleFeatureConfigs;
 import net.minecraft.block.sapling.LargeTreeSaplingGenerator;

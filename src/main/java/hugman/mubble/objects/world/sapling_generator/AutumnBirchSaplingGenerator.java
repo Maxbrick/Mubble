@@ -1,4 +1,4 @@
-package hugman.mubble.objects.world.tree;
+package hugman.mubble.objects.world.sapling_generator;
 
 import hugman.mubble.init.world.MubbleFeatureConfigs;
 import net.minecraft.block.sapling.SaplingGenerator;
@@ -13,6 +13,6 @@ public class AutumnBirchSaplingGenerator extends SaplingGenerator
 	@Override
 	protected ConfiguredFeature<BranchedTreeFeatureConfig, ?> createTreeFeature(Random random, boolean canHaveBeeHive)
 	{
-		return random.nextInt(10) == 0 ? Feature.FANCY_TREE.configure(canHaveBeeHive ? MubbleFeatureConfigs.FANCY_AUTUMN_BIRCH_B1_CONFIG : MubbleFeatureConfigs.FANCY_AUTUMN_BIRCH_TREE_CONFIG) : Feature.NORMAL_TREE.configure(canHaveBeeHive ? MubbleFeatureConfigs.AUTUMN_BIRCH_TREE_B1_CONFIG : MubbleFeatureConfigs.AUTUMN_BIRCH_TREE_CONFIG);
+		return random.nextInt(10) == 0 ? Feature.FANCY_TREE.configure(canHaveBeeHive ? MubbleFeatureConfigs.FANCY_AUTUMN_BIRCH_TREE_B1_CONFIG : MubbleFeatureConfigs.FANCY_AUTUMN_BIRCH_TREE_CONFIG) : Feature.NORMAL_TREE.configure(canHaveBeeHive ? MubbleFeatureConfigs.AUTUMN_BIRCH_TREE_B1_CONFIG : MubbleFeatureConfigs.AUTUMN_BIRCH_TREE_CONFIG);
 	}
 }

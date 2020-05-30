@@ -14,7 +14,7 @@ import hugman.mubble.objects.block.StairsBlock;
 import hugman.mubble.objects.block.StoneButtonBlock;
 import hugman.mubble.objects.block.WoodButtonBlock;
 import hugman.mubble.objects.block.*;
-import hugman.mubble.objects.world.tree.*;
+import hugman.mubble.objects.world.sapling_generator.*;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
@@ -209,6 +209,9 @@ public class MubbleBlocks
 	public static final Block VANADIUM_ORE = register("vanadium_ore", new OreBlock(Settings.copy(Blocks.DIAMOND_ORE)), ItemGroup.BUILDING_BLOCKS, false);
 	public static final Block VANADIUM_BLOCK = register("vanadium_block", new Block(Settings.copy(Blocks.DIAMOND_BLOCK)), ItemGroup.BUILDING_BLOCKS, false);
 
+	public static final Block AUTUMN_OAK_SAPLING = register("autumn_oak_sapling", new SaplingBlock(new AutumnOakSaplingGenerator()), ItemGroup.DECORATIONS, true);
+	public static final Block AUTUMN_OAK_LEAVES = register("autumn_oak_leaves", new LeavesBlock(pLeaves), ItemGroup.DECORATIONS, false, 30, 60);
+	public static final Block AUTUMN_OAK_LEAF_PILE = register("autumn_oak_leaf_pile", new PileBlock(FabricBlockSettings.of(Material.LEAVES).hardness(0.1F).sounds(BlockSoundGroup.GRASS).noCollision()), ItemGroup.DECORATIONS, false, 60, 20);
 	public static final Block AUTUMN_BIRCH_SAPLING = register("autumn_birch_sapling", new SaplingBlock(new AutumnBirchSaplingGenerator()), ItemGroup.DECORATIONS, true);
 	public static final Block AUTUMN_BIRCH_LEAVES = register("autumn_birch_leaves", new LeavesBlock(pLeaves), ItemGroup.DECORATIONS, false, 30, 60);
 	public static final Block AUTUMN_BIRCH_LEAF_PILE = register("autumn_birch_leaf_pile", new PileBlock(FabricBlockSettings.of(Material.LEAVES).hardness(0.1F).sounds(BlockSoundGroup.GRASS).noCollision()), ItemGroup.DECORATIONS, false, 60, 20);
