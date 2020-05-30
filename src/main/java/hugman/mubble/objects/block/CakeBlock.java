@@ -5,8 +5,8 @@ import net.minecraft.block.Block;
 public class CakeBlock extends net.minecraft.block.CakeBlock
 {
 	/* Extension for internal publicity */
-    public CakeBlock(Block.Properties builder)
-    {
-        super(builder);
-    }
+	public CakeBlock(Block.Properties builder)
+	{
+		super(builder);
+	}
 }

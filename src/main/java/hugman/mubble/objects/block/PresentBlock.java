@@ -1,14 +1,8 @@
 package hugman.mubble.objects.block;
 
-import java.util.Random;
-
 import hugman.mubble.init.data.MubbleBlockStateProperties;
-import hugman.mubble.objects.tile_entity.PresentTileEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.block.IWaterLoggable;
+import hugman.mubble.objects.block.tile_entity.PresentTileEntity;
+import net.minecraft.block.*;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluids;
@@ -34,6 +28,8 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import java.util.Random;
+
 public class PresentBlock extends ContainerBlock implements IWaterLoggable
 {
 	public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
@@ -41,127 +37,127 @@ public class PresentBlock extends ContainerBlock implements IWaterLoggable
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	protected static final VoxelShape EMPTY_SHAPE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 12.0D, 15.0D);
 	protected static final VoxelShape FULL_SHAPE = VoxelShapes.or(EMPTY_SHAPE, Block.makeCuboidShape(0.0D, 10.0D, 0.0D, 16.0D, 16.0D, 16.0D));
-	
-    public PresentBlock(Properties builder)
-    {
-        super(builder);
-        this.setDefaultState(this.stateContainer.getBaseState().with(OPEN, Boolean.valueOf(false)).with(EMPTY, Boolean.valueOf(true)).with(WATERLOGGED, Boolean.valueOf(false)));
-    }
-    
-    @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
-    {
-		if(!state.get(EMPTY) && !state.get(OPEN))
+
+	public PresentBlock(Properties builder)
+	{
+		super(builder);
+		this.setDefaultState(this.stateContainer.getBaseState().with(OPEN, Boolean.valueOf(false)).with(EMPTY, Boolean.valueOf(true)).with(WATERLOGGED, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+	{
+		if (!state.get(EMPTY) && !state.get(OPEN))
 		{
-    		return FULL_SHAPE;
+			return FULL_SHAPE;
 		}
 		else
 		{
 			return EMPTY_SHAPE;
 		}
-    }
-    
-    @Override
-    public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
-    {
-    	if(!worldIn.isRemote)
-    	{
-    		TileEntity tileEntity = worldIn.getTileEntity(pos);
-    		if(tileEntity instanceof PresentTileEntity)
-    		{
-    			player.openContainer((PresentTileEntity)tileEntity);
-    			player.addStat(Stats.OPEN_BARREL);
-    		}
-    	}
-		return ActionResultType.SUCCESS;
-    }
+	}
 
 	@Override
-    @SuppressWarnings("deprecation")
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
-    {
-    	if(state.getBlock() != newState.getBlock())
-    	{
-    		TileEntity tileEntity = worldIn.getTileEntity(pos);
-    		if(tileEntity instanceof IInventory)
-    		{
-    			InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tileEntity);
-    			worldIn.updateComparatorOutputLevel(pos, this);
-    		}
-    	}
-    	super.onReplaced(state, worldIn, pos, newState, isMoving);
-    }
-	
+	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+	{
+		if (!worldIn.isRemote)
+		{
+			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			if (tileEntity instanceof PresentTileEntity)
+			{
+				player.openContainer((PresentTileEntity) tileEntity);
+				player.addStat(Stats.OPEN_BARREL);
+			}
+		}
+		return ActionResultType.SUCCESS;
+	}
+
+	@Override
+	@SuppressWarnings("deprecation")
+	public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+	{
+		if (state.getBlock() != newState.getBlock())
+		{
+			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			if (tileEntity instanceof IInventory)
+			{
+				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory) tileEntity);
+				worldIn.updateComparatorOutputLevel(pos, this);
+			}
+		}
+		super.onReplaced(state, worldIn, pos, newState, isMoving);
+	}
+
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if(tileEntity instanceof PresentTileEntity)
+		if (tileEntity instanceof PresentTileEntity)
 		{
-			((PresentTileEntity)tileEntity).presentTick();
+			((PresentTileEntity) tileEntity).presentTick();
 		}
 	}
-	
+
 	@Override
 	public BlockRenderType getRenderType(BlockState state)
 	{
 		return BlockRenderType.MODEL;
 	}
-	
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
-    {
-        return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER));
-    }
-	
+
+	@Override
+	public BlockState getStateForPlacement(BlockItemUseContext context)
+	{
+		return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER));
+	}
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
 	{
-		if(stack.hasDisplayName())
+		if (stack.hasDisplayName())
 		{
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
-			if(tileEntity instanceof PresentTileEntity)
+			if (tileEntity instanceof PresentTileEntity)
 			{
-				((PresentTileEntity)tileEntity).setCustomName(stack.getDisplayName());
+				((PresentTileEntity) tileEntity).setCustomName(stack.getDisplayName());
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean hasComparatorInputOverride(BlockState state)
 	{
 		return true;
 	}
-	
+
 	@Override
 	public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos)
 	{
 		return Container.calcRedstone(worldIn.getTileEntity(pos));
 	}
-	
+
 	@Override
 	protected void fillStateContainer(Builder<Block, BlockState> builder)
 	{
 		builder.add(OPEN, EMPTY, WATERLOGGED);
 	}
-	
+
 	@Override
-    public IFluidState getFluidState(BlockState state)
-    {
-    	return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : Fluids.EMPTY.getDefaultState();
-    }
-    
-    @Override
-    public boolean hasTileEntity(BlockState state)
-    {
-    	return true;
-    }
-    
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
-    {
-    	return new PresentTileEntity();
-    }
+	public IFluidState getFluidState(BlockState state)
+	{
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : Fluids.EMPTY.getDefaultState();
+	}
+
+	@Override
+	public boolean hasTileEntity(BlockState state)
+	{
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(BlockState state, IBlockReader world)
+	{
+		return new PresentTileEntity();
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn)

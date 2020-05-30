@@ -19,7 +19,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class LightsaberHandler
 {
 	@SubscribeEvent
@@ -29,26 +29,26 @@ public class LightsaberHandler
 		World worldIn = entityIn.getEntityWorld();
 		Item to = event.getTo().getItem();
 		Item from = event.getFrom().getItem();
-		if(!(to instanceof LightsaberItem && from instanceof LightsaberItem))
+		if (!(to instanceof LightsaberItem && from instanceof LightsaberItem))
 		{
-			if(to.getItem() instanceof LightsaberItem)
+			if (to.getItem() instanceof LightsaberItem)
 			{
-				((LightsaberItem)to.getItem()).onPullOut(entityIn, worldIn);
+				((LightsaberItem) to.getItem()).onPullOut(entityIn, worldIn);
 			}
-			if(from.getItem() instanceof LightsaberItem)
+			if (from.getItem() instanceof LightsaberItem)
 			{
-				((LightsaberItem)from.getItem()).onPullIn(entityIn, worldIn);
+				((LightsaberItem) from.getItem()).onPullIn(entityIn, worldIn);
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	@OnlyIn(Dist.CLIENT)
 	public static void clientTick(ClientTickEvent event)
 	{
-		if(event.phase == Phase.START)
+		if (event.phase == Phase.START)
 		{
-			if(LightsaberItem.idleTimer <= 95)
+			if (LightsaberItem.idleTimer <= 95)
 			{
 				LightsaberItem.idleTimer++;
 			}
@@ -58,32 +58,32 @@ public class LightsaberHandler
 			}
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void onAirLeftClick(LeftClickEmpty event)
 	{
 		ItemStack itemStack = event.getItemStack();
-		if(itemStack.getItem() instanceof LightsaberItem)
+		if (itemStack.getItem() instanceof LightsaberItem)
 		{
-			((LightsaberItem)itemStack.getItem()).onSwing(event.getPlayer(), false);
+			((LightsaberItem) itemStack.getItem()).onSwing(event.getPlayer(), false);
 		}
 	}
-	
+
 	@SubscribeEvent
 	public static void onAttack(AttackEntityEvent event)
 	{
 		Entity target = event.getTarget();
 		PlayerEntity player = event.getPlayer();
 		ItemStack itemStack = player.getHeldItem(Hand.MAIN_HAND);
-		if(itemStack.getItem() instanceof LightsaberItem)
+		if (itemStack.getItem() instanceof LightsaberItem)
 		{
-			if(target.canBeAttackedWithItem() && !target.isInvulnerableTo(DamageSource.causePlayerDamage(player)) && target.isAlive() && !target.hitByEntity(player))
+			if (target.canBeAttackedWithItem() && !target.isInvulnerableTo(DamageSource.causePlayerDamage(player)) && target.isAlive() && !target.hitByEntity(player))
 			{
-				((LightsaberItem)itemStack.getItem()).onSwing(event.getPlayer(), true);
+				((LightsaberItem) itemStack.getItem()).onSwing(event.getPlayer(), true);
 			}
 			else
 			{
-				((LightsaberItem)itemStack.getItem()).onSwing(event.getPlayer(), false);
+				((LightsaberItem) itemStack.getItem()).onSwing(event.getPlayer(), false);
 			}
 		}
 	}

@@ -20,37 +20,37 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public abstract class BallEntity extends ProjectileItemEntity
 {
 	protected int reboundingAmount = 3;
-	
+
 	public BallEntity(EntityType<? extends BallEntity> entityType, World world)
 	{
 		super(entityType, world);
 	}
-	
+
 	public BallEntity(EntityType<? extends BallEntity> entityType, World world, LivingEntity owner)
 	{
 		super(entityType, owner, world);
 	}
-	
+
 	public BallEntity(EntityType<? extends BallEntity> entityType, World world, double x, double y, double z)
 	{
 		super(entityType, x, y, z, world);
 	}
-	
+
 	protected abstract SoundEvent getDeathSound();
-	
+
 	protected abstract IParticleData getDeathParticle();
 
 	protected abstract boolean onEntityImpact(EntityRayTraceResult result);
-	
+
 	protected abstract boolean onBlockImpact(BlockRayTraceResult result);
-	
+
 	@Override
 	public void writeAdditional(CompoundNBT compound)
 	{
 		super.writeAdditional(compound);
 		compound.putInt("ReboundingAmount", reboundingAmount);
 	}
-	
+
 	@Override
 	public void readAdditional(CompoundNBT compound)
 	{
@@ -62,28 +62,25 @@ public abstract class BallEntity extends ProjectileItemEntity
 	protected void onImpact(RayTraceResult result)
 	{
 		boolean removeOnImpact = true;
-		
-		if(result.getType() == RayTraceResult.Type.ENTITY)
+		if (result.getType() == RayTraceResult.Type.ENTITY)
 		{
-			removeOnImpact = onEntityImpact((EntityRayTraceResult)result);
+			removeOnImpact = onEntityImpact((EntityRayTraceResult) result);
 		}
-		else if(result.getType() == RayTraceResult.Type.BLOCK)
+		else if (result.getType() == RayTraceResult.Type.BLOCK)
 		{
-			removeOnImpact = onBlockImpact(((BlockRayTraceResult)result));
+			removeOnImpact = onBlockImpact(((BlockRayTraceResult) result));
 		}
-		
 		boolean cantRebound = reboundingAmount <= 0;
-		
-		if(removeOnImpact || cantRebound)
+		if (removeOnImpact || cantRebound)
 		{
-			if(!world.isRemote)
+			if (!world.isRemote)
 			{
-				world.setEntityState(this, (byte)3);
+				world.setEntityState(this, (byte) 3);
 				remove();
 			}
-			if(!removeOnImpact && cantRebound)
+			if (!removeOnImpact && cantRebound)
 			{
-				world.playSound((PlayerEntity)null, getX(), getY(), getZ(), getDeathSound(), SoundCategory.NEUTRAL, 0.5F, 1.0F);
+				world.playSound((PlayerEntity) null, getX(), getY(), getZ(), getDeathSound(), SoundCategory.NEUTRAL, 0.5F, 1.0F);
 			}
 		}
 		else
@@ -96,15 +93,15 @@ public abstract class BallEntity extends ProjectileItemEntity
 	@Override
 	public void handleStatusUpdate(byte state)
 	{
-		if(state == 3)
+		if (state == 3)
 		{
 			this.spawnDeathParticles();
 		}
 	}
-	
+
 	protected void spawnDeathParticles()
 	{
-		for(int i = 0; i < 8; ++i)
+		for (int i = 0; i < 8; ++i)
 		{
 			float s1 = rand.nextFloat() * 0.2F - 0.1F;
 			float s2 = rand.nextFloat() * 0.2F - 0.1F;

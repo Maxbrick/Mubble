@@ -14,13 +14,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ZombieCowmanRenderer extends BipedRenderer<ZombieCowmanEntity, ZombieModel<ZombieCowmanEntity>>
 {
 	private static final ResourceLocation ZOMBIE_COWMAN_TEXTURE = new ResourceLocation(Mubble.MOD_PREFIX + "textures/entity/zombie_cowman.png");
-	
+
 	public ZombieCowmanRenderer(EntityRendererManager renderManagerIn)
 	{
 		super(renderManagerIn, new ZombieModel<>(0.0F, false), 0.5F);
 		this.addLayer(new BipedArmorLayer<>(this, new ZombieModel<>(0.5F, true), new ZombieModel<>(1.0F, true)));
 	}
-	
+
 	@Override
 	public ResourceLocation getEntityTexture(ZombieCowmanEntity entity)
 	{

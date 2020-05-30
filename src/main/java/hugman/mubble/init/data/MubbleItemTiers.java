@@ -1,10 +1,10 @@
 package hugman.mubble.init.data;
 
-import java.util.function.Supplier;
-
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.LazyValue;
+
+import java.util.function.Supplier;
 
 public enum MubbleItemTiers implements IItemTier
 {

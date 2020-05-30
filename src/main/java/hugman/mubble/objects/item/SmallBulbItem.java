@@ -10,30 +10,29 @@ import net.minecraft.world.World;
 
 public class SmallBulbItem extends Item
 {
-    public SmallBulbItem(Item.Properties builder)
-    {
-        super(builder);
-    }
-	
+	public SmallBulbItem(Item.Properties builder)
+	{
+		super(builder);
+	}
+
 	@Override
 	public ActionResultType onItemUse(ItemUseContext context)
 	{
-    	World worldIn = context.getWorld();
-    	BlockPos pos = context.getPos();
-    	BlockState state = worldIn.getBlockState(pos);
-    	
-    	if(state.getBlock() instanceof GarlandBlock)
-    	{
-			if(!state.get(GarlandBlock.ILLUMINATED))
+		World worldIn = context.getWorld();
+		BlockPos pos = context.getPos();
+		BlockState state = worldIn.getBlockState(pos);
+		if (state.getBlock() instanceof GarlandBlock)
+		{
+			if (!state.get(GarlandBlock.ILLUMINATED))
 			{
-				if(!worldIn.isRemote)
+				if (!worldIn.isRemote)
 				{
-		            worldIn.setBlockState(pos, state.with(GarlandBlock.ILLUMINATED, true), 2);
-		            context.getItem().shrink(1);
+					worldIn.setBlockState(pos, state.with(GarlandBlock.ILLUMINATED, true), 2);
+					context.getItem().shrink(1);
 				}
-	    		return ActionResultType.SUCCESS;
+				return ActionResultType.SUCCESS;
 			}
-    	}
+		}
 		return ActionResultType.FAIL;
 	}
 }

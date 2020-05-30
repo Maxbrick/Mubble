@@ -1,9 +1,9 @@
 package hugman.mubble.init;
 
+import net.minecraft.entity.item.PaintingType;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import net.minecraft.entity.item.PaintingType;
 
 public class MubblePaintingTypes
 {
@@ -24,7 +24,7 @@ public class MubblePaintingTypes
 	public static final PaintingType TINY_HUGE_ISLAND = register("tiny_huge_island", 48, 48);
 
 	public static final PaintingType SSBU_ROSTER = register("ssbu_roster", 384, 64);
-	
+
 	private static PaintingType register(String name, int width, int height)
 	{
 		PaintingType type = new PaintingType(width, height).setRegistryName(name);

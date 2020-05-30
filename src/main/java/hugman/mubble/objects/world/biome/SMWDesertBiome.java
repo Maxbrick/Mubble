@@ -1,7 +1,6 @@
 package hugman.mubble.objects.world.biome;
 
 import com.google.common.collect.Lists;
-
 import hugman.mubble.init.MubbleBlocks;
 import hugman.mubble.init.MubbleEntities;
 import hugman.mubble.init.data.MubbleBlockStateProperties;
@@ -27,7 +26,7 @@ public class SMWDesertBiome extends Biome
 	private static final BlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
 	private static final BlockState SMW_DESERT_TOP = MubbleBlocks.SMW_DESERT_GROUND_BLOCK.getDefaultState().with(MubbleBlockStateProperties.OVER, true);
 	private static final BlockState SMW_DESERT_DIRT = MubbleBlocks.SMW_DESERT_GROUND_BLOCK.getDefaultState().with(MubbleBlockStateProperties.OVER, false);
-	
+
 	public SMWDesertBiome()
 	{
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, MubbleSurfaceBuilders.SMW_DESERT_SURFACE)
@@ -76,7 +75,7 @@ public class SMWDesertBiome extends Biome
 	{
 		return 16110261;
 	}
-	
+
 	@Override
 	public int getSkyColor()
 	{

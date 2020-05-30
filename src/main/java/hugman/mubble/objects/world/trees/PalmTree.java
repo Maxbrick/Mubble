@@ -1,14 +1,13 @@
 package hugman.mubble.objects.world.trees;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import hugman.mubble.init.world.MubbleFeatureConfigs;
-import hugman.mubble.init.world.MubbleFeatures;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 public class PalmTree extends Tree
 {
@@ -16,6 +15,6 @@ public class PalmTree extends Tree
 	@Override
 	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean canHaveBeeHive)
 	{
-		return MubbleFeatures.PALM_TREE.configure(MubbleFeatureConfigs.PALM_TREE_CONFIG);
+		return Feature.field_227246_s_.configure(MubbleFeatureConfigs.PALM_TREE_CONFIG);
 	}
 }

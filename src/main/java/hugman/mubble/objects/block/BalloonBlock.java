@@ -13,46 +13,46 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class BalloonBlock extends FlyingBlock
 {
-    public BalloonBlock(DyeColor color)
-    {
-        super(Properties.create(Material.WOOL, color).hardnessAndResistance(0F).sound(SoundType.CLOTH).nonOpaque());
-    }
-    
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isSideInvisible(BlockState state1, BlockState state2, Direction direction)
-    {
-       return state2.getBlock() == this ? true : false;
-    }
-    
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-       return 1.0F;
-    }
-    
-    @Override
-    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos)
-    {
-    	return true;
+	public BalloonBlock(DyeColor color)
+	{
+		super(Properties.create(Material.WOOL, color).hardnessAndResistance(0F).sound(SoundType.CLOTH).nonOpaque());
 	}
 
-    @Override
-    public boolean canSuffocate(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-       return false;
-    }
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public boolean isSideInvisible(BlockState state1, BlockState state2, Direction direction)
+	{
+		return state2.getBlock() == this ? true : false;
+	}
 
-    @Override
-    public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-       return false;
-    }
+	@OnlyIn(Dist.CLIENT)
+	@Override
+	public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return 1.0F;
+	}
 
-    @Override
-    public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
-    {
-       return false;
-    }
+	@Override
+	public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos)
+	{
+		return true;
+	}
+
+	@Override
+	public boolean canSuffocate(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
+	{
+		return false;
+	}
 }

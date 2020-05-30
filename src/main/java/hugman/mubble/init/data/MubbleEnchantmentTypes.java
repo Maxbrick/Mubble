@@ -9,8 +9,8 @@ import net.minecraft.item.TridentItem;
 public class MubbleEnchantmentTypes
 {
 	public static final EnchantmentType LOOTING = EnchantmentType.create("LOOTING", p -> (
-		   p instanceof ToolItem
-		|| p instanceof BowItem
-		|| p instanceof CrossbowItem
-		|| p instanceof TridentItem));
+			p instanceof ToolItem
+					|| p instanceof BowItem
+					|| p instanceof CrossbowItem
+					|| p instanceof TridentItem));
 }

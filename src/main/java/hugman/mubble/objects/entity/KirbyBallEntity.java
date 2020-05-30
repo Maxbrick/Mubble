@@ -20,19 +20,19 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class KirbyBallEntity extends BallEntity
-{	
+{
 	public KirbyBallEntity(EntityType<? extends BallEntity> entityType, World world)
 	{
 		super(entityType, world);
 		reboundingAmount = 10;
 	}
-	
+
 	public KirbyBallEntity(World world, LivingEntity owner)
 	{
 		super(MubbleEntities.KIRBY_BALL, world, owner);
 		reboundingAmount = 10;
 	}
-	
+
 	public KirbyBallEntity(World world, double x, double y, double z)
 	{
 		super(MubbleEntities.KIRBY_BALL, world, x, y, z);
@@ -56,42 +56,47 @@ public class KirbyBallEntity extends BallEntity
 	{
 		return ParticleTypes.CLOUD;
 	}
-	
+
 	@Override
 	protected boolean onEntityImpact(EntityRayTraceResult result)
 	{
-		Entity entity = ((EntityRayTraceResult)result).getEntity();
-        boolean flag = entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.owner), 2.5F);
-        if(flag)
-        {
-        	this.applyEnchantments(this.owner, entity);
-        }
-		world.playSound((PlayerEntity)null, getX(), getY(), getZ(), MubbleSounds.ENTITY_KIRBY_BALL_HIT_ENTITY, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		Entity entity = ((EntityRayTraceResult) result).getEntity();
+		boolean flag = entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.owner), 2.5F);
+		if (flag)
+		{
+			this.applyEnchantments(this.owner, entity);
+		}
+		world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_KIRBY_BALL_HIT_ENTITY, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		return true;
 	}
-	
+
 	@Override
 	protected boolean onBlockImpact(BlockRayTraceResult result)
 	{
 		Direction face = result.getFace();
-
 		Vec3d motion = getMotion();
-		if(face == Direction.UP || face == Direction.DOWN)
+		if (face == Direction.UP || face == Direction.DOWN)
 		{
 			motion = motion.subtract(0.0D, getMotion().y * 1.25D, 0.0D);
-			if(face == Direction.UP)
+			if (face == Direction.UP)
 			{
 				double minY = 0.3D;
-				if(motion.y < minY)
+				if (motion.y < minY)
 				{
 					motion = new Vec3d(motion.x, minY, motion.z);
 				}
 			}
 		}
-		else if(face == Direction.WEST || face == Direction.EAST) motion = motion.subtract(getMotion().x * 1.25D, 0.0D, 0.0D);
-		else if(face == Direction.NORTH || face == Direction.SOUTH) motion = motion.subtract(0.0D, 0.0D, getMotion().z * 1.25D);
+		else if (face == Direction.WEST || face == Direction.EAST)
+		{
+			motion = motion.subtract(getMotion().x * 1.25D, 0.0D, 0.0D);
+		}
+		else if (face == Direction.NORTH || face == Direction.SOUTH)
+		{
+			motion = motion.subtract(0.0D, 0.0D, getMotion().z * 1.25D);
+		}
 		setMotion(motion);
-		world.playSound((PlayerEntity)null, getX(), getY(), getZ(), MubbleSounds.ENTITY_KIRBY_BALL_REBOUND, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_KIRBY_BALL_REBOUND, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		return false;
 	}
 }

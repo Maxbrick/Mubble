@@ -1,7 +1,6 @@
 package hugman.mubble.objects.entity.render.model;
 
 import com.google.common.collect.ImmutableList;
-
 import net.minecraft.client.renderer.entity.model.AgeableModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
@@ -19,9 +18,9 @@ public class DuckModel<T extends LivingEntity> extends AgeableModel<T>
 	private final ModelRenderer rightWing;
 	private final ModelRenderer leftWing;
 	private final ModelRenderer beak;
-	   
-    public DuckModel()
-    {
+
+	public DuckModel()
+	{
 		head = new ModelRenderer(this, 0, 0);
 		head.addCuboid(-2.0F, -10.0F, -2.0F, 4.0F, 10.0F, 3.0F, 0.0F);
 		head.setRotationPoint(0.0F, 15.0F, -4.0F);

@@ -12,46 +12,46 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TetrisGlassBlock extends FallingBlock
 {
-    public TetrisGlassBlock(Block.Properties builder)
-    {
-        super(builder);
-    }
-    
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side)
-    {
-    	return adjacentBlockState.getBlock() == this ? true : false;
-    }
-    
-    @Override
-    @OnlyIn(Dist.CLIENT)
-    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-    	return 1.0F;
-    }
+	public TetrisGlassBlock(Block.Properties builder)
+	{
+		super(builder);
+	}
 
-    @Override
-    public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos)
-    {
-       return true;
-    }
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side)
+	{
+		return adjacentBlockState.getBlock() == this ? true : false;
+	}
 
-    @Override
-    public boolean canSuffocate(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-       return false;
-    }
+	@Override
+	@OnlyIn(Dist.CLIENT)
+	public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return 1.0F;
+	}
 
-    @Override
-    public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-       return false;
-    }
+	@Override
+	public boolean propagatesSkylightDown(BlockState state, IBlockReader reader, BlockPos pos)
+	{
+		return true;
+	}
 
-    @Override
-    public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
-    {
-       return false;
-    }
+	@Override
+	public boolean canSuffocate(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canEntitySpawn(BlockState state, IBlockReader worldIn, BlockPos pos, EntityType<?> type)
+	{
+		return false;
+	}
 }

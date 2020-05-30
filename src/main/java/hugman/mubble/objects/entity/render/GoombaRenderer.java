@@ -12,24 +12,24 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class GoombaRenderer extends MobRenderer<GoombaEntity, GoombaModel<GoombaEntity>>
 {
-    private static final ResourceLocation NORMAL_GOOMBA_TEXTURES = new ResourceLocation(Mubble.MOD_ID + ":textures/entity/goomba/normal.png");
-    private static final ResourceLocation GOLDEN_GOOMBA_TEXTURES = new ResourceLocation(Mubble.MOD_ID + ":textures/entity/goomba/golden.png");
-	
+	private static final ResourceLocation NORMAL_GOOMBA_TEXTURES = new ResourceLocation(Mubble.MOD_ID + ":textures/entity/goomba/normal.png");
+	private static final ResourceLocation GOLDEN_GOOMBA_TEXTURES = new ResourceLocation(Mubble.MOD_ID + ":textures/entity/goomba/golden.png");
+
 	public GoombaRenderer(EntityRendererManager manager)
 	{
 		super(manager, new GoombaModel<>(), 0.3F);
 	}
-	
+
 	@Override
 	public ResourceLocation getEntityTexture(GoombaEntity entity)
-    {
-		switch(entity.getVariant())
+	{
+		switch (entity.getVariant())
 		{
-        case 0:
-        default:
-            return NORMAL_GOOMBA_TEXTURES;
-        case 1:
-            return GOLDEN_GOOMBA_TEXTURES;
+			case 0:
+			default:
+				return NORMAL_GOOMBA_TEXTURES;
+			case 1:
+				return GOLDEN_GOOMBA_TEXTURES;
 		}
 	}
 }

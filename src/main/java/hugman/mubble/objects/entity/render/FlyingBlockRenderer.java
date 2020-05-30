@@ -1,9 +1,6 @@
 package hugman.mubble.objects.entity.render;
 
-import java.util.Random;
-
 import com.mojang.blaze3d.matrix.MatrixStack;
-
 import hugman.mubble.objects.entity.FlyingBlockEntity;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
@@ -24,6 +21,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.model.data.EmptyModelData;
 
+import java.util.Random;
+
 @OnlyIn(Dist.CLIENT)
 public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity>
 {
@@ -32,7 +31,7 @@ public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity>
 		super(renderManagerIn);
 		this.shadowSize = 0.5F;
 	}
-	
+
 	@Override
 	public void render(FlyingBlockEntity entity, float p_225623_2_, float p_225623_3_, MatrixStack matrix, IRenderTypeBuffer buffer, int p_225623_6_)
 	{
@@ -46,7 +45,7 @@ public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity>
 				BlockPos blockpos = new BlockPos(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
 				matrix.translate(-0.5D, 0.0D, -0.5D);
 				BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-				for(RenderType type : RenderType.getBlockLayers())
+				for (RenderType type : RenderType.getBlockLayers())
 				{
 					if (RenderTypeLookup.canRenderInLayer(blockstate, type))
 					{
@@ -60,7 +59,7 @@ public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity>
 			}
 		}
 	}
-	
+
 	@Override
 	public ResourceLocation getEntityTexture(FlyingBlockEntity entity)
 	{

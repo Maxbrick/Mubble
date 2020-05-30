@@ -1,14 +1,14 @@
 package hugman.mubble.init;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import hugman.mubble.Mubble;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 
-public class MubbleSounds 
-{	
+import java.util.ArrayList;
+import java.util.List;
+
+public class MubbleSounds
+{
 	public static final List<SoundEvent> SOUNDS = new ArrayList<SoundEvent>();
 
 	public static final SoundEvent BLOCK_PRESENT_CLOSE = register("block.present.close");
@@ -72,7 +72,7 @@ public class MubbleSounds
 	public static final SoundEvent ITEM_LIGHTSABER_SWIPE = register("item.lightsaber.swipe");
 	public static final SoundEvent ITEM_LIGHTSABER_THROW_FAR = register("item.lightsaber.throw.far");
 	public static final SoundEvent ITEM_LIGHTSABER_THROW_NEAR = register("item.lightsaber.throw.near");
-	
+
 	public static final SoundEvent COSTUME_CAPPY_AMBIENT = register("costume.cappy.ambient");
 	public static final SoundEvent COSTUME_CAPPY_AMBIENT_NETHER = register("costume.cappy.ambient.nether");
 	public static final SoundEvent COSTUME_CAPPY_EQUIP = register("costume.cappy.equip");
@@ -112,7 +112,7 @@ public class MubbleSounds
 	public static final SoundEvent ENTITY_ZOMBIE_COWMAN_ANGRY = register("entity.zombie_cowman.angry");
 	public static final SoundEvent ENTITY_ZOMBIE_COWMAN_HURT = register("entity.zombie_cowman.hurt");
 	public static final SoundEvent ENTITY_ZOMBIE_COWMAN_DEATH = register("entity.zombie_cowman.death");
-	
+
 	public static final SoundEvent UI_TIMESWAP_TABLE_TAKE_RESULT = register("ui.timeswap_table.take_result");
 	
 	/*
@@ -142,7 +142,7 @@ public class MubbleSounds
 	public static final SoundEvent REMIX_DISC_NB_SWEDEN = register("remix_disc.nb.sweden");
 	public static final SoundEvent REMIX_DISC_NB_WALUIGI_PINBALL = register("remix_disc.nb.waluigi_pinball");
 	*/
-	
+
 	private static SoundEvent register(String name)
 	{
 		ResourceLocation path = new ResourceLocation(Mubble.MOD_ID, name);

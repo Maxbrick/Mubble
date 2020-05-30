@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PufferfishAeughHandler
 {
 	@SubscribeEvent
@@ -23,13 +23,12 @@ public class PufferfishAeughHandler
 		Entity entity = event.getTarget();
 		Hand hand = event.getHand();
 		ItemStack itemStack = player.getHeldItem(hand);
-		
-		if(itemStack.getItem() == Items.CARROT && entity.getType() == EntityType.PUFFERFISH)
+		if (itemStack.getItem() == Items.CARROT && entity.getType() == EntityType.PUFFERFISH)
 		{
-			PufferfishEntity pufferfish = (PufferfishEntity)entity;
-			if(pufferfish.getPuffState() >= 1 && pufferfish.isAlive())
+			PufferfishEntity pufferfish = (PufferfishEntity) entity;
+			if (pufferfish.getPuffState() >= 1 && pufferfish.isAlive())
 			{
-				if(!player.abilities.isCreativeMode)
+				if (!player.abilities.isCreativeMode)
 				{
 					itemStack.shrink(1);
 				}

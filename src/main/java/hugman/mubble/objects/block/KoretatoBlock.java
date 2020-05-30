@@ -20,34 +20,34 @@ import net.minecraft.world.IWorld;
 public class KoretatoBlock extends DirectionalBlock
 {
 	public static final EnumProperty<Princess> PRINCESS = MubbleBlockStateProperties.PRINCESS;
-	
-    public KoretatoBlock()
-    {
-        super(Properties.create(Material.ORGANIC, MaterialColor.YELLOW_TERRACOTTA).hardnessAndResistance(0.4f, 2f).sound(SoundType.SNOW));
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP).with(PRINCESS, Princess.NONE));
-    }
-    
-    @Override
-    public BlockState rotate(BlockState state, IWorld world, BlockPos pos, Rotation direction)
-    {
-    	return state.with(FACING, direction.rotate(state.get(FACING)));
-    }
-    
-    @Override
-	public BlockState mirror(BlockState state, Mirror mirrorIn)
-    {
-        return state.mirror(mirrorIn);
+
+	public KoretatoBlock()
+	{
+		super(Properties.create(Material.ORGANIC, MaterialColor.YELLOW_TERRACOTTA).hardnessAndResistance(0.4f, 2f).sound(SoundType.SNOW));
+		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP).with(PRINCESS, Princess.NONE));
 	}
-    
-    @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
-    {
-        return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
-    }
-    
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-    {
-    	builder.add(PRINCESS, FACING);
+
+	@Override
+	public BlockState rotate(BlockState state, IWorld world, BlockPos pos, Rotation direction)
+	{
+		return state.with(FACING, direction.rotate(state.get(FACING)));
+	}
+
+	@Override
+	public BlockState mirror(BlockState state, Mirror mirrorIn)
+	{
+		return state.mirror(mirrorIn);
+	}
+
+	@Override
+	public BlockState getStateForPlacement(BlockItemUseContext context)
+	{
+		return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
+	}
+
+	@Override
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+	{
+		builder.add(PRINCESS, FACING);
 	}
 }

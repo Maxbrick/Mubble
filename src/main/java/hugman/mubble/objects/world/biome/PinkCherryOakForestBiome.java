@@ -1,7 +1,6 @@
 package hugman.mubble.objects.world.biome;
 
 import com.google.common.collect.ImmutableList;
-
 import hugman.mubble.init.world.MubbleFeatureConfigs;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -69,7 +68,7 @@ public class PinkCherryOakForestBiome extends Biome
 		this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.ENDERMAN, 10, 1, 4));
 		this.addSpawn(EntityClassification.MONSTER, new Biome.SpawnListEntry(EntityType.WITCH, 5, 1, 1));
 	}
-	
+
 	@Override
 	public int getFoliageColor()
 	{

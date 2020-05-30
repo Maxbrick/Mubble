@@ -156,9 +156,9 @@
 	"block.mubble.vanadium_block": "钒块",
 	"block.mubble.vanadium_ore": "钒矿石",
 	
-	"//block.mubble.autumn_oak_sapling": "Autumn Oak Sapling",
-	"//block.mubble.autumn_oak_leaves": "Autumn Oak Leaves",
-	"//block.mubble.autumn_oak_leaf_pile": "Autumn Oak Leaves Carpet",
+	"//block.mubble.autumn_birch_sapling": "Autumn Birch Sapling",
+	"//block.mubble.autumn_birch_leaves": "Autumn Birch Leaves",
+	"//block.mubble.autumn_birch_leaf_pile": "Autumn Birch Leaves Pile",
 	
 	"//block.mubble.cherry_oak_planks": "Cherry Oak Planks",
 	"//block.mubble.pink_cherry_oak_sapling": "Pink Cherry Oak Sapling",
@@ -1043,7 +1043,7 @@
 	"//block.mubble.potato_flower": "Potato Flower",
 
 
-	"//block.mubble.potted_autumn_oak_sapling": "Potted Autumn Oak Sapling",
+	"//block.mubble.potted_autumn_birch_sapling": "Potted Autumn Birch Sapling",
 	"//block.mubble.potted_pink_cherry_oak_sapling": "Potted Pink Cherry Oak Sapling",
 	"//block.mubble.potted_white_cherry_oak_sapling": "Potted White Cherry Oak Sapling",
 	"//block.mubble.potted_palm_sapling": "Potted Palm Sapling",
@@ -1072,40 +1072,6 @@
 	"//block.mubble.potted_scarlet_mushroom": "Potted Scarlet Mushroom",
 	"//block.mubble.potted_scarlet_orchid": "Potted Scarlet Orchid",
 	"//block.mubble.potted_potato_flower": "Potted Potato Flower",
-
-	"//block.minecraft.banner.star.blue": "Blue Star",
-	"//block.minecraft.banner.star.light_blue": "Light Blue Star",
-	"//block.minecraft.banner.star.cyan": "Cyan Star",
-	"//block.minecraft.banner.star.green": "Green Star",
-	"//block.minecraft.banner.star.lime": "Lime Star",
-	"//block.minecraft.banner.star.yellow": "Yellow Star",
-	"//block.minecraft.banner.star.orange": "Orange Star",
-	"//block.minecraft.banner.star.red": "Red Star",
-	"//block.minecraft.banner.star.pink": "Pink Star",
-	"//block.minecraft.banner.star.magenta": "Magenta Star",
-	"//block.minecraft.banner.star.purple": "Purple Star",
-	"//block.minecraft.banner.star.brown": "Brown Star",
-	"//block.minecraft.banner.star.white": "White Star",
-	"//block.minecraft.banner.star.light_gray": "Light Gray Star",
-	"//block.minecraft.banner.star.gray": "Gray Star",
-	"//block.minecraft.banner.star.black": "Black Star",
-
-	"//block.minecraft.banner.smash_ball.blue": "Blue Smash Ball",
-	"//block.minecraft.banner.smash_ball.light_blue": "Light Blue Smash Ball",
-	"//block.minecraft.banner.smash_ball.cyan": "Cyan Smash Ball",
-	"//block.minecraft.banner.smash_ball.green": "Green Smash Ball",
-	"//block.minecraft.banner.smash_ball.lime": "Lime Smash Ball",
-	"//block.minecraft.banner.smash_ball.yellow": "Yellow Smash Ball",
-	"//block.minecraft.banner.smash_ball.orange": "Orange Smash Ball",
-	"//block.minecraft.banner.smash_ball.red": "Red Smash Ball",
-	"//block.minecraft.banner.smash_ball.pink": "Pink Smash Ball",
-	"//block.minecraft.banner.smash_ball.magenta": "Magenta Smash Ball",
-	"//block.minecraft.banner.smash_ball.purple": "Purple Smash Ball",
-	"//block.minecraft.banner.smash_ball.brown": "Brown Smash Ball",
-	"//block.minecraft.banner.smash_ball.white": "White Smash Ball",
-	"//block.minecraft.banner.smash_ball.light_gray": "Light Gray Smash Ball",
-	"//block.minecraft.banner.smash_ball.gray": "Gray Smash Ball",
-	"//block.minecraft.banner.smash_ball.black": "Black Smash Ball",
 
 
 
@@ -1145,10 +1111,6 @@
 	"//item.mubble.jingle_bells": "Jingle Bells",
 	"//item.mubble.small_bulb": "Small Bulb",
 	"//item.mubble.totem_of_ascending": "<newline>",
-	"//item.mubble.star_banner_pattern": "Banner Pattern",
-	"//item.mubble.star_banner_pattern.desc": "Star",
-	"//item.mubble.smash_ball_banner_pattern": "Banner Pattern",
-	"//item.mubble.smash_ball_banner_pattern.desc": "Smash Ball",
 
 
 	"item.mubble.super_mushroom": "超级蘑菇",
@@ -1359,10 +1321,9 @@
 
 
 	"comment": "BIOMES",
-	"//biome.mubble.autumn_oak_forest": "Autumn Oak Forest",
+	"//biome.mubble.pumpkin_pastures": "Pumpkin Pastures",
 	"//biome.mubble.pink_cherry_oak_forest": "Pink Cherry Oak Forest",
 	"//biome.mubble.white_cherry_oak_forest": "White Cherry Oak Forest",
-	"//biome.mubble.permafrost": "Permafrost",
 	
 	"//biome.mubble.press_garden": "Press Garden",
 

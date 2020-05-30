@@ -13,16 +13,22 @@ public class SaplingBlock extends net.minecraft.block.SaplingBlock
 {
 	/* Extension for internal publicity
 	 * + Missing features */
-    public SaplingBlock(Tree tree)
-    {
-        super(tree, Properties.from(Blocks.OAK_SAPLING));
-    }
-    
-    @Override
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-    	Block block = state.getBlock();
-        if(this == MubbleBlocks.PALM_SAPLING) return MubbleTags.Blocks.PALM_SAPLING_VALID_GROUND.contains(block);
-        else return super.isValidGround(state, worldIn, pos);
-    }
+	public SaplingBlock(Tree tree)
+	{
+		super(tree, Properties.from(Blocks.OAK_SAPLING));
+	}
+
+	@Override
+	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos)
+	{
+		Block block = state.getBlock();
+		if (this == MubbleBlocks.PALM_SAPLING)
+		{
+			return MubbleTags.Blocks.PALM_SAPLING_VALID_GROUND.contains(block);
+		}
+		else
+		{
+			return super.isValidGround(state, worldIn, pos);
+		}
+	}
 }

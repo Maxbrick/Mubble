@@ -10,7 +10,7 @@ public class TelekinesisEnchantment extends Enchantment
 	{
 		super(rarityIn, EnchantmentType.WEAPON, slots);
 	}
-	
+
 	@Override
 	public int getMaxLevel()
 	{
