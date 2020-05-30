@@ -38,8 +38,6 @@ public class Mubble implements ModInitializer
 		new MubbleSurfaceBuilders();
 		MubbleBiomes.initBiomeGeneration();
 		initGenerators();
-		// Events
-		LightsaberEvents.init();
 	}
 
 	private void initGenerators()
