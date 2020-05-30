@@ -2,6 +2,6 @@
 	"parent": "mubble:block/pile",
 	"textures":
 	{
-		"pile": "minecraft:block/birch_leaves"
+		"pile": "minecraft:block/oak_leaves"
 	}
 }

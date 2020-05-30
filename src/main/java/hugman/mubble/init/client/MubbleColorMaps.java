@@ -34,6 +34,10 @@ public class MubbleColorMaps extends BlockColors
 		}, MubbleBlocks.OAK_LEAF_PILE, MubbleBlocks.JUNGLE_LEAF_PILE, MubbleBlocks.ACACIA_LEAF_PILE, MubbleBlocks.DARK_OAK_LEAF_PILE, MubbleBlocks.PALM_LEAVES, MubbleBlocks.PALM_LEAF_PILE);
 		blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) ->
 		{
+			return 15232304;
+		}, MubbleBlocks.AUTUMN_OAK_LEAVES, MubbleBlocks.AUTUMN_OAK_LEAF_PILE);
+		blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) ->
+		{
 			return 15645495;
 		}, MubbleBlocks.AUTUMN_BIRCH_LEAVES, MubbleBlocks.AUTUMN_BIRCH_LEAF_PILE);
 		blockColors.register((p_210229_0_, p_210229_1_, p_210229_2_, p_210229_3_) ->
@@ -65,6 +69,10 @@ public class MubbleColorMaps extends BlockColors
 		{
 			return GrassColors.get(0.5D, 1.0D);
 		}, MubbleBlocks.OAK_LEAF_PILE, MubbleBlocks.SPRUCE_LEAF_PILE, MubbleBlocks.BIRCH_LEAF_PILE, MubbleBlocks.JUNGLE_LEAF_PILE, MubbleBlocks.ACACIA_LEAF_PILE, MubbleBlocks.DARK_OAK_LEAF_PILE, MubbleBlocks.PALM_LEAVES, MubbleBlocks.PALM_LEAF_PILE, MubbleBlocks.GREEN_HILL_GRASS_BLOCK);
+		itemColors.register((p_210235_1_, p_210235_2_) ->
+		{
+			return 15232304;
+		}, MubbleBlocks.AUTUMN_OAK_LEAVES, MubbleBlocks.AUTUMN_OAK_LEAF_PILE);
 		itemColors.register((p_210235_1_, p_210235_2_) ->
 		{
 			return 15645495;

@@ -237,6 +237,10 @@ public class MubbleBlocks
 	public static final Block VANADIUM_ORE = register("vanadium_ore", new OreBlock(Properties.from(Blocks.DIAMOND_ORE)), ItemGroup.BUILDING_BLOCKS, CUBES);
 	public static final Block VANADIUM_BLOCK = register("vanadium_block", new Block(Properties.from(Blocks.DIAMOND_BLOCK)), ItemGroup.BUILDING_BLOCKS, CUBES);
 
+	public static final Block AUTUMN_OAK_SAPLING = register("autumn_oak_sapling", new SaplingBlock(new AutumnOakTree()), ItemGroup.DECORATIONS, SAPLINGS);
+	public static final Block AUTUMN_OAK_LEAVES = register("autumn_oak_leaves", new LeavesBlock(pLeaves), ItemGroup.DECORATIONS, LEAVES, 30, 60);
+	public static final Block AUTUMN_OAK_LEAF_PILE = register("autumn_oak_leaf_pile", new PileBlock(Properties.create(Material.LEAVES).hardnessAndResistance(0.1F).sound(SoundType.PLANT).doesNotBlockMovement()), ItemGroup.DECORATIONS, LEAF_PILES, 60, 20);
+
 	public static final Block AUTUMN_BIRCH_SAPLING = register("autumn_birch_sapling", new SaplingBlock(new AutumnBirchTree()), ItemGroup.DECORATIONS, SAPLINGS);
 	public static final Block AUTUMN_BIRCH_LEAVES = register("autumn_birch_leaves", new LeavesBlock(pLeaves), ItemGroup.DECORATIONS, LEAVES, 30, 60);
 	public static final Block AUTUMN_BIRCH_LEAF_PILE = register("autumn_birch_leaf_pile", new PileBlock(Properties.create(Material.LEAVES).hardnessAndResistance(0.1F).sound(SoundType.PLANT).doesNotBlockMovement()), ItemGroup.DECORATIONS, LEAF_PILES, 60, 20);
