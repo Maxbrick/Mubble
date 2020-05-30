@@ -1,7 +1,5 @@
 package hugman.mubble.objects.costume;
 
-import java.util.Random;
-
 import hugman.mubble.init.MubbleSounds;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -17,21 +15,23 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 
+import java.util.Random;
+
 public class CappyCostume extends HeadCostume
-{    
-    public CappyCostume(Settings builder, SoundEvent sound)
-    {
-        super(builder, sound);
-    }
-    
+{
+	public CappyCostume(Settings builder, SoundEvent sound)
+	{
+		super(builder, sound);
+	}
+
 	@Override
 	public void usageTick(World world, LivingEntity player, ItemStack stack, int remainingUseTicks)
 	{
 		Random rand = new Random();
-		if(!world.isClient && rand.nextInt(301) == 0)
+		if (!world.isClient && rand.nextInt(301) == 0)
 		{
 			int random = rand.nextInt(5);
-			if(player.dimension == DimensionType.THE_NETHER && random <= 3)
+			if (player.dimension == DimensionType.THE_NETHER && random <= 3)
 			{
 				world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), MubbleSounds.COSTUME_CAPPY_AMBIENT_NETHER, SoundCategory.VOICE, 1f, 1f);
 			}
@@ -40,18 +40,18 @@ public class CappyCostume extends HeadCostume
 				world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), MubbleSounds.COSTUME_CAPPY_AMBIENT, SoundCategory.VOICE, 1f, 1f);
 			}
 		}
-    	super.usageTick(world, player, stack, remainingUseTicks);
+		super.usageTick(world, player, stack, remainingUseTicks);
 	}
-	
+
 	@Override
 	public boolean useOnEntity(ItemStack stack, PlayerEntity player, LivingEntity living, Hand hand)
 	{
 		ItemEntity entity = (ItemEntity) EntityType.ITEM.spawnFromItemStack(player.world, stack, player, player.getBlockPos(), SpawnType.DISPENSER, true, false);
 		Random rand = new Random();
 		World world = entity.world;
-		if(rand.nextInt(201) == 0)
+		if (rand.nextInt(201) == 0)
 		{
-			if(world.getFluidState(entity.getBlockPos()).matches(FluidTags.WATER))
+			if (world.getFluidState(entity.getBlockPos()).matches(FluidTags.WATER))
 			{
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), MubbleSounds.COSTUME_CAPPY_HELP_WATER, SoundCategory.VOICE, 1f, 1f);
 			}
@@ -62,15 +62,15 @@ public class CappyCostume extends HeadCostume
 		}
 		return super.useOnEntity(stack, player, living, hand);
 	}
-	
+
 	@Override
 	public TypedActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn)
 	{
-        ItemStack itemstack1 = playerIn.getEquippedStack(armorType);
-        if (itemstack1.isEmpty())
-        {
-        	worldIn.playSound((PlayerEntity) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), MubbleSounds.COSTUME_CAPPY_EQUIP, SoundCategory.PLAYERS, 1f, 1f);
-        }
+		ItemStack itemstack1 = playerIn.getEquippedStack(armorType);
+		if (itemstack1.isEmpty())
+		{
+			worldIn.playSound((PlayerEntity) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), MubbleSounds.COSTUME_CAPPY_EQUIP, SoundCategory.PLAYERS, 1f, 1f);
+		}
 		return super.use(worldIn, playerIn, handIn);
 	}
 }

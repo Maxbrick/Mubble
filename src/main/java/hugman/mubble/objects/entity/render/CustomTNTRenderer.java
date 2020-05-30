@@ -1,7 +1,6 @@
 package hugman.mubble.objects.entity.render;
 
 import com.mojang.blaze3d.platform.GlStateManager;
-
 import hugman.mubble.objects.entity.CustomTNTEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,7 +23,7 @@ public class CustomTNTRenderer extends EntityRenderer<CustomTNTEntity>
 		super(dispatcher);
 		this.shadowSize = 0.5F;
 	}
-	
+
 	@Override
 	public void render(CustomTNTEntity entity, float entityYaw, float partialTicks, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int light)
 	{
@@ -32,17 +31,16 @@ public class CustomTNTRenderer extends EntityRenderer<CustomTNTEntity>
 		BlockRenderManager blockrendererdispatcher = MinecraftClient.getInstance().getBlockRenderManager();
 		GlStateManager.pushMatrix();
 		GlStateManager.translatef((float) entity.getX(), (float) entity.getY() + 0.5F, (float) entity.getZ());
-		if ((float)entity.getFuse() - partialTicks + 1.0F < 10.0F)
+		if ((float) entity.getFuse() - partialTicks + 1.0F < 10.0F)
 		{
-			float f = 1.0F - ((float)entity.getFuse() - partialTicks + 1.0F) / 10.0F;
+			float f = 1.0F - ((float) entity.getFuse() - partialTicks + 1.0F) / 10.0F;
 			f = MathHelper.clamp(f, 0.0F, 1.0F);
 			f = f * f;
 			f = f * f;
 			float f1 = 1.0F + f * 0.3F;
 			GlStateManager.scalef(f1, f1, f1);
 		}
-
-		float f2 = (1.0F - ((float)entity.getFuse() - partialTicks + 1.0F) / 100.0F) * 0.8F;
+		float f2 = (1.0F - ((float) entity.getFuse() - partialTicks + 1.0F) / 100.0F) * 0.8F;
 		this.getTexture(entity);
 		GlStateManager.rotatef(-90.0F, 0.0F, 1.0F, 0.0F);
 		GlStateManager.translatef(-0.5F, -0.5F, 0.5F);
@@ -73,11 +71,10 @@ public class CustomTNTRenderer extends EntityRenderer<CustomTNTEntity>
 			GlStateManager.enableLighting();
 			GlStateManager.enableTexture();
 		}
-
 		GlStateManager.popMatrix();
 		super.render(entity, entityYaw, partialTicks, matrixStack, vertexConsumerProvider, light);
 	}
-	
+
 	@Override
 	public Identifier getTexture(CustomTNTEntity entity)
 	{

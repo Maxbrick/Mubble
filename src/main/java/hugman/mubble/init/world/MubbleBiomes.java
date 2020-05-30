@@ -1,12 +1,7 @@
 package hugman.mubble.init.world;
 
 import hugman.mubble.Mubble;
-import hugman.mubble.objects.world.biome.PumpkinPasturesBiome;
-import hugman.mubble.objects.world.biome.PinkCherryOakForestBiome;
-import hugman.mubble.objects.world.biome.PressGardenBiome;
-import hugman.mubble.objects.world.biome.SMWDesertBiome;
-import hugman.mubble.objects.world.biome.ScarletForestBiome;
-import hugman.mubble.objects.world.biome.WhiteCherryOakForestBiome;
+import hugman.mubble.objects.world.biome.*;
 import net.fabricmc.fabric.api.biomes.v1.FabricBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biomes.v1.OverworldClimate;
@@ -23,28 +18,24 @@ public class MubbleBiomes
 	public static final Biome SMW_DESERT = register("smw_desert", new SMWDesertBiome());
 
 	public static final Biome PRESS_GARDEN = register("press_garden", new PressGardenBiome());
-	
+
 	public static final Biome SCARLET_FOREST = register("scarlet_forest", new ScarletForestBiome());
-	
+
 	private static Biome register(String name, Biome biome)
-    {
+	{
 		return Registry.register(Registry.BIOME, new Identifier(Mubble.MOD_ID, name), biome);
-    }
-    
-    public static void initBiomeGeneration()
-    {
-    	OverworldBiomes.addContinentalBiome(PUMPKIN_PASTURES, OverworldClimate.TEMPERATE, 1D);
-    	FabricBiomes.addSpawnBiome(PUMPKIN_PASTURES);
-    	
-    	OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST, OverworldClimate.COOL, 1D);
-    	FabricBiomes.addSpawnBiome(PINK_CHERRY_OAK_FOREST);
-    	
-    	OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST, OverworldClimate.COOL, 1D);
-    	FabricBiomes.addSpawnBiome(WHITE_CHERRY_OAK_FOREST);
-    	
-    	OverworldBiomes.addContinentalBiome(PRESS_GARDEN, OverworldClimate.SNOWY, 0.25D);
-    	FabricBiomes.addSpawnBiome(PRESS_GARDEN);
-    	
-    	OverworldBiomes.addContinentalBiome(SCARLET_FOREST, OverworldClimate.COOL, 1D);
-    }
+	}
+
+	public static void initBiomeGeneration()
+	{
+		OverworldBiomes.addContinentalBiome(PUMPKIN_PASTURES, OverworldClimate.TEMPERATE, 1D);
+		FabricBiomes.addSpawnBiome(PUMPKIN_PASTURES);
+		OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST, OverworldClimate.COOL, 1D);
+		FabricBiomes.addSpawnBiome(PINK_CHERRY_OAK_FOREST);
+		OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST, OverworldClimate.COOL, 1D);
+		FabricBiomes.addSpawnBiome(WHITE_CHERRY_OAK_FOREST);
+		OverworldBiomes.addContinentalBiome(PRESS_GARDEN, OverworldClimate.SNOWY, 0.25D);
+		FabricBiomes.addSpawnBiome(PRESS_GARDEN);
+		OverworldBiomes.addContinentalBiome(SCARLET_FOREST, OverworldClimate.COOL, 1D);
+	}
 }

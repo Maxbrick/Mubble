@@ -12,7 +12,7 @@ public class PlacerBlockEntity extends DispenserBlockEntity
 	{
 		super(MubbleTileEntityTypes.PLACER);
 	}
-	
+
 	@Override
 	protected Text getContainerName()
 	{

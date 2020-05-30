@@ -1,13 +1,13 @@
 package hugman.mubble.objects.world.tree;
 
-import java.util.Random;
-
 import hugman.mubble.init.world.MubbleFeatureConfigs;
 import net.minecraft.block.sapling.LargeTreeSaplingGenerator;
 import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.MegaTreeFeatureConfig;
+
+import java.util.Random;
 
 public class RedPressGardenSaplingGenerator extends LargeTreeSaplingGenerator
 {
@@ -16,7 +16,7 @@ public class RedPressGardenSaplingGenerator extends LargeTreeSaplingGenerator
 	{
 		return random.nextInt(10) == 0 ? Feature.FANCY_TREE.configure(MubbleFeatureConfigs.FANCY_RED_PRESS_GARDEN_TREE_CONFIG) : Feature.NORMAL_TREE.configure(MubbleFeatureConfigs.RED_PRESS_GARDEN_TREE_CONFIG);
 	}
-	
+
 	@Override
 	protected ConfiguredFeature<MegaTreeFeatureConfig, ?> createLargeTreeFeature(Random random)
 	{

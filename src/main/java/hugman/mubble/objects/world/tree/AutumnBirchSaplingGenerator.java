@@ -1,12 +1,12 @@
 package hugman.mubble.objects.world.tree;
 
-import java.util.Random;
-
 import hugman.mubble.init.world.MubbleFeatureConfigs;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.world.gen.feature.BranchedTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
+
+import java.util.Random;
 
 public class AutumnBirchSaplingGenerator extends SaplingGenerator
 {

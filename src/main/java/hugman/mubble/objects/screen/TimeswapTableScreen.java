@@ -1,9 +1,6 @@
 package hugman.mubble.objects.screen;
 
-import java.util.List;
-
 import com.mojang.blaze3d.systems.RenderSystem;
-
 import hugman.mubble.Mubble;
 import hugman.mubble.objects.container.TimeswapTableContainer;
 import net.fabricmc.api.EnvType;
@@ -19,6 +16,8 @@ import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.List;
 
 @Environment(EnvType.CLIENT)
 public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
@@ -36,17 +35,20 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 		containerIn.setInventoryUpdateListener(this::onInventoryUpdate);
 	}
 
-	public void render(int mouseX, int mouseY, float delta) {
+	public void render(int mouseX, int mouseY, float delta)
+	{
 		super.render(mouseX, mouseY, delta);
 		this.drawMouseoverTooltip(mouseX, mouseY);
 	}
-	
-	protected void drawForeground(int mouseX, int mouseY) {
+
+	protected void drawForeground(int mouseX, int mouseY)
+	{
 		this.font.draw(CONTAINER_NAME.asFormattedString(), 8.0F, 4.0F, 4210752);
 		this.font.draw(this.playerInventory.getDisplayName().asFormattedString(), 8.0F, (float) (this.containerHeight - 94), 4210752);
 	}
 
-	protected void drawBackground(float partialTicks, int mouseX, int mouseY) {
+	protected void drawBackground(float partialTicks, int mouseX, int mouseY)
+	{
 		this.renderBackground();
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
@@ -71,22 +73,22 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 			int l = j / 4;
 			int i1 = top + l * 18 + 2;
 			int j1 = this.containerHeight;
-			if (i == this.container.getSelectedOutputItem()) {
+			if (i == this.container.getSelectedOutputItem())
+			{
 				j1 += 18;
 			}
-			else if(mouseX >= k && mouseY >= i1 && mouseX < k + 16 && mouseY < i1 + 18)
+			else if (mouseX >= k && mouseY >= i1 && mouseX < k + 16 && mouseY < i1 + 18)
 			{
 				j1 += 36;
 			}
-
 			this.blit(k, i1 - 1, 0, j1, 16, 18);
 		}
 
 	}
 
-	private void drawRecipesItems(int left, int top, int recipeIndexOffsetMax) {
+	private void drawRecipesItems(int left, int top, int recipeIndexOffsetMax)
+	{
 		List<Item> list = this.container.getOutputItemsList();
-
 		for (int i = this.recipeIndexOffset; i < recipeIndexOffsetMax && i < this.container.getOutputItemsListSize(); ++i)
 		{
 			int j = i - this.recipeIndexOffset;
@@ -100,37 +102,39 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 	public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_)
 	{
 		this.clickedOnSroll = false;
-		if (this.hasItemsInInputSlot) {
+		if (this.hasItemsInInputSlot)
+		{
 			int i = this.x + 52;
 			int j = this.y + 14;
 			int k = this.recipeIndexOffset + 12;
-
-			for(int l = this.recipeIndexOffset; l < k; ++l)
+			for (int l = this.recipeIndexOffset; l < k; ++l)
 			{
 				int i1 = l - this.recipeIndexOffset;
 				double d0 = p_mouseClicked_1_ - (double) (i + i1 % 4 * 16);
 				double d1 = p_mouseClicked_3_ - (double) (j + i1 / 4 * 18);
 				if (d0 >= 0.0D && d1 >= 0.0D && d0 < 16.0D && d1 < 18.0D
-						&& this.container.onButtonClick(this.minecraft.player, l)) {
+						&& this.container.onButtonClick(this.minecraft.player, l))
+				{
 					MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
 					this.minecraft.interactionManager.clickButton((this.container).syncId, l);
 					return true;
 				}
 			}
-
 			i = this.x + 119;
 			j = this.y + 9;
 			if (p_mouseClicked_1_ >= (double) i && p_mouseClicked_1_ < (double) (i + 12)
-					&& p_mouseClicked_3_ >= (double) j && p_mouseClicked_3_ < (double) (j + 54)) {
+					&& p_mouseClicked_3_ >= (double) j && p_mouseClicked_3_ < (double) (j + 54))
+			{
 				this.clickedOnSroll = true;
 			}
 		}
-
 		return super.mouseClicked(p_mouseClicked_1_, p_mouseClicked_3_, p_mouseClicked_5_);
 	}
 
-	public boolean mouseDragged(double p_mouseDragged_1_, double p_mouseDragged_3_, int p_mouseDragged_5_, double p_mouseDragged_6_, double p_mouseDragged_8_) {
-		if (this.clickedOnSroll && this.canScroll()) {
+	public boolean mouseDragged(double p_mouseDragged_1_, double p_mouseDragged_3_, int p_mouseDragged_5_, double p_mouseDragged_6_, double p_mouseDragged_8_)
+	{
+		if (this.clickedOnSroll && this.canScroll())
+		{
 			int i = this.y + 14;
 			int j = i + 54;
 			this.sliderProgress = ((float) p_mouseDragged_3_ - (float) i - 7.5F) / ((float) (j - i) - 15.0F);
@@ -153,7 +157,6 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 			this.sliderProgress = MathHelper.clamp(this.sliderProgress, 0.0F, 1.0F);
 			this.recipeIndexOffset = (int) ((double) (this.sliderProgress * (float) i) + 0.5D) * 4;
 		}
-
 		return true;
 	}
 
@@ -166,11 +169,11 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 	{
 		return (this.container.getOutputItemsListSize() + 4 - 1) / 4 - 3;
 	}
-	
+
 	private void onInventoryUpdate()
 	{
 		this.hasItemsInInputSlot = this.container.hasItemsinInputSlot();
-		if(!this.hasItemsInInputSlot)
+		if (!this.hasItemsInInputSlot)
 		{
 			this.sliderProgress = 0.0F;
 			this.recipeIndexOffset = 0;

@@ -1,11 +1,10 @@
 package hugman.mubble.init.data;
 
-import java.util.function.Supplier;
-
-import hugman.mubble.init.data.MubbleTags;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
+
+import java.util.function.Supplier;
 
 public enum MubbleItemTiers implements ToolMaterial
 {

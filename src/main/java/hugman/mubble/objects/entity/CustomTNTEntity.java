@@ -27,28 +27,28 @@ public class CustomTNTEntity extends Entity
 	private int fuse = 80;
 	private float strenght = 4.0F;
 	private LivingEntity tntPlacedBy;
-	
+
 	public CustomTNTEntity(EntityType<? extends CustomTNTEntity> type, World worldIn)
 	{
 		super(type, worldIn);
 		this.inanimate = true;
 	}
-	
+
 	public CustomTNTEntity(BlockState customTileIn, World worldIn, double x, double y, double z, int fuse, float strength, LivingEntity igniter)
 	{
 		this(MubbleEntities.CUSTOM_TNT, worldIn);
 		this.customTile = customTileIn;
 		this.updatePosition(x, y, z);
-	    float f = (float)(Math.random() * (double)((float)Math.PI * 2F));
-	    this.setVelocity((double)(-((float)Math.sin((double)f)) * 0.02F), (double)0.2F, (double)(-((float)Math.cos((double)f)) * 0.02F));
-	    this.setFuse(fuse);
-	    this.setStrenght(strength);
-	    this.prevX = x;
-	    this.prevY = y;
-	    this.prevZ = z;
-	    this.tntPlacedBy = igniter;
+		float f = (float) (Math.random() * (double) ((float) Math.PI * 2F));
+		this.setVelocity((double) (-((float) Math.sin((double) f)) * 0.02F), (double) 0.2F, (double) (-((float) Math.cos((double) f)) * 0.02F));
+		this.setFuse(fuse);
+		this.setStrenght(strength);
+		this.prevX = x;
+		this.prevY = y;
+		this.prevZ = z;
+		this.tntPlacedBy = igniter;
 	}
-	
+
 	@Override
 	protected void initDataTracker()
 	{
@@ -72,7 +72,6 @@ public class CustomTNTEntity extends Entity
 		{
 			this.setVelocity(this.getVelocity().multiply(0.7D, -0.5D, 0.7D));
 		}
-
 		--this.fuse;
 		if (this.fuse <= 0)
 		{
@@ -88,20 +87,20 @@ public class CustomTNTEntity extends Entity
 			this.world.addParticle(ParticleTypes.SMOKE, this.getX(), this.getY() + 0.5D, this.getZ(), 0.0D, 0.0D, 0.0D);
 		}
 	}
-	
+
 	private void explode()
 	{
 		this.world.createExplosion(this, this.getX(), this.getBodyY(0.0625D), this.getZ(), this.strenght, Explosion.DestructionType.BREAK);
 	}
-	
+
 	@Override
 	protected void writeCustomDataToTag(CompoundTag compound)
 	{
 		compound.put("BlockState", NbtHelper.fromBlockState(this.customTile));
-		compound.putShort("Fuse", (short)this.getFuse());
-		compound.putFloat("Strenght", (float)this.getStrenght());
+		compound.putShort("Fuse", (short) this.getFuse());
+		compound.putFloat("Strenght", (float) this.getStrenght());
 	}
-	
+
 	@Override
 	protected void readCustomDataFromTag(CompoundTag compound)
 	{
@@ -113,57 +112,57 @@ public class CustomTNTEntity extends Entity
 		this.setFuse(compound.getShort("Fuse"));
 		this.setStrenght(compound.getFloat("Strenght"));
 	}
-	
+
 	public void setFuse(int fuseIn)
 	{
 		this.dataTracker.set(FUSE, fuseIn);
 		this.fuse = fuseIn;
 	}
-	
+
 	public int getFuse()
 	{
 		return this.fuse;
 	}
-	
+
 	public BlockState getBlockState()
 	{
 		return this.customTile;
 	}
-	
+
 	public void setStrenght(float strenghtIn)
 	{
 		this.dataTracker.set(STRENGHT, strenghtIn);
 		this.strenght = strenghtIn;
 	}
-	
+
 	public float getStrenght()
 	{
 		return this.strenght;
 	}
-	
+
 	public LivingEntity getTntPlacedBy()
 	{
 		return this.tntPlacedBy;
 	}
-	
+
 	@Override
 	public void onTrackedDataSet(TrackedData<?> key)
 	{
-		if(FUSE.equals(key)) this.fuse = this.getFuseDataManager();
+		if (FUSE.equals(key)) this.fuse = this.getFuseDataManager();
 	}
-	
+
 	public int getFuseDataManager()
 	{
 		return this.dataTracker.get(FUSE);
 	}
-	
+
 	@Override
 	public void populateCrashReport(CrashReportSection category)
 	{
 		super.populateCrashReport(category);
 		category.add("Immitating BlockState", this.customTile.toString());
 	}
-	
+
 	@Override
 	public Packet<?> createSpawnPacket()
 	{

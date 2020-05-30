@@ -1,7 +1,6 @@
 package hugman.mubble.objects.world.biome;
 
 import com.google.common.collect.ImmutableList;
-
 import hugman.mubble.init.world.MubbleFeatureConfigs;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
@@ -12,11 +11,7 @@ import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.CountDecoratorConfig;
 import net.minecraft.world.gen.decorator.CountExtraChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.feature.MineshaftFeature;
-import net.minecraft.world.gen.feature.MineshaftFeatureConfig;
-import net.minecraft.world.gen.feature.RandomFeatureConfig;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 public class PinkCherryOakForestBiome extends Biome
@@ -69,7 +64,7 @@ public class PinkCherryOakForestBiome extends Biome
 		this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.ENDERMAN, 10, 1, 4));
 		this.addSpawn(EntityCategory.MONSTER, new Biome.SpawnEntry(EntityType.WITCH, 5, 1, 1));
 	}
-	
+
 	@Override
 	public int getFoliageColor()
 	{

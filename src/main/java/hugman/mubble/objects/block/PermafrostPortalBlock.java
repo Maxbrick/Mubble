@@ -1,9 +1,6 @@
 package hugman.mubble.objects.block;
 
-import java.util.Random;
-
 import com.google.common.cache.LoadingCache;
-
 import hugman.mubble.init.MubbleBlocks;
 import hugman.mubble.init.MubbleEntities;
 import net.fabricmc.api.EnvType;
@@ -38,6 +35,8 @@ import net.minecraft.world.GameRules;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class PermafrostPortalBlock extends Block
 {
 	public static final EnumProperty<Direction.Axis> AXIS = Properties.HORIZONTAL_AXIS;
@@ -55,7 +54,7 @@ public class PermafrostPortalBlock extends Block
 	{
 		builder.add(AXIS);
 	}
-	
+
 	@Override
 	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state)
 	{
@@ -63,9 +62,9 @@ public class PermafrostPortalBlock extends Block
 	}
 
 	@Override
-	public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, EntityContext context) 
+	public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, EntityContext context)
 	{
-		switch((Direction.Axis)state.get(AXIS))
+		switch ((Direction.Axis) state.get(AXIS))
 		{
 			case Z:
 				return Z_SHAPE;
@@ -80,33 +79,32 @@ public class PermafrostPortalBlock extends Block
 	{
 		switch (rot)
 		{
-		case COUNTERCLOCKWISE_90:
-		case CLOCKWISE_90:
-			switch ((Direction.Axis) state.get(AXIS))
-			{
-			case Z:
-				return state.with(AXIS, Direction.Axis.X);
-			case X:
-				return state.with(AXIS, Direction.Axis.Z);
+			case COUNTERCLOCKWISE_90:
+			case CLOCKWISE_90:
+				switch ((Direction.Axis) state.get(AXIS))
+				{
+					case Z:
+						return state.with(AXIS, Direction.Axis.X);
+					case X:
+						return state.with(AXIS, Direction.Axis.Z);
+					default:
+						return state;
+				}
 			default:
 				return state;
-			}
-		default:
-			return state;
 		}
 	}
-	
+
 	@Override
 	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
 	{
-		if(worldIn.dimension.hasVisibleSky() && worldIn.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && random.nextInt(2000) < worldIn.getDifficulty().getId())
+		if (worldIn.dimension.hasVisibleSky() && worldIn.getGameRules().getBoolean(GameRules.DO_MOB_SPAWNING) && random.nextInt(2000) < worldIn.getDifficulty().getId())
 		{
-			while(worldIn.getBlockState(pos).getBlock() == this)
+			while (worldIn.getBlockState(pos).getBlock() == this)
 			{
 				pos = pos.down();
 			}
-			
-			if(worldIn.getBlockState(pos).allowsSpawning(worldIn, pos, EntityType.ZOMBIE_PIGMAN))
+			if (worldIn.getBlockState(pos).allowsSpawning(worldIn, pos, EntityType.ZOMBIE_PIGMAN))
 			{
 				Entity entity = MubbleEntities.ZOMBIE_COWMAN.spawn(worldIn, (CompoundTag) null, (Text) null, (PlayerEntity) null, pos.up(), SpawnType.STRUCTURE, false, false);
 				if (entity != null)
@@ -121,12 +119,11 @@ public class PermafrostPortalBlock extends Block
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		if(rand.nextInt(100) == 0)
+		if (rand.nextInt(100) == 0)
 		{
 			worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
 		}
-
-		for(int i = 0; i < 4; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
 			double d0 = (double) ((float) pos.getX() + rand.nextFloat());
 			double d1 = (double) ((float) pos.getY() + rand.nextFloat());
@@ -139,13 +136,13 @@ public class PermafrostPortalBlock extends Block
 			{
 				d0 = (double) pos.getX() + 0.5D + 0.25D * (double) j;
 				d3 = (double) (rand.nextFloat() * 0.3F * (float) j);
-			} else
+			}
+			else
 			{
 				d2 = (double) pos.getZ() + 0.5D + 0.25D * (double) j;
 				d5 = (double) (rand.nextFloat() * 0.3F * (float) j);
 			}
-
-			if(rand.nextInt(10) == 0) worldIn.addParticle(ParticleTypes.CLOUD, d0, d1, d2, d3, d4, d5);
+			if (rand.nextInt(10) == 0) worldIn.addParticle(ParticleTypes.CLOUD, d0, d1, d2, d3, d4, d5);
 		}
 	}
 
@@ -178,8 +175,8 @@ public class PermafrostPortalBlock extends Block
 		}
 	}
 	*/
-	
-	public boolean trySpawnPortal(IWorld worldIn, BlockPos pos) 
+
+	public boolean trySpawnPortal(IWorld worldIn, BlockPos pos)
 	{
 		PermafrostPortalBlock.Size size = this.isPortal(worldIn, pos);
 		if (size != null)
@@ -192,7 +189,7 @@ public class PermafrostPortalBlock extends Block
 			return false;
 		}
 	}
-	
+
 	public PermafrostPortalBlock.Size isPortal(IWorld worldIn, BlockPos pos)
 	{
 		PermafrostPortalBlock.Size sizeX = new PermafrostPortalBlock.Size(worldIn, pos, Direction.Axis.X);
@@ -226,7 +223,6 @@ public class PermafrostPortalBlock extends Block
 			direction$axis = Direction.Axis.X;
 			size = new PermafrostPortalBlock.Size(worldIn, pos, Direction.Axis.Z);
 		}
-
 		if (!size.isValid())
 		{
 			return new BlockPattern.Result(pos, Direction.NORTH, Direction.UP, loadingcache, 1, 1, 1);
@@ -236,26 +232,22 @@ public class PermafrostPortalBlock extends Block
 			int[] aint = new int[Direction.AxisDirection.values().length];
 			Direction direction = size.rightDir.rotateYCounterclockwise();
 			BlockPos blockpos = size.bottomLeft.up(size.getHeight() - 1);
-
 			for (Direction.AxisDirection direction$axisdirection : Direction.AxisDirection.values())
 			{
 				BlockPattern.Result blockpattern$patternhelper = new BlockPattern.Result(direction.getDirection() == direction$axisdirection ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.get(direction$axisdirection, direction$axis), Direction.UP, loadingcache, size.getWidth(), size.getHeight(), 1);
-
 				for (int i = 0; i < size.getWidth(); ++i)
 				{
 					for (int j = 0; j < size.getHeight(); ++j)
 					{
 						CachedBlockPosition cachedblockinfo = blockpattern$patternhelper.translate(i, j, 1);
-						if(!(cachedblockinfo.getBlockState().getBlock() instanceof AirBlock))
+						if (!(cachedblockinfo.getBlockState().getBlock() instanceof AirBlock))
 						{
 							++aint[direction$axisdirection.ordinal()];
 						}
 					}
 				}
 			}
-
 			Direction.AxisDirection direction$axisdirection1 = Direction.AxisDirection.POSITIVE;
-
 			for (Direction.AxisDirection direction$axisdirection2 : Direction.AxisDirection.values())
 			{
 				if (aint[direction$axisdirection2.ordinal()] < aint[direction$axisdirection1.ordinal()])
@@ -263,11 +255,10 @@ public class PermafrostPortalBlock extends Block
 					direction$axisdirection1 = direction$axisdirection2;
 				}
 			}
-
 			return new BlockPattern.Result(direction.getDirection() == direction$axisdirection1 ? blockpos : blockpos.offset(size.rightDir, size.getWidth() - 1), Direction.get(direction$axisdirection1, direction$axis), Direction.UP, loadingcache, size.getWidth(), size.getHeight(), 1);
 		}
 	}
-	
+
 	public static class Size
 	{
 		private final IWorld world;
@@ -293,9 +284,10 @@ public class PermafrostPortalBlock extends Block
 				this.leftDir = Direction.NORTH;
 				this.rightDir = Direction.SOUTH;
 			}
-
-			for(BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.isReplacable(worldIn.getBlockState(pos.down())); pos = pos.down()) {;}
-
+			for (BlockPos blockpos = pos; pos.getY() > blockpos.getY() - 21 && pos.getY() > 0 && this.isReplacable(worldIn.getBlockState(pos.down())); pos = pos.down())
+			{
+				;
+			}
 			int i = this.getDistanceUntilEdge(pos, this.leftDir) - 1;
 			if (i >= 0)
 			{
@@ -307,7 +299,6 @@ public class PermafrostPortalBlock extends Block
 					this.width = 0;
 				}
 			}
-
 			if (this.bottomLeft != null)
 			{
 				this.height = this.calculatePortalHeight();
@@ -326,7 +317,6 @@ public class PermafrostPortalBlock extends Block
 					break;
 				}
 			}
-
 			Block block = this.world.getBlockState(pos.offset(direction, i)).getBlock();
 			return block == MubbleBlocks.FROZEN_OBSIDIAN ? i : 0;
 		}
@@ -343,7 +333,8 @@ public class PermafrostPortalBlock extends Block
 
 		protected int calculatePortalHeight()
 		{
-			label56: for (this.height = 0; this.height < 21; ++this.height)
+			label56:
+			for (this.height = 0; this.height < 21; ++this.height)
 			{
 				for (int i = 0; i < this.width; ++i)
 				{
@@ -353,13 +344,11 @@ public class PermafrostPortalBlock extends Block
 					{
 						break label56;
 					}
-
 					Block block = blockstate.getBlock();
 					if (block == MubbleBlocks.PERMAFROST_PORTAL)
 					{
 						++this.portalBlockCount;
 					}
-
 					if (i == 0)
 					{
 						block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
@@ -378,7 +367,6 @@ public class PermafrostPortalBlock extends Block
 					}
 				}
 			}
-
 			for (int j = 0; j < this.width; ++j)
 			{
 				if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height)).getBlock() != MubbleBlocks.FROZEN_OBSIDIAN)
@@ -387,7 +375,6 @@ public class PermafrostPortalBlock extends Block
 					break;
 				}
 			}
-
 			if (this.height <= 21 && this.height >= 3)
 			{
 				return this.height;
@@ -417,7 +404,6 @@ public class PermafrostPortalBlock extends Block
 			for (int i = 0; i < this.width; ++i)
 			{
 				BlockPos blockpos = this.bottomLeft.offset(this.rightDir, i);
-
 				for (int j = 0; j < this.height; ++j)
 				{
 					this.world.setBlockState(blockpos.up(j), MubbleBlocks.PERMAFROST_PORTAL.getDefaultState().with(PermafrostPortalBlock.AXIS, this.axis), 18);
