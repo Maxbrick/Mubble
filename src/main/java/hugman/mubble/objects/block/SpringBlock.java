@@ -87,6 +87,7 @@ public class SpringBlock extends DirectionalBlock implements Waterloggable
 		switch (state.get(FACING))
 		{
 			case UP:
+			default:
 				return SPRING_UP;
 			case DOWN:
 				return SPRING_DOWN;
@@ -98,8 +99,6 @@ public class SpringBlock extends DirectionalBlock implements Waterloggable
 				return SPRING_EAST;
 			case WEST:
 				return SPRING_WEST;
-			default:
-				return SPRING_UP;
 		}
 	}
 
@@ -109,6 +108,7 @@ public class SpringBlock extends DirectionalBlock implements Waterloggable
 		switch (state.get(FACING))
 		{
 			case UP:
+			default:
 				return COL_SPRING_UP;
 			case DOWN:
 				return COL_SPRING_DOWN;
@@ -120,8 +120,6 @@ public class SpringBlock extends DirectionalBlock implements Waterloggable
 				return COL_SPRING_EAST;
 			case WEST:
 				return COL_SPRING_WEST;
-			default:
-				return COL_SPRING_UP;
 		}
 	}
 
@@ -132,12 +130,10 @@ public class SpringBlock extends DirectionalBlock implements Waterloggable
 	}
 
 	@Override
-	public boolean canPlaceAt(BlockState state, WorldView worldIn, BlockPos pos)
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos)
 	{
 		Direction direction = state.get(FACING);
-		BlockPos blockpos = pos.offset(direction.getOpposite());
-		BlockState blockstate = worldIn.getBlockState(blockpos);
-		return Block.isSideSolidFullSquare(blockstate, worldIn, blockpos, direction);
+		return Block.sideCoversSmallSquare(world, pos.offset(direction.getOpposite()), direction);
 	}
 
 	@Override
@@ -149,7 +145,7 @@ public class SpringBlock extends DirectionalBlock implements Waterloggable
 	@Override
 	public BlockState getPlacementState(ItemPlacementContext context)
 	{
-		return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(context.getWorld().getFluidState(context.getBlockPos()).getFluid() == Fluids.WATER)).with(FACING, context.getPlayerFacing());
+		return this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(context.getWorld().getFluidState(context.getBlockPos()).getFluid() == Fluids.WATER)).with(FACING, context.getSide());
 	}
 
 	@Override
