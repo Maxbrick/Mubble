@@ -75,12 +75,4 @@ public class PumpkinPasturesBiome extends Biome
 	{
 		return 15443554;
 	}
-
-	/*
-	@Override
-	public int getFoliageColor()
-	{
-		return 15232304;
-	}
-	 */
 }

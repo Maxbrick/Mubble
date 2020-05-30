@@ -132,12 +132,10 @@ public class SpringBlock extends DirectionalBlock implements IWaterLoggable
 	}
 
 	@Override
-	public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+	public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos)
 	{
 		Direction direction = state.get(FACING);
-		BlockPos blockpos = pos.offset(direction.getOpposite());
-		BlockState blockstate = worldIn.getBlockState(blockpos);
-		return Block.hasSolidSide(blockstate, worldIn, blockpos, direction);
+		return Block.hasEnoughSolidSide(world, pos.offset(direction.getOpposite()), direction);
 	}
 
 	@Override
