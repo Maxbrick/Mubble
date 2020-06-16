@@ -763,7 +763,7 @@ public class MubbleBlocks
 	public static final Block SALAD = register("salad", new CropsBlock());
 
 	public static final Block BLUEBERRY_BUSH = register("blueberry_bush", new BerryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH)), 60, 100);
-	public static final Block CHEESE_BLOCK = register("cheese_block", new Block(FabricBlockSettings.of(Material.ORGANIC, MaterialColor.YELLOW).hardness(0.5f).sounds(BlockSoundGroup.SNOW)), ItemGroup.FOOD, false, 60, 60);
+	public static final Block CHEESE_BLOCK = register("cheese_block", new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MaterialColor.YELLOW).hardness(0.5f).sounds(BlockSoundGroup.SNOW)), ItemGroup.FOOD, false, 60, 60);
 	public static final Block CHOCOLATE_CAKE = register("chocolate_cake", new CakeBlock(FabricBlockSettings.of(Material.CAKE).hardness(0.5F).sounds(BlockSoundGroup.WOOL)), ItemGroup.FOOD, false);
 	public static final Block MINECRAFT_10TH_ANNIVERSARY_CAKE = register("minecraft_10th_anniversary_cake", new CakeBlock(FabricBlockSettings.of(Material.CAKE).hardness(0.5F).sounds(BlockSoundGroup.WOOL)), ItemGroup.FOOD, false);
 
@@ -911,20 +911,6 @@ public class MubbleBlocks
 	public static final Block BOOMERANG_FLOWER = register("boomerang_flower", new FlowerBlock(StatusEffects.HASTE, 6, FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS)), ItemGroup.DECORATIONS, true, 60, 100);
 	public static final Block CLOUD_FLOWER = register("cloud_flower", new CloudFlowerBlock(StatusEffects.SLOW_FALLING, 7, FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS)), ItemGroup.DECORATIONS, true, 60, 100);
 	public static final Block GOLD_FLOWER = register("gold_flower", new FlowerBlock(MubbleEffects.HEAVINESS, 6, FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(5)), ItemGroup.DECORATIONS, true, 60, 100);
-	public static final Block WHITE_MUSHROOM = register("white_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block LIGHT_GRAY_MUSHROOM = register("light_gray_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block GRAY_MUSHROOM = register("gray_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block BLACK_MUSHROOM = register("black_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block ORANGE_MUSHROOM = register("orange_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block YELLOW_MUSHROOM = register("yellow_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block LIME_MUSHROOM = register("lime_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block GREEN_MUSHROOM = register("green_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block CYAN_MUSHROOM = register("cyan_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block LIGHT_BLUE_MUSHROOM = register("light_blue_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block BLUE_MUSHROOM = register("blue_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block PURPLE_MUSHROOM = register("purple_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block MAGENTA_MUSHROOM = register("magenta_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
-	public static final Block PINK_MUSHROOM = register("pink_mushroom", new MushroomBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1)), ItemGroup.DECORATIONS, true);
 	public static final Block WHITE_MUSHROOM_BLOCK = register("white_mushroom_block", new net.minecraft.block.MushroomBlock(FabricBlockSettings.of(Material.WOOD, DyeColor.WHITE).hardness(0.2F).sounds(BlockSoundGroup.WOOD)), ItemGroup.DECORATIONS, false);
 	public static final Block LIGHT_GRAY_MUSHROOM_BLOCK = register("light_gray_mushroom_block", new net.minecraft.block.MushroomBlock(FabricBlockSettings.of(Material.WOOD, DyeColor.LIGHT_GRAY).hardness(0.2F).sounds(BlockSoundGroup.WOOD)), ItemGroup.DECORATIONS, false);
 	public static final Block GRAY_MUSHROOM_BLOCK = register("gray_mushroom_block", new net.minecraft.block.MushroomBlock(FabricBlockSettings.of(Material.WOOD, DyeColor.GRAY).hardness(0.2F).sounds(BlockSoundGroup.WOOD)), ItemGroup.DECORATIONS, false);
@@ -939,9 +925,23 @@ public class MubbleBlocks
 	public static final Block PURPLE_MUSHROOM_BLOCK = register("purple_mushroom_block", new net.minecraft.block.MushroomBlock(FabricBlockSettings.of(Material.WOOD, DyeColor.PURPLE).hardness(0.2F).sounds(BlockSoundGroup.WOOD)), ItemGroup.DECORATIONS, false);
 	public static final Block MAGENTA_MUSHROOM_BLOCK = register("magenta_mushroom_block", new net.minecraft.block.MushroomBlock(FabricBlockSettings.of(Material.WOOD, DyeColor.MAGENTA).hardness(0.2F).sounds(BlockSoundGroup.WOOD)), ItemGroup.DECORATIONS, false);
 	public static final Block PINK_MUSHROOM_BLOCK = register("pink_mushroom_block", new net.minecraft.block.MushroomBlock(FabricBlockSettings.of(Material.WOOD, DyeColor.PINK).hardness(0.2F).sounds(BlockSoundGroup.WOOD)), ItemGroup.DECORATIONS, false);
+	public static final Block WHITE_MUSHROOM = register("white_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), WHITE_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block LIGHT_GRAY_MUSHROOM = register("light_gray_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), LIGHT_GRAY_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block GRAY_MUSHROOM = register("gray_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), GRAY_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block BLACK_MUSHROOM = register("black_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), BLACK_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block ORANGE_MUSHROOM = register("orange_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), ORANGE_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block YELLOW_MUSHROOM = register("yellow_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), YELLOW_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block LIME_MUSHROOM = register("lime_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), LIME_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block GREEN_MUSHROOM = register("green_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), GREEN_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block CYAN_MUSHROOM = register("cyan_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), CYAN_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block LIGHT_BLUE_MUSHROOM = register("light_blue_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), LIGHT_BLUE_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block BLUE_MUSHROOM = register("blue_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), BLUE_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block PURPLE_MUSHROOM = register("purple_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), PURPLE_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block MAGENTA_MUSHROOM = register("magenta_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), MAGENTA_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
+	public static final Block PINK_MUSHROOM = register("pink_mushroom", new GrowableMushroomPlantBlock(FabricBlockSettings.of(Material.PLANT).noCollision().hardness(0.0F).sounds(BlockSoundGroup.GRASS).lightLevel(1), PINK_MUSHROOM_BLOCK), ItemGroup.DECORATIONS, true);
 
 	/* KIRBY */
-	public static final Block KIRBY_BLOCK = register("kirby_block", new DirectionalBlock(FabricBlockSettings.of(Material.CLAY, MaterialColor.PINK).hardness(0.5F).sounds(BlockSoundGroup.WOOL)), ItemGroup.DECORATIONS, false);
+	public static final Block KIRBY_BLOCK = register("kirby_block", new DirectionalBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MaterialColor.PINK).hardness(0.5F).sounds(BlockSoundGroup.WOOL)), ItemGroup.DECORATIONS, false);
 
 	/* TETRIS */
 	public static final Block WHITE_TETRIS_BLOCK = register("white_tetris_block", new FallingBlock(FabricBlockSettings.of(Material.STONE, DyeColor.WHITE).strength(1.5F, 6.0F)), ItemGroup.BUILDING_BLOCKS, false);
@@ -1062,17 +1062,17 @@ public class MubbleBlocks
 	public static final Block OLD_SITE_BRICK_VERTICAL_SLAB = register("old_site_brick_vertical_slab", new VerticalSlabBlock(Settings.copy(OLD_SITE_BRICKS)), ItemGroup.BUILDING_BLOCKS, false);
 	public static final Block OLD_SITE_BRICK_WALL = register("old_site_brick_wall", new WallBlock(Settings.copy(OLD_SITE_BRICKS)), ItemGroup.DECORATIONS, false);
 	public static final Block ELDER_PEBBLES = register("elder_pebbles", new Block(FabricBlockSettings.of(Material.STONE, MaterialColor.RED).strength(2.0F, 6.0F).lightLevel(5)), ItemGroup.BUILDING_BLOCKS, false);
-	public static final Block DREAM_BLOCK = register("dream_block", new Block(FabricBlockSettings.of(Material.SAND).hardness(0.4f).sounds(MubbleSoundTypes.DREAM_BLOCK)), ItemGroup.BUILDING_BLOCKS, false);
+	public static final Block DREAM_BLOCK = register("dream_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC).hardness(0.4f).sounds(MubbleSoundTypes.DREAM_BLOCK)), ItemGroup.BUILDING_BLOCKS, false);
 	public static final Block DREAM_BEDROCK = register("dream_bedrock", new Block(FabricBlockSettings.of(Material.STONE).strength(-1.0F, 3600000.0F).dropsNothing()), ItemGroup.BUILDING_BLOCKS, false);
 
 	/* PUYO PUYO */
-	public static final Block RED_PUYO = register("red_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, DyeColor.RED).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
-	public static final Block YELLOW_PUYO = register("yellow_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, DyeColor.YELLOW).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
-	public static final Block GREEN_PUYO = register("green_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, DyeColor.GREEN).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
-	public static final Block TURQUOISE_PUYO = register("turquoise_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, MaterialColor.EMERALD).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
-	public static final Block BLUE_PUYO = register("blue_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, DyeColor.BLUE).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
-	public static final Block PURPLE_PUYO = register("purple_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, DyeColor.PURPLE).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
-	public static final Block GRAY_PUYO = register("gray_puyo", new PuyoBlock(FabricBlockSettings.of(Material.CLAY, DyeColor.GRAY).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block RED_PUYO = register("red_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, DyeColor.RED).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block YELLOW_PUYO = register("yellow_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, DyeColor.YELLOW).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block GREEN_PUYO = register("green_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, DyeColor.GREEN).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block TURQUOISE_PUYO = register("turquoise_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, MaterialColor.EMERALD).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block BLUE_PUYO = register("blue_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, DyeColor.BLUE).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block PURPLE_PUYO = register("purple_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, DyeColor.PURPLE).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
+	public static final Block GRAY_PUYO = register("gray_puyo", new PuyoBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT, DyeColor.GRAY).slipperiness(0.8F).sounds(BlockSoundGroup.SLIME)));
 	public static final Block GARBAGE_PUYO = register("garbage_puyo", new DirectionalBlock(Settings.copy(Blocks.STONE)));
 	public static final Block POINT_PUYO = register("point_puyo", new DirectionalBlock(FabricBlockSettings.of(Material.STONE, MaterialColor.STONE).strength(1.5F, 6.0F).lightLevel(10)));
 	public static final Block HARD_PUYO = register("hard_puyo", new DirectionalBlock(Settings.copy(Blocks.STONE)));
@@ -1098,7 +1098,7 @@ public class MubbleBlocks
 	{
 		if (canBePotted)
 		{
-			Registry.register(Registry.BLOCK, new Identifier(Mubble.MOD_ID, "potted_" + name), new FlowerPotBlock(block, FabricBlockSettings.of(Material.PART).breakInstantly().nonOpaque().lightLevel(block.getDefaultState().getLuminance())));
+			Registry.register(Registry.BLOCK, new Identifier(Mubble.MOD_ID, "potted_" + name), new FlowerPotBlock(block, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().nonOpaque().lightLevel(block.getDefaultState().getLuminance())));
 			POTTED_PLANTS.add(Registry.BLOCK.get(new Identifier(Mubble.MOD_ID, "potted_" + name)));
 		}
 		Registry.register(Registry.ITEM, new Identifier(Mubble.MOD_ID, name), new BlockItem(block, new Item.Settings().group(group)));
@@ -1109,7 +1109,7 @@ public class MubbleBlocks
 	{
 		if (canBePotted)
 		{
-			Registry.register(Registry.BLOCK, new Identifier(Mubble.MOD_ID, "potted_" + name), new FlowerPotBlock(block, FabricBlockSettings.of(Material.PART).breakInstantly().nonOpaque().lightLevel(block.getDefaultState().getLuminance())));
+			Registry.register(Registry.BLOCK, new Identifier(Mubble.MOD_ID, "potted_" + name), new FlowerPotBlock(block, FabricBlockSettings.of(Material.SUPPORTED).breakInstantly().nonOpaque().lightLevel(block.getDefaultState().getLuminance())));
 			POTTED_PLANTS.add(Registry.BLOCK.get(new Identifier(Mubble.MOD_ID, "potted_" + name)));
 		}
 		Registry.register(Registry.ITEM, new Identifier(Mubble.MOD_ID, name), new BlockItem(block, new Item.Settings().group(group)));
