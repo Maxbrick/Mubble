@@ -5,11 +5,11 @@ logoFile="logo.png"
 
 [[mods]]
 modId="mubble"
-version="3.1"
+version="3.1.1"
 displayName="Mubble"
-updateJSONURL="https://raw.githubusercontent.com/Hugman76/Mubble/1.15/update.json"
+updateJSONURL="https://raw.githubusercontent.com/Hugman76/MyAssets/master/mubble/forge-updates.json"
 displayURL="https://sites.google.com/view/mubblemc"
-credits="https://ftb.gamepedia.com/Mubble/Credits"
+credits="https://sites.google.com/view/mubblemc/credits"
 authors="Hugman"
 description='''
 Mubble adds over 1 000 features to your world, including decorative blocks, costumes, biomes and way more.
