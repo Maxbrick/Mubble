@@ -8,37 +8,31 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 
-public class DirectionalBlock extends net.minecraft.block.DirectionalBlock
-{
+public class DirectionalBlock extends net.minecraft.block.DirectionalBlock {
 	/* Extension for internal publicity
 	 * + Missing features */
-	public DirectionalBlock(Properties builder)
-	{
+	public DirectionalBlock(Properties builder) {
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.UP));
 	}
 
 	@Override
-	public BlockState rotate(BlockState state, Rotation rot)
-	{
+	public BlockState rotate(BlockState state, Rotation rot) {
 		return state.with(FACING, rot.rotate(state.get(FACING)));
 	}
 
 	@Override
-	public BlockState mirror(BlockState state, Mirror mirrorIn)
-	{
+	public BlockState mirror(BlockState state, Mirror mirrorIn) {
 		return state.mirror(mirrorIn);
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context)
-	{
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.getDefaultState().with(FACING, context.getNearestLookingDirection().getOpposite());
 	}
 
 	@Override
-	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-	{
+	protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
 		builder.add(FACING);
 	}
 }

@@ -16,69 +16,58 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class FlyingBlock extends Block
-{
+public class FlyingBlock extends Block {
 	public static boolean flyInstantly;
 
-	public FlyingBlock(Block.Properties builder)
-	{
+	public FlyingBlock(Block.Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean p_220082_5_)
-	{
+	public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean p_220082_5_) {
 		worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
 	}
 
 	@Override
-	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
-	{
+	public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
 		worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, this.tickRate(worldIn));
 		return stateIn;
 	}
 
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random)
-	{
-		if (!worldIn.isRemote) this.checkFlyable(worldIn, pos);
+	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
+		if(!worldIn.isRemote) {
+			this.checkFlyable(worldIn, pos);
+		}
 	}
 
 	@Override
-	public int tickRate(IWorldReader worldIn)
-	{
+	public int tickRate(IWorldReader worldIn) {
 		return 2;
 	}
 
-	public void checkFlyable(World worldIn, BlockPos pos)
-	{
-		if (worldIn.isAirBlock(pos.up()) || canFlyThrough(worldIn.getBlockState(pos.up())) && pos.getY() >= 0)
-		{
-			if (!worldIn.isRemote)
-			{
-				FlyingBlockEntity flyingblockentity = new FlyingBlockEntity(worldIn, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, worldIn.getBlockState(pos));
+	public void checkFlyable(World worldIn, BlockPos pos) {
+		if(worldIn.isAirBlock(pos.up()) || canFlyThrough(worldIn.getBlockState(pos.up())) && pos.getY() >= 0) {
+			if(!worldIn.isRemote) {
+				FlyingBlockEntity flyingblockentity = new FlyingBlockEntity(worldIn, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, worldIn.getBlockState(pos));
 				this.onStartFlying(flyingblockentity);
 				worldIn.addEntity(flyingblockentity);
 			}
 		}
 	}
 
-	protected void onStartFlying(FlyingBlockEntity flyingEntity)
-	{
+	protected void onStartFlying(FlyingBlockEntity flyingEntity) {
 	}
 
-	public static boolean canFlyThrough(BlockState state)
-	{
+	public static boolean canFlyThrough(BlockState state) {
 		Block block = state.getBlock();
 		Material material = state.getMaterial();
 		return block instanceof AirBlock || block == Blocks.FIRE || block.isIn(MubbleTags.Blocks.CLOUD_BLOCKS) || material.isLiquid() || material.isReplaceable();
 	}
 
-	public void onEndFlying(World worldIn, BlockPos pos, BlockState flyingState, BlockState hitState)
-	{
+	public void onEndFlying(World worldIn, BlockPos pos, BlockState flyingState, BlockState hitState) {
 	}
 
-	public void onBroken(World worldIn, BlockPos pos)
-	{
+	public void onBroken(World worldIn, BlockPos pos) {
 	}
 }

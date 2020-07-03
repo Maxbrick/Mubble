@@ -9,12 +9,10 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class PalmTree extends Tree
-{
+public class PalmTree extends Tree {
 	@Nullable
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean canHaveBeeHive)
-	{
+	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean canHaveBeeHive) {
 		return Feature.field_227246_s_.configure(MubbleFeatureConfigs.PALM_TREE_CONFIG);
 	}
 }

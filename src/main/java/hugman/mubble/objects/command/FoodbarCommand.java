@@ -13,11 +13,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-public class FoodbarCommand implements ICommand
-{
+public class FoodbarCommand implements ICommand {
 	@Override
-	public void register(CommandDispatcher<CommandSource> dispatcher)
-	{
+	public void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(
 				LiteralArgumentBuilder.<CommandSource>literal("foodbar")
 						.requires((source) ->
@@ -63,69 +61,53 @@ public class FoodbarCommand implements ICommand
 		);
 	}
 
-	private static int setFood(CommandSource source, Collection<ServerPlayerEntity> targets, int amount, boolean sum)
-	{
-		for (ServerPlayerEntity entity : targets)
-		{
+	private static int setFood(CommandSource source, Collection<ServerPlayerEntity> targets, int amount, boolean sum) {
+		for(ServerPlayerEntity entity : targets) {
 			FoodStats stats = entity.getFoodStats();
-			if (sum == true)
-			{
+			if(sum == true) {
 				stats.setFoodLevel(amount + stats.getFoodLevel());
 			}
-			else
-			{
+			else {
 				stats.setFoodLevel(amount);
 			}
 		}
 		final String parameter;
-		if (sum == true)
-		{
+		if(sum == true) {
 			parameter = "add";
 		}
-		else
-		{
+		else {
 			parameter = "set";
 		}
-		if (targets.size() == 1)
-		{
+		if(targets.size() == 1) {
 			source.sendFeedback(new TranslationTextComponent("commands.foodbar." + parameter + ".food.success.single", amount, targets.iterator().next().getDisplayName()), true);
 		}
-		else
-		{
+		else {
 			source.sendFeedback(new TranslationTextComponent("commands.foodbar." + parameter + ".food.success.multiple", amount, targets.size()), true);
 		}
 		return targets.size();
 	}
 
-	private static int setSaturation(CommandSource source, Collection<ServerPlayerEntity> targets, float amount, boolean sum)
-	{
-		for (ServerPlayerEntity entity : targets)
-		{
+	private static int setSaturation(CommandSource source, Collection<ServerPlayerEntity> targets, float amount, boolean sum) {
+		for(ServerPlayerEntity entity : targets) {
 			FoodStats stats = entity.getFoodStats();
-			if (sum == true)
-			{
+			if(sum == true) {
 				stats.setFoodSaturationLevel(amount + stats.getFoodLevel());
 			}
-			else
-			{
+			else {
 				stats.setFoodSaturationLevel(amount);
 			}
 		}
 		final String parameter;
-		if (sum == true)
-		{
+		if(sum == true) {
 			parameter = "add";
 		}
-		else
-		{
+		else {
 			parameter = "set";
 		}
-		if (targets.size() == 1)
-		{
+		if(targets.size() == 1) {
 			source.sendFeedback(new TranslationTextComponent("commands.foodbar." + parameter + ".saturation.success.single", amount, targets.iterator().next().getDisplayName()), true);
 		}
-		else
-		{
+		else {
 			source.sendFeedback(new TranslationTextComponent("commands.foodbar." + parameter + ".saturation.success.multiple", amount, targets.size()), true);
 		}
 		return targets.size();

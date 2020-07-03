@@ -12,10 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class MubbleRenderLayers
-{
-	public static void registerBlockLayers()
-	{
+public class MubbleRenderLayers {
+	public static void registerBlockLayers() {
 		RenderType typeCM = RenderType.getCutoutMipped();
 		RenderType typeC = RenderType.getCutout();
 		RenderType typeT = RenderType.getTranslucent();
@@ -48,28 +46,21 @@ public class MubbleRenderLayers
 		RenderTypeLookup.setRenderLayer(MubbleBlocks.TETRIS_GLASS, typeC);
 		translucentBlockItems.add(MubbleBlocks.BALLOONS);
 		translucentBlockItems.add(MubbleBlocks.CLOUD_BLOCKS);
-		for (List<BlockItem> list : cutoutMippedBlockItems)
-		{
-			for (BlockItem item : list)
-			{
+		for(List<BlockItem> list : cutoutMippedBlockItems) {
+			for(BlockItem item : list) {
 				RenderTypeLookup.setRenderLayer(item.getBlock(), typeCM);
 			}
 		}
-		for (List<BlockItem> list : cutoutBlockItems)
-		{
-			for (BlockItem item : list)
-			{
+		for(List<BlockItem> list : cutoutBlockItems) {
+			for(BlockItem item : list) {
 				RenderTypeLookup.setRenderLayer(item.getBlock(), typeC);
 			}
 		}
-		for (Block block : MubbleBlocks.POTTED_PLANTS)
-		{
+		for(Block block : MubbleBlocks.POTTED_PLANTS) {
 			RenderTypeLookup.setRenderLayer(block, typeC);
 		}
-		for (List<BlockItem> list : translucentBlockItems)
-		{
-			for (BlockItem item : list)
-			{
+		for(List<BlockItem> list : translucentBlockItems) {
+			for(BlockItem item : list) {
 				RenderTypeLookup.setRenderLayer(item.getBlock(), typeT);
 			}
 		}

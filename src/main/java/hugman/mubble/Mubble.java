@@ -36,22 +36,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(Mubble.MOD_ID)
-public class Mubble
-{
+public class Mubble {
 	public static final String MOD_ID = "mubble";
 	public static final String MOD_PREFIX = MOD_ID + ":";
 	public static final Logger LOGGER = LogManager.getLogger();
 
-	public Mubble()
-	{
+	public Mubble() {
 		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 		MinecraftForge.EVENT_BUS.register(this);
 		modBus.addListener(this::setup);
 		modBus.addListener(this::clientSetup);
 	}
 
-	private void setup(final FMLCommonSetupEvent event)
-	{
+	private void setup(final FMLCommonSetupEvent event) {
 		MubbleGenerators.registerOres();
 		LOGGER.info("Registered ores");
 		MubbleGenerators.registerTrees();
@@ -60,8 +57,7 @@ public class Mubble
 		LOGGER.info("Registered entity spawns");
 	}
 
-	private void clientSetup(final FMLClientSetupEvent event)
-	{
+	private void clientSetup(final FMLClientSetupEvent event) {
 		MubbleRenderLayers.registerBlockLayers();
 		LOGGER.info("Registered block render layers");
 		MubbleEntities.registerRenders();
@@ -71,39 +67,33 @@ public class Mubble
 	}
 
 	@SubscribeEvent
-	public void serverSetup(final FMLServerStartingEvent event)
-	{
+	public void serverSetup(final FMLServerStartingEvent event) {
 		MubbleCommands.registerCommands(event.getCommandDispatcher());
 		LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleCommands.COMMANDS.size(), "command"));
 	}
 
 	@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-	public static class ModRegistryEvents
-	{
+	public static class ModRegistryEvents {
 		@SubscribeEvent
-		public static void blocksRegistry(final RegistryEvent.Register<Block> event)
-		{
+		public static void blocksRegistry(final RegistryEvent.Register<Block> event) {
 			event.getRegistry().registerAll(MubbleBlocks.BLOCKS.toArray(new Block[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleBlocks.BLOCKS.size(), "block"));
 		}
 
 		@SubscribeEvent
-		public static void tileEntitiesRegistry(final RegistryEvent.Register<TileEntityType<?>> event)
-		{
+		public static void tileEntitiesRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
 			event.getRegistry().registerAll(MubbleTileEntityTypes.TILE_ENTITY_TYPES.toArray(new TileEntityType<?>[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleTileEntityTypes.TILE_ENTITY_TYPES.size(), "tile entity"));
 		}
 
 		@SubscribeEvent
-		public static void containersRegistry(final RegistryEvent.Register<ContainerType<?>> event)
-		{
+		public static void containersRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
 			event.getRegistry().registerAll(MubbleContainerTypes.CONTAINER_TYPES.toArray(new ContainerType<?>[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleContainerTypes.CONTAINER_TYPES.size(), "container"));
 		}
 
 		@SubscribeEvent
-		public static void itemsRegistry(final RegistryEvent.Register<Item> event)
-		{
+		public static void itemsRegistry(final RegistryEvent.Register<Item> event) {
 			event.getRegistry().registerAll(MubbleBlocks.CUBES.toArray(new Item[0]));
 			event.getRegistry().registerAll(MubbleBlocks.STAIRS.toArray(new Item[0]));
 			event.getRegistry().registerAll(MubbleBlocks.SLABS.toArray(new Item[0]));
@@ -130,22 +120,19 @@ public class Mubble
 		}
 
 		@SubscribeEvent
-		public static void enchantmentsRegistry(final RegistryEvent.Register<Enchantment> event)
-		{
+		public static void enchantmentsRegistry(final RegistryEvent.Register<Enchantment> event) {
 			event.getRegistry().registerAll(MubbleEnchantments.ENCHANTMENTS.toArray(new Enchantment[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleEnchantments.ENCHANTMENTS.size(), "enchantment"));
 		}
 
 		@SubscribeEvent
-		public static void paintingTypesRegistry(final RegistryEvent.Register<PaintingType> event)
-		{
+		public static void paintingTypesRegistry(final RegistryEvent.Register<PaintingType> event) {
 			event.getRegistry().registerAll(MubblePaintingTypes.PAINTING_TYPES.toArray(new PaintingType[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubblePaintingTypes.PAINTING_TYPES.size(), "paiting type"));
 		}
 
 		@SubscribeEvent
-		public static void entitiesRegistry(final RegistryEvent.Register<EntityType<?>> event)
-		{
+		public static void entitiesRegistry(final RegistryEvent.Register<EntityType<?>> event) {
 			event.getRegistry().registerAll(MubbleEntities.ENTITY_TYPES.toArray(new EntityType<?>[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleEntities.ENTITY_TYPES.size(), "entity"));
 			MubbleEntities.registerPlacements();
@@ -153,22 +140,19 @@ public class Mubble
 		}
 
 		@SubscribeEvent
-		public static void soundsRegistry(final RegistryEvent.Register<SoundEvent> event)
-		{
+		public static void soundsRegistry(final RegistryEvent.Register<SoundEvent> event) {
 			event.getRegistry().registerAll(MubbleSounds.SOUNDS.toArray(new SoundEvent[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleSounds.SOUNDS.size(), "sound"));
 		}
 
 		@SubscribeEvent
-		public static void potionsRegistry(final RegistryEvent.Register<Effect> event)
-		{
+		public static void potionsRegistry(final RegistryEvent.Register<Effect> event) {
 			event.getRegistry().registerAll(MubbleEffects.EFFECTS.toArray(new Effect[0]));
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleEffects.EFFECTS.size(), "effect"));
 		}
 
 		@SubscribeEvent
-		public static void biomesRegistry(final RegistryEvent.Register<Biome> event)
-		{
+		public static void biomesRegistry(final RegistryEvent.Register<Biome> event) {
 			event.getRegistry().registerAll(MubbleBiomes.BIOMES.toArray(new Biome[0]));
 			MubbleBiomes.registerGenerations();
 			LOGGER.info("Registered " + MoreWordUtils.numerate(MubbleBiomes.BIOMES.size(), "biome"));
@@ -176,16 +160,14 @@ public class Mubble
 
 		@OnlyIn(Dist.CLIENT)
 		@SubscribeEvent
-		public static void blockColorsRegistry(final ColorHandlerEvent.Block event)
-		{
+		public static void blockColorsRegistry(final ColorHandlerEvent.Block event) {
 			MubbleColorMaps.registerBlockColors(event);
 			LOGGER.info("Registered color maps for blocks");
 		}
 
 		@OnlyIn(Dist.CLIENT)
 		@SubscribeEvent
-		public static void itemColorsRegistry(final ColorHandlerEvent.Item event)
-		{
+		public static void itemColorsRegistry(final ColorHandlerEvent.Item event) {
 			MubbleColorMaps.registerItemColors(event);
 			LOGGER.info("Registered color maps for items");
 		}

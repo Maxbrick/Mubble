@@ -19,8 +19,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleEntities
-{
+public class MubbleEntities {
 	public static final List<EntityType<?>> ENTITY_TYPES = new ArrayList<EntityType<? extends Entity>>();
 
 	/* MUBBLE */
@@ -41,16 +40,14 @@ public class MubbleEntities
 	/* KIRBY */
 	public static final EntityType<KirbyBallEntity> KIRBY_BALL = register("kirby_ball", EntityType.Builder.<KirbyBallEntity>create(KirbyBallEntity::new, EntityClassification.MISC).size(0.98F, 0.98F).setTrackingRange(4).setUpdateInterval(10));
 
-	public static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder)
-	{
+	public static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> builder) {
 		EntityType<T> entitytype = builder.build(Mubble.MOD_PREFIX + id);
 		entitytype.setRegistryName(Mubble.MOD_ID, id);
 		ENTITY_TYPES.add(entitytype);
 		return entitytype;
 	}
 
-	public static void registerPlacements()
-	{
+	public static void registerPlacements() {
 		EntitySpawnPlacementRegistry.register(DUCK, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::func_223316_b);
 		EntitySpawnPlacementRegistry.register(ZOMBIE_COWMAN, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ZombieCowmanEntity::canSpawn);
 		EntitySpawnPlacementRegistry.register(CHINCHO, EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ChinchoEntity::canSpawn);
@@ -59,8 +56,7 @@ public class MubbleEntities
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public static void registerRenders()
-	{
+	public static void registerRenders() {
 		EntityRendererManager manager = Minecraft.getInstance().getRenderManager();
 		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 		manager.register(DUCK, new DuckRenderer(manager));

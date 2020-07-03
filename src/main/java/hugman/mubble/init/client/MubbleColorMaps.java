@@ -11,10 +11,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 
 @OnlyIn(Dist.CLIENT)
-public class MubbleColorMaps extends BlockColors
-{
-	public static void registerBlockColors(final ColorHandlerEvent.Block event)
-	{
+public class MubbleColorMaps extends BlockColors {
+	public static void registerBlockColors(final ColorHandlerEvent.Block event) {
 		final BlockColors blockColors = event.getBlockColors();
 		blockColors.register((p_210225_0_, p_210225_1_, p_210225_2_, p_210225_3_) ->
 		{
@@ -62,8 +60,7 @@ public class MubbleColorMaps extends BlockColors
 		}, MubbleBlocks.SCARLET_LEAVES, MubbleBlocks.SCARLET_LEAF_PILE);
 	}
 
-	public static void registerItemColors(final ColorHandlerEvent.Item event)
-	{
+	public static void registerItemColors(final ColorHandlerEvent.Item event) {
 		final ItemColors itemColors = event.getItemColors();
 		itemColors.register((p_210235_1_, p_210235_2_) ->
 		{

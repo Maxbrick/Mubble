@@ -7,8 +7,7 @@ import net.minecraft.util.SoundEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleSounds
-{
+public class MubbleSounds {
 	public static final List<SoundEvent> SOUNDS = new ArrayList<SoundEvent>();
 
 	public static final SoundEvent BLOCK_PRESENT_CLOSE = register("block.present.close");
@@ -143,8 +142,7 @@ public class MubbleSounds
 	public static final SoundEvent REMIX_DISC_NB_WALUIGI_PINBALL = register("remix_disc.nb.waluigi_pinball");
 	*/
 
-	private static SoundEvent register(String name)
-	{
+	private static SoundEvent register(String name) {
 		ResourceLocation path = new ResourceLocation(Mubble.MOD_ID, name);
 		SoundEvent sound = new SoundEvent(path).setRegistryName(path);
 		SOUNDS.add(sound);

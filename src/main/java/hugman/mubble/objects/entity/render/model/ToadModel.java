@@ -8,14 +8,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ToadModel<T extends LivingEntity> extends BipedModel<T>
-{
+public class ToadModel<T extends LivingEntity> extends BipedModel<T> {
 	public ModelRenderer hat;
 	public ModelRenderer frontLamp;
 	public ModelRenderer bagpack;
 
-	public ToadModel()
-	{
+	public ToadModel() {
 		super(0.0F, 0.0F, 64, 64);
 		this.hat = new ModelRenderer(this, 0, 29);
 		this.hat.addCuboid(-5.0F, -10.0F, -5.0F, 10, 5, 10, 0.0F);
@@ -38,20 +36,17 @@ public class ToadModel<T extends LivingEntity> extends BipedModel<T>
 	}
 
 	@Override
-	protected Iterable<ModelRenderer> getHeadParts()
-	{
+	protected Iterable<ModelRenderer> getHeadParts() {
 		return ImmutableList.of(this.bipedHead, this.hat, this.frontLamp);
 	}
 
 	@Override
-	protected Iterable<ModelRenderer> getBodyParts()
-	{
+	protected Iterable<ModelRenderer> getBodyParts() {
 		return ImmutableList.of(this.bipedBody, this.bipedRightArm, this.bipedLeftArm, this.bipedRightLeg, this.bipedLeftLeg, this.bipedHeadwear, this.bagpack);
 	}
 
 	@Override
-	public void setAngles(T entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_)
-	{
+	public void setAngles(T entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
 		super.setAngles(entity, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
 		this.bipedHead.setRotationPoint(0.0F, 8.0F, 0.0F);
 		this.hat.copyModelAngles(this.bipedHead);

@@ -9,10 +9,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class PlaceBlockBehavior extends OptionalDispenseBehavior
-{
-	protected ItemStack dispenseStack(IBlockSource source, ItemStack stack)
-	{
+public class PlaceBlockBehavior extends OptionalDispenseBehavior {
+	protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
 		this.successful = false;
 		Item item = stack.getItem();
 		World worldIn = source.getWorld();
@@ -20,30 +18,19 @@ public class PlaceBlockBehavior extends OptionalDispenseBehavior
 		BlockPos blockPos = source.getBlockPos().offset(direction);
 		BlockState blockState = worldIn.getBlockState(blockPos);
 		Block block = blockState.getBlock();
-		if (item instanceof BlockItem)
-		{
+		if(item instanceof BlockItem) {
 			BlockItem blockItem = (BlockItem) item;
 			this.successful = blockItem.tryPlace(new DirectionalPlaceContext(source.getWorld(), blockPos, direction, stack, direction)) == ActionResultType.SUCCESS;
 		}
-		else if (item instanceof ToolItem)
-		{
-			if (item.canHarvestBlock(blockState) || blockState.getMaterial().isToolNotRequired())
-			{
-				if (block instanceof AirBlock || block instanceof FlowingFluidBlock)
-				{
-					this.successful = false;
-				}
-				else if (blockState.getBlockHardness(worldIn, blockPos) < 0.0f)
-				{
+		else if(item instanceof ToolItem) {
+			if(item.canHarvestBlock(blockState) || blockState.getMaterial().isToolNotRequired()) {
+				if(block instanceof AirBlock || block instanceof FlowingFluidBlock) {
 					this.successful = false;
 				}
 				else
-				{
-					this.successful = true;
-				}
+					this.successful = !(blockState.getBlockHardness(worldIn, blockPos) < 0.0f);
 			}
-			if (this.successful)
-			{
+			if(this.successful) {
 				worldIn.destroyBlock(blockPos, true);
 				stack.attemptDamageItem(1, worldIn.getRandom(), null);
 			}

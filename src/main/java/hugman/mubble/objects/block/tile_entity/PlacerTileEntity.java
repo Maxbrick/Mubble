@@ -6,16 +6,13 @@ import net.minecraft.tileentity.DispenserTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class PlacerTileEntity extends DispenserTileEntity
-{
-	public PlacerTileEntity()
-	{
+public class PlacerTileEntity extends DispenserTileEntity {
+	public PlacerTileEntity() {
 		super(MubbleTileEntityTypes.PLACER);
 	}
 
 	@Override
-	protected ITextComponent getDefaultName()
-	{
+	protected ITextComponent getDefaultName() {
 		return new TranslationTextComponent("container." + Mubble.MOD_ID + ".placer");
 	}
 }

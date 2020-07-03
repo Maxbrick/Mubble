@@ -27,18 +27,15 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class GoombaEntity extends MonsterEntity
-{
+public class GoombaEntity extends MonsterEntity {
 	private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(ToadEntity.class, DataSerializers.VARINT);
 
-	public GoombaEntity(EntityType<? extends GoombaEntity> type, World worldIn)
-	{
+	public GoombaEntity(EntityType<? extends GoombaEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
 	@Override
-	protected void registerGoals()
-	{
+	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0D, false));
 		this.goalSelector.addGoal(2, new MoveTowardsRestrictionGoal(this, 1.0D));
@@ -46,14 +43,13 @@ public class GoombaEntity extends MonsterEntity
 		this.goalSelector.addGoal(4, new LookAtGoal(this, BeeEntity.class, 10.0F));
 		this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[]{GoombaEntity.class}));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, GoombaEntity.class));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ToadEntity.class, true));
 	}
 
 	@Override
-	protected void registerAttributes()
-	{
+	protected void registerAttributes() {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
@@ -63,72 +59,60 @@ public class GoombaEntity extends MonsterEntity
 	}
 
 	@Override
-	public float getEyeHeight(Pose pose)
-	{
+	public float getEyeHeight(Pose pose) {
 		return 0.375F;
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource source)
-	{
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return MubbleSounds.ENTITY_GOOMBA_HURT;
 	}
 
 	@Override
-	protected SoundEvent getDeathSound()
-	{
+	protected SoundEvent getDeathSound() {
 		return MubbleSounds.ENTITY_GOOMBA_DEATH;
 	}
 
-	protected SoundEvent getStepSound()
-	{
+	protected SoundEvent getStepSound() {
 		return MubbleSounds.ENTITY_GOOMBA_STEP;
 	}
 
 	@Override
-	protected void playStepSound(BlockPos pos, BlockState blockIn)
-	{
+	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		this.playSound(this.getStepSound(), 0.15F, 1.0F);
 	}
 
-	public int getVariant()
-	{
+	public int getVariant() {
 		return this.dataManager.get(VARIANT);
 	}
 
-	public void setVariant(int variantIn)
-	{
+	public void setVariant(int variantIn) {
 		this.dataManager.set(VARIANT, variantIn);
 	}
 
 	@Override
-	protected void registerData()
-	{
+	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(VARIANT, 0);
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound)
-	{
+	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putInt("Variant", this.getVariant());
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT compound)
-	{
+	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setVariant(compound.getInt("Variant"));
 	}
 
 	@Override
-	public void onCollideWithPlayer(PlayerEntity playerIn)
-	{
+	public void onCollideWithPlayer(PlayerEntity playerIn) {
 		AxisAlignedBB hitbox = this.getBoundingBox().contract(0, -1, 0).grow(-0.4, 0, -0.4);
 		Vec3d motion = playerIn.getMotion();
-		if (!this.world.isRemote() && !playerIn.isSpectator() && hitbox.intersects(playerIn.getBoundingBox()) && motion.y < 0.3D && this.isAlive())
-		{
+		if(!this.world.isRemote() && !playerIn.isSpectator() && hitbox.intersects(playerIn.getBoundingBox()) && motion.y < 0.3D && this.isAlive()) {
 			playerIn.setMotion(motion.x, 0.5D, motion.z);
 			((ServerPlayerEntity) playerIn).connection.sendPacket(new SEntityVelocityPacket(playerIn));
 			playerIn.fallDistance = 0.0F;
@@ -137,8 +121,7 @@ public class GoombaEntity extends MonsterEntity
 		}
 	}
 
-	public static boolean canSpawn(EntityType<GoombaEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand)
-	{
+	public static boolean canSpawn(EntityType<GoombaEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 		return world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 }

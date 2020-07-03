@@ -3,8 +3,7 @@ package hugman.mubble.init.data;
 import hugman.mubble.Mubble;
 import net.minecraft.util.ResourceLocation;
 
-public class MubbleLootTables
-{
+public class MubbleLootTables {
 	public static final ResourceLocation TOAD = new ResourceLocation(Mubble.MOD_ID, "entities/toad/normal");
 	public static final ResourceLocation BLUE_TOAD = new ResourceLocation(Mubble.MOD_ID, "entities/toad/species/blue");
 	public static final ResourceLocation LIGHT_BLUE_TOAD = new ResourceLocation(Mubble.MOD_ID, "entities/toad/species/light_blue");

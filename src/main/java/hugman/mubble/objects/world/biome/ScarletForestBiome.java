@@ -18,10 +18,8 @@ import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
-public class ScarletForestBiome extends Biome
-{
-	public ScarletForestBiome()
-	{
+public class ScarletForestBiome extends Biome {
+	public ScarletForestBiome() {
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
 				.precipitation(Biome.RainType.RAIN)
 				.category(Biome.Category.FOREST)
@@ -64,14 +62,12 @@ public class ScarletForestBiome extends Biome
 	}
 
 	@Override
-	public int getGrassColorAt(double x, double z)
-	{
+	public int getGrassColorAt(double x, double z) {
 		return 8720466;
 	}
 
 	@Override
-	public int getFoliageColor()
-	{
+	public int getFoliageColor() {
 		return 10622269;
 	}
 }

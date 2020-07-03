@@ -15,21 +15,17 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class SmashBallItem extends Item
-{
-	public SmashBallItem(Item.Properties builder)
-	{
+public class SmashBallItem extends Item {
+	public SmashBallItem(Item.Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
 		ItemStack stack = playerIn.getHeldItem(handIn);
 		Random rand = new Random();
 		worldIn.playSound((PlayerEntity) null, playerIn.getPosition(), MubbleSounds.ITEM_SMASH_BALL_USE, SoundCategory.PLAYERS, 1f, 1f);
-		for (int i = 0; i < rand.nextInt(21) + 10; i++)
-		{
+		for(int i = 0; i < rand.nextInt(21) + 10; i++) {
 			worldIn.addParticle(ParticleTypes.FLAME, playerIn.getX() + (rand.nextInt(11) - 5) / 10F, playerIn.getY() + rand.nextInt(21) / 10F, playerIn.getZ() + (rand.nextInt(11) - 5) / 10F, (rand.nextInt(21) - 10) / 120F, (rand.nextInt(2) + 0.1) / 11F, (rand.nextInt(21) - 10) / 120F);
 		}
 		playerIn.getMotion().add(0.0D, 0.25, 0.0D);
@@ -37,8 +33,7 @@ public class SmashBallItem extends Item
 		playerIn.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 25, 0));
 		playerIn.addPotionEffect(new EffectInstance(Effects.STRENGTH, 900, 3));
 		playerIn.addPotionEffect(new EffectInstance(Effects.HEALTH_BOOST, 900, 4));
-		if (!playerIn.abilities.isCreativeMode)
-		{
+		if(!playerIn.abilities.isCreativeMode) {
 			stack.shrink(1);
 		}
 		playerIn.getCooldownTracker().setCooldown(this, 25);

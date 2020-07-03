@@ -24,31 +24,24 @@ import net.minecraftforge.client.model.data.EmptyModelData;
 import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
-public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity>
-{
-	public FlyingBlockRenderer(EntityRendererManager renderManagerIn)
-	{
+public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity> {
+	public FlyingBlockRenderer(EntityRendererManager renderManagerIn) {
 		super(renderManagerIn);
 		this.shadowSize = 0.5F;
 	}
 
 	@Override
-	public void render(FlyingBlockEntity entity, float p_225623_2_, float p_225623_3_, MatrixStack matrix, IRenderTypeBuffer buffer, int p_225623_6_)
-	{
+	public void render(FlyingBlockEntity entity, float p_225623_2_, float p_225623_3_, MatrixStack matrix, IRenderTypeBuffer buffer, int p_225623_6_) {
 		BlockState blockstate = entity.getBlockState();
-		if (blockstate.getRenderType() == BlockRenderType.MODEL)
-		{
+		if(blockstate.getRenderType() == BlockRenderType.MODEL) {
 			World world = entity.getWorldObj();
-			if (blockstate != world.getBlockState(new BlockPos(entity)) && blockstate.getRenderType() != BlockRenderType.INVISIBLE)
-			{
+			if(blockstate != world.getBlockState(new BlockPos(entity)) && blockstate.getRenderType() != BlockRenderType.INVISIBLE) {
 				matrix.push();
 				BlockPos blockpos = new BlockPos(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
 				matrix.translate(-0.5D, 0.0D, -0.5D);
 				BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-				for (RenderType type : RenderType.getBlockLayers())
-				{
-					if (RenderTypeLookup.canRenderInLayer(blockstate, type))
-					{
+				for(RenderType type : RenderType.getBlockLayers()) {
+					if(RenderTypeLookup.canRenderInLayer(blockstate, type)) {
 						ForgeHooksClient.setRenderLayer(type);
 						blockrendererdispatcher.getBlockModelRenderer().renderModel(world, blockrendererdispatcher.getModelForState(blockstate), blockstate, blockpos, matrix, buffer.getBuffer(type), false, new Random(), blockstate.getPositionRandom(entity.getOrigin()), OverlayTexture.DEFAULT_UV, EmptyModelData.INSTANCE);
 					}
@@ -61,8 +54,7 @@ public class FlyingBlockRenderer extends EntityRenderer<FlyingBlockEntity>
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(FlyingBlockEntity entity)
-	{
+	public ResourceLocation getEntityTexture(FlyingBlockEntity entity) {
 		return PlayerContainer.BLOCK_ATLAS_TEXTURE;
 	}
 }

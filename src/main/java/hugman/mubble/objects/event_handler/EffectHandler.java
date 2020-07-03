@@ -14,29 +14,23 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class EffectHandler
-{
+public class EffectHandler {
 	@SubscribeEvent
-	public static void onJump(LivingJumpEvent event)
-	{
+	public static void onJump(LivingJumpEvent event) {
 		LivingEntity entity = event.getEntityLiving();
-		if (entity.isPotionActive(MubbleEffects.HEAVINESS))
-		{
+		if(entity.isPotionActive(MubbleEffects.HEAVINESS)) {
 			Vec3d vec3d = entity.getMotion();
 			entity.setMotion(vec3d.x, vec3d.y - (float) (entity.getActivePotionEffect(MubbleEffects.HEAVINESS).getAmplifier() + 1) * 0.05F, vec3d.z);
 		}
 	}
 
 	@SubscribeEvent
-	public static void onTick(LivingUpdateEvent event)
-	{
+	public static void onTick(LivingUpdateEvent event) {
 		LivingEntity entity = event.getEntityLiving();
 		World world = entity.getEntityWorld();
 		ItemStack headItem = entity.getItemStackFromSlot(EquipmentSlotType.HEAD);
-		if (!world.isRemote)
-		{
-			if (MubbleTags.Items.WEIGHT_HEAVY.contains(headItem.getItem()))
-			{
+		if(!world.isRemote) {
+			if(MubbleTags.Items.WEIGHT_HEAVY.contains(headItem.getItem())) {
 				entity.addPotionEffect(new EffectInstance(MubbleEffects.HEAVINESS, 25, 0));
 			}
 		}

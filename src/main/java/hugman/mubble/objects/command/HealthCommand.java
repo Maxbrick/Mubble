@@ -13,11 +13,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-public class HealthCommand implements ICommand
-{
+public class HealthCommand implements ICommand {
 	@Override
-	public void register(CommandDispatcher<CommandSource> dispatcher)
-	{
+	public void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(
 				LiteralArgumentBuilder.<CommandSource>literal("health")
 						.requires((source) ->
@@ -43,36 +41,26 @@ public class HealthCommand implements ICommand
 		);
 	}
 
-	private static int setHealth(CommandSource source, Collection<? extends Entity> targets, float amount, boolean sum)
-	{
+	private static int setHealth(CommandSource source, Collection<? extends Entity> targets, float amount, boolean sum) {
 		int finalTargetAmount = 0;
-		for (Entity entity : targets)
-		{
-			if (entity instanceof LivingEntity)
-			{
+		for(Entity entity : targets) {
+			if(entity instanceof LivingEntity) {
 				finalTargetAmount++;
 				LivingEntity livingEntity = (LivingEntity) entity;
-				if (sum == true)
-				{
-					if (amount > 0.0F)
-					{
+				if(sum == true) {
+					if(amount > 0.0F) {
 						livingEntity.heal(amount);
 					}
-					else if (amount < 0.0F)
-					{
+					else if(amount < 0.0F) {
 						livingEntity.attackEntityFrom(DamageSource.OUT_OF_WORLD, amount * -1.0f);
 					}
 				}
-				else
-				{
-					if (livingEntity.getHealth() > 0.0F)
-					{
-						if (amount == 0.0F)
-						{
+				else {
+					if(livingEntity.getHealth() > 0.0F) {
+						if(amount == 0.0F) {
 							livingEntity.onKillCommand();
 						}
-						else
-						{
+						else {
 							livingEntity.setHealth(amount);
 						}
 					}
@@ -80,20 +68,16 @@ public class HealthCommand implements ICommand
 			}
 		}
 		final String parameter;
-		if (sum == true)
-		{
+		if(sum == true) {
 			parameter = "add";
 		}
-		else
-		{
+		else {
 			parameter = "set";
 		}
-		if (targets.size() == 1)
-		{
+		if(targets.size() == 1) {
 			source.sendFeedback(new TranslationTextComponent("commands.health." + parameter + ".success.single", amount, targets.iterator().next().getDisplayName()), true);
 		}
-		else
-		{
+		else {
 			source.sendFeedback(new TranslationTextComponent("commands.health." + parameter + ".success.multiple", amount, finalTargetAmount), true);
 		}
 		return finalTargetAmount;

@@ -21,14 +21,12 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
-public class SMWDesertBiome extends Biome
-{
+public class SMWDesertBiome extends Biome {
 	private static final BlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
 	private static final BlockState SMW_DESERT_TOP = MubbleBlocks.SMW_DESERT_GROUND_BLOCK.getDefaultState().with(MubbleBlockStateProperties.OVER, true);
 	private static final BlockState SMW_DESERT_DIRT = MubbleBlocks.SMW_DESERT_GROUND_BLOCK.getDefaultState().with(MubbleBlockStateProperties.OVER, false);
 
-	public SMWDesertBiome()
-	{
+	public SMWDesertBiome() {
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, MubbleSurfaceBuilders.SMW_DESERT_SURFACE)
 				.precipitation(Biome.RainType.RAIN)
 				.category(Biome.Category.FOREST)
@@ -71,14 +69,12 @@ public class SMWDesertBiome extends Biome
 	}
 
 	@Override
-	public int getGrassColorAt(double x, double z)
-	{
+	public int getGrassColorAt(double x, double z) {
 		return 16110261;
 	}
 
 	@Override
-	public int getSkyColor()
-	{
+	public int getSkyColor() {
 		return 15323816;
 	}
 }

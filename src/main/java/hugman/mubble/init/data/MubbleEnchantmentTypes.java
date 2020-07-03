@@ -6,8 +6,7 @@ import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ToolItem;
 import net.minecraft.item.TridentItem;
 
-public class MubbleEnchantmentTypes
-{
+public class MubbleEnchantmentTypes {
 	public static final EnchantmentType LOOTING = EnchantmentType.create("LOOTING", p -> (
 			p instanceof ToolItem
 					|| p instanceof BowItem

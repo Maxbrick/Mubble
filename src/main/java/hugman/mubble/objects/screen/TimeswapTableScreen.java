@@ -19,37 +19,32 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
-public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
-{
+public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer> {
 	private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(Mubble.MOD_ID, "textures/gui/container/timeswap_table.png");
 	private float sliderProgress;
 	private boolean clickedOnSroll;
 	private int recipeIndexOffset;
 	private boolean hasItemsInInputSlot;
 
-	public TimeswapTableScreen(TimeswapTableContainer containerIn, PlayerInventory playerInv, ITextComponent titleIn)
-	{
+	public TimeswapTableScreen(TimeswapTableContainer containerIn, PlayerInventory playerInv, ITextComponent titleIn) {
 		super(containerIn, playerInv, titleIn);
 		containerIn.setInventoryUpdateListener(this::onInventoryUpdate);
 	}
 
 	@Override
-	public void render(int p_render_1_, int p_render_2_, float p_render_3_)
-	{
+	public void render(int p_render_1_, int p_render_2_, float p_render_3_) {
 		super.render(p_render_1_, p_render_2_, p_render_3_);
 		this.renderHoveredToolTip(p_render_1_, p_render_2_);
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
-	{
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		this.font.drawString(this.title.getFormattedText(), 8.0F, 4.0F, 4210752);
 		this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 94), 4210752);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
-	{
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		this.renderBackground();
 		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
@@ -65,21 +60,17 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 		this.drawRecipesItems(l, i1, j1);
 	}
 
-	private void drawRecipesBackground(int mouseX, int mouseY, int left, int top, int recipeIndexOffsetMax)
-	{
-		for (int i = this.recipeIndexOffset; i < recipeIndexOffsetMax && i < this.container.getOutputItemsListSize(); ++i)
-		{
+	private void drawRecipesBackground(int mouseX, int mouseY, int left, int top, int recipeIndexOffsetMax) {
+		for(int i = this.recipeIndexOffset; i < recipeIndexOffsetMax && i < this.container.getOutputItemsListSize(); ++i) {
 			int j = i - this.recipeIndexOffset;
 			int k = left + j % 4 * 16;
 			int l = j / 4;
 			int i1 = top + l * 18 + 2;
 			int j1 = this.ySize;
-			if (i == this.container.getSelectedOutputItem())
-			{
+			if(i == this.container.getSelectedOutputItem()) {
 				j1 += 18;
 			}
-			else if (mouseX >= k && mouseY >= i1 && mouseX < k + 16 && mouseY < i1 + 18)
-			{
+			else if(mouseX >= k && mouseY >= i1 && mouseX < k + 16 && mouseY < i1 + 18) {
 				j1 += 36;
 			}
 			this.blit(k, i1 - 1, 0, j1, 16, 18);
@@ -87,11 +78,9 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 
 	}
 
-	private void drawRecipesItems(int left, int top, int recipeIndexOffsetMax)
-	{
+	private void drawRecipesItems(int left, int top, int recipeIndexOffsetMax) {
 		List<Item> list = this.container.getOutputItemsList();
-		for (int i = this.recipeIndexOffset; i < recipeIndexOffsetMax && i < this.container.getOutputItemsListSize(); ++i)
-		{
+		for(int i = this.recipeIndexOffset; i < recipeIndexOffsetMax && i < this.container.getOutputItemsListSize(); ++i) {
 			int j = i - this.recipeIndexOffset;
 			int k = left + j % 4 * 16;
 			int l = j / 4;
@@ -100,21 +89,17 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 		}
 	}
 
-	public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_)
-	{
+	public boolean mouseClicked(double p_mouseClicked_1_, double p_mouseClicked_3_, int p_mouseClicked_5_) {
 		this.clickedOnSroll = false;
-		if (this.hasItemsInInputSlot)
-		{
+		if(this.hasItemsInInputSlot) {
 			int i = this.guiLeft + 52;
 			int j = this.guiTop + 14;
 			int k = this.recipeIndexOffset + 12;
-			for (int l = this.recipeIndexOffset; l < k; ++l)
-			{
+			for(int l = this.recipeIndexOffset; l < k; ++l) {
 				int i1 = l - this.recipeIndexOffset;
 				double d0 = p_mouseClicked_1_ - (double) (i + i1 % 4 * 16);
 				double d1 = p_mouseClicked_3_ - (double) (j + i1 / 4 * 18);
-				if (d0 >= 0.0D && d1 >= 0.0D && d0 < 16.0D && d1 < 18.0D && this.container.enchantItem(this.minecraft.player, l))
-				{
+				if(d0 >= 0.0D && d1 >= 0.0D && d0 < 16.0D && d1 < 18.0D && this.container.enchantItem(this.minecraft.player, l)) {
 					Minecraft.getInstance().getSoundHandler().play(SimpleSound.master(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F));
 					this.minecraft.playerController.sendEnchantPacket((this.container).windowId, l);
 					return true;
@@ -122,18 +107,15 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 			}
 			i = this.guiLeft + 119;
 			j = this.guiTop + 9;
-			if (p_mouseClicked_1_ >= (double) i && p_mouseClicked_1_ < (double) (i + 12) && p_mouseClicked_3_ >= (double) j && p_mouseClicked_3_ < (double) (j + 54))
-			{
+			if(p_mouseClicked_1_ >= (double) i && p_mouseClicked_1_ < (double) (i + 12) && p_mouseClicked_3_ >= (double) j && p_mouseClicked_3_ < (double) (j + 54)) {
 				this.clickedOnSroll = true;
 			}
 		}
 		return super.mouseClicked(p_mouseClicked_1_, p_mouseClicked_3_, p_mouseClicked_5_);
 	}
 
-	public boolean mouseDragged(double p_mouseDragged_1_, double p_mouseDragged_3_, int p_mouseDragged_5_, double p_mouseDragged_6_, double p_mouseDragged_8_)
-	{
-		if (this.clickedOnSroll && this.canScroll())
-		{
+	public boolean mouseDragged(double p_mouseDragged_1_, double p_mouseDragged_3_, int p_mouseDragged_5_, double p_mouseDragged_6_, double p_mouseDragged_8_) {
+		if(this.clickedOnSroll && this.canScroll()) {
 			int i = this.guiTop + 14;
 			int j = i + 54;
 			this.sliderProgress = ((float) p_mouseDragged_3_ - (float) i - 7.5F) / ((float) (j - i) - 15.0F);
@@ -141,16 +123,13 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 			this.recipeIndexOffset = (int) ((double) (this.sliderProgress * (float) this.getHiddenRows()) + 0.5D) * 4;
 			return true;
 		}
-		else
-		{
+		else {
 			return super.mouseDragged(p_mouseDragged_1_, p_mouseDragged_3_, p_mouseDragged_5_, p_mouseDragged_6_, p_mouseDragged_8_);
 		}
 	}
 
-	public boolean mouseScrolled(double p_mouseScrolled_1_, double p_mouseScrolled_3_, double p_mouseScrolled_5_)
-	{
-		if (this.canScroll())
-		{
+	public boolean mouseScrolled(double p_mouseScrolled_1_, double p_mouseScrolled_3_, double p_mouseScrolled_5_) {
+		if(this.canScroll()) {
 			int i = this.getHiddenRows();
 			this.sliderProgress = (float) ((double) this.sliderProgress - p_mouseScrolled_5_ / (double) i);
 			this.sliderProgress = MathHelper.clamp(this.sliderProgress, 0.0F, 1.0F);
@@ -159,21 +138,17 @@ public class TimeswapTableScreen extends ContainerScreen<TimeswapTableContainer>
 		return true;
 	}
 
-	private boolean canScroll()
-	{
+	private boolean canScroll() {
 		return this.hasItemsInInputSlot && this.container.getOutputItemsListSize() > 12;
 	}
 
-	protected int getHiddenRows()
-	{
+	protected int getHiddenRows() {
 		return (this.container.getOutputItemsListSize() + 4 - 1) / 4 - 3;
 	}
 
-	private void onInventoryUpdate()
-	{
+	private void onInventoryUpdate() {
 		this.hasItemsInInputSlot = this.container.hasItemsinInputSlot();
-		if (!this.hasItemsInInputSlot)
-		{
+		if(!this.hasItemsInInputSlot) {
 			this.sliderProgress = 0.0F;
 			this.recipeIndexOffset = 0;
 		}

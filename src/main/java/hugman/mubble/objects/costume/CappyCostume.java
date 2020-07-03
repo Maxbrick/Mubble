@@ -14,26 +14,20 @@ import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Random;
 
-public class CappyCostume extends HeadCostume
-{
-	public CappyCostume(Properties builder, SoundEvent sound)
-	{
+public class CappyCostume extends HeadCostume {
+	public CappyCostume(Properties builder, SoundEvent sound) {
 		super(builder, sound);
 	}
 
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
 		Random rand = new Random();
-		if (!world.isRemote && rand.nextInt(301) == 0)
-		{
+		if(!world.isRemote && rand.nextInt(301) == 0) {
 			int random = rand.nextInt(5);
-			if (player.dimension == DimensionType.THE_NETHER && random <= 3)
-			{
+			if(player.dimension == DimensionType.THE_NETHER && random <= 3) {
 				world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), MubbleSounds.COSTUME_CAPPY_AMBIENT_NETHER, SoundCategory.VOICE, 1f, 1f);
 			}
-			else
-			{
+			else {
 				world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), MubbleSounds.COSTUME_CAPPY_AMBIENT, SoundCategory.VOICE, 1f, 1f);
 			}
 		}
@@ -41,18 +35,14 @@ public class CappyCostume extends HeadCostume
 	}
 
 	@Override
-	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity)
-	{
+	public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
 		Random rand = new Random();
 		World world = entity.world;
-		if (rand.nextInt(201) == 0)
-		{
-			if (world.getFluidState(entity.getPosition()).isTagged(FluidTags.WATER))
-			{
+		if(rand.nextInt(201) == 0) {
+			if(world.getFluidState(entity.getPosition()).isTagged(FluidTags.WATER)) {
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), MubbleSounds.COSTUME_CAPPY_HELP_WATER, SoundCategory.VOICE, 1f, 1f);
 			}
-			else
-			{
+			else {
 				world.playSound((PlayerEntity) null, entity.getX(), entity.getY(), entity.getZ(), MubbleSounds.COSTUME_CAPPY_HELP, SoundCategory.VOICE, 1f, 1f);
 			}
 		}
@@ -60,11 +50,9 @@ public class CappyCostume extends HeadCostume
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		ItemStack itemstack1 = player.getItemStackFromSlot(armorType);
-		if (itemstack1.isEmpty())
-		{
+		if(itemstack1.isEmpty()) {
 			world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), MubbleSounds.COSTUME_CAPPY_EQUIP, SoundCategory.PLAYERS, 1f, 1f);
 		}
 		return super.onItemRightClick(world, player, hand);

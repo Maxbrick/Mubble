@@ -14,22 +14,16 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Random;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class SeasonalAdditionHandler
-{
+public class SeasonalAdditionHandler {
 	@SubscribeEvent
-	public static void onSpawn(LivingSpawnEvent.CheckSpawn event)
-	{
+	public static void onSpawn(LivingSpawnEvent.CheckSpawn event) {
 		Entity fEntity = event.getEntity();
 		Random rand = new Random();
-		if (fEntity instanceof MobEntity)
-		{
+		if(fEntity instanceof MobEntity) {
 			MobEntity entity = (MobEntity) fEntity;
-			if (MubbleTags.EntityTypes.CAN_WEAR_HELMET.contains(entity.getType()))
-			{
-				if (entity.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty() && CalendarEvents.isChristmasSeason)
-				{
-					if (rand.nextFloat() < (float) CalendarEvents.getDayToday() / 25.0f)
-					{
+			if(MubbleTags.EntityTypes.CAN_WEAR_HELMET.contains(entity.getType())) {
+				if(entity.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty() && CalendarEvents.isChristmasSeason) {
+					if(rand.nextFloat() < (float) CalendarEvents.getDayToday() / 25.0f) {
 						entity.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(MubbleCostumes.CHRISTMAS_HAT));
 						entity.setDropChance(EquipmentSlotType.HEAD, 0.0F);
 					}

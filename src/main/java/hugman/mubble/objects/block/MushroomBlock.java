@@ -9,34 +9,28 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class MushroomBlock extends net.minecraft.block.MushroomBlock
-{
-	public MushroomBlock(Block.Properties builder)
-	{
+public class MushroomBlock extends net.minecraft.block.MushroomBlock {
+	public MushroomBlock(Block.Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient)
-	{
+	public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
 		return false;
 	}
 
 	@Override
-	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state)
-	{
+	public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
 		return;
 	}
 
 	@Override
-	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state)
-	{
+	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return false;
 	}
 
 	@Override
-	public boolean trySpawningBigMushroom(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand)
-	{
+	public boolean trySpawningBigMushroom(ServerWorld worldIn, BlockPos pos, BlockState state, Random rand) {
 		return false;
 	}
 }

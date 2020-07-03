@@ -17,45 +17,37 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.Util;
 import net.minecraft.world.World;
 
-public class IceballItem extends Item
-{
-	public IceballItem(Properties builder)
-	{
+public class IceballItem extends Item {
+	public IceballItem(Properties builder) {
 		super(builder);
 		DispenserBlock.registerDispenseBehavior(this, DISPENSER_BEHAVIOR);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		world.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), MubbleSounds.ENTITY_ICEBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 1.0F);
-		if (!world.isRemote)
-		{
+		if(!world.isRemote) {
 			IceballEntity entity = new IceballEntity(world, player);
 			entity.setItem(stack);
 			entity.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 			world.addEntity(entity);
 		}
 		player.addStat(Stats.ITEM_USED.get(this));
-		if (!player.abilities.isCreativeMode)
-		{
+		if(!player.abilities.isCreativeMode) {
 			stack.shrink(1);
 		}
 		return ActionResult.success(stack);
 	}
 
-	public static final IDispenseItemBehavior DISPENSER_BEHAVIOR = new ProjectileDispenseBehavior()
-	{
+	public static final IDispenseItemBehavior DISPENSER_BEHAVIOR = new ProjectileDispenseBehavior() {
 		@Override
-		protected IProjectile getProjectileEntity(World world, IPosition pos, ItemStack stack)
-		{
+		protected IProjectile getProjectileEntity(World world, IPosition pos, ItemStack stack) {
 			return Util.make(new IceballEntity(world, pos.getX(), pos.getY(), pos.getZ()), (entity) ->
 			{
 				entity.setItem(stack);
 			});
 		}
 
-		;
 	};
 }

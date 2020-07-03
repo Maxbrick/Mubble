@@ -10,24 +10,20 @@ import net.minecraft.command.CommandSource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleCommands
-{
+public class MubbleCommands {
 	public static final List<ICommand> COMMANDS = new ArrayList<ICommand>();
 
 	public static final ICommand HEALTH = register(new HealthCommand());
 	public static final ICommand MOTION = register(new MotionCommand());
 	public static final ICommand FOODBAR = register(new FoodbarCommand());
 
-	private static ICommand register(ICommand command)
-	{
+	private static ICommand register(ICommand command) {
 		COMMANDS.add(command);
 		return command;
 	}
 
-	public static void registerCommands(CommandDispatcher<CommandSource> dispatcher)
-	{
-		for (ICommand command : COMMANDS)
-		{
+	public static void registerCommands(CommandDispatcher<CommandSource> dispatcher) {
+		for(ICommand command : COMMANDS) {
 			command.register(dispatcher);
 		}
 	}

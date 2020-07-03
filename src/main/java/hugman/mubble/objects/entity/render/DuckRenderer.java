@@ -11,21 +11,17 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel<DuckEntity>>
-{
-	public DuckRenderer(EntityRendererManager manager)
-	{
+public class DuckRenderer extends MobRenderer<DuckEntity, DuckModel<DuckEntity>> {
+	public DuckRenderer(EntityRendererManager manager) {
 		super(manager, new DuckModel<>(), 0.3F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(DuckEntity entity)
-	{
+	public ResourceLocation getEntityTexture(DuckEntity entity) {
 		return new ResourceLocation(Mubble.MOD_ID, "textures/entity/duck/" + entity.getVariantType().getName() + ".png");
 	}
 
-	protected float handleRotationFloat(DuckEntity entity, float p_77044_2_)
-	{
+	protected float handleRotationFloat(DuckEntity entity, float p_77044_2_) {
 		float f = MathHelper.lerp(p_77044_2_, entity.oFlap, entity.wingRotation);
 		float f1 = MathHelper.lerp(p_77044_2_, entity.oFlapSpeed, entity.destPos);
 		return (MathHelper.sin(f) + 1.0F) * f1;

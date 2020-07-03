@@ -11,58 +11,45 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
-public class DoorBlock extends net.minecraft.block.DoorBlock
-{
+public class DoorBlock extends net.minecraft.block.DoorBlock {
 	/* Extension for internal publicity */
-	public DoorBlock(Block.Properties builder)
-	{
+	public DoorBlock(Block.Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public void toggleDoor(World worldIn, BlockPos pos, boolean open)
-	{
-		if (isSmm2Door())
-		{
+	public void toggleDoor(World worldIn, BlockPos pos, boolean open) {
+		if(isSmm2Door()) {
 			BlockState blockstate = worldIn.getBlockState(pos);
-			if (blockstate.getBlock() == this && blockstate.get(OPEN) != open)
-			{
+			if(blockstate.getBlock() == this && blockstate.get(OPEN) != open) {
 				worldIn.setBlockState(pos, blockstate.with(OPEN, Boolean.valueOf(open)), 10);
 				this.playToggleSound(worldIn, pos, open);
 			}
 		}
-		else
-		{
+		else {
 			super.toggleDoor(worldIn, pos, open);
 		}
 	}
 
 	@Override
-	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving)
-	{
-		if (isSmm2Door())
-		{
+	public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
+		if(isSmm2Door()) {
 			boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.offset(state.get(HALF) == DoubleBlockHalf.LOWER ? Direction.UP : Direction.DOWN));
-			if (blockIn != this && flag != state.get(POWERED))
-			{
-				if (flag != state.get(OPEN))
-				{
+			if(blockIn != this && flag != state.get(POWERED)) {
+				if(flag != state.get(OPEN)) {
 					this.playToggleSound(worldIn, pos, flag);
 				}
 				worldIn.setBlockState(pos, state.with(POWERED, Boolean.valueOf(flag)).with(OPEN, Boolean.valueOf(flag)), 2);
 			}
 		}
-		else
-		{
+		else {
 			super.neighborChanged(state, worldIn, pos, blockIn, fromPos, isMoving);
 		}
 	}
 
 	@Override
-	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
-	{
-		if (isSmm2Door())
-		{
+	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+		if(isSmm2Door()) {
 			state = state.cycle(OPEN);
 			worldIn.setBlockState(pos, state, 10);
 			this.playToggleSound(worldIn, pos, state.get(OPEN));
@@ -71,60 +58,46 @@ public class DoorBlock extends net.minecraft.block.DoorBlock
 		return super.onUse(state, worldIn, pos, player, handIn, hit);
 	}
 
-	private boolean isSmm2Door()
-	{
+	private boolean isSmm2Door() {
 		return this == MubbleBlocks.SMB_DOOR || this == MubbleBlocks.SMB3_DOOR || this == MubbleBlocks.SMW_DOOR || this == MubbleBlocks.NSMBU_DOOR;
 	}
 
-	public void playToggleSound(World worldIn, BlockPos pos, boolean flag)
-	{
-		worldIn.playSound((PlayerEntity) null, pos, flag ? this.getOpenSound(this) : this.getCloseSound(this), SoundCategory.BLOCKS, 1.0F, 1.0F);
+	public void playToggleSound(World worldIn, BlockPos pos, boolean flag) {
+		worldIn.playSound(null, pos, flag ? this.getOpenSound(this) : this.getCloseSound(this), SoundCategory.BLOCKS, 1.0F, 1.0F);
 	}
 
-	public SoundEvent getOpenSound(Block block)
-	{
-		if (block == MubbleBlocks.SMB_DOOR)
-		{
+	public SoundEvent getOpenSound(Block block) {
+		if(block == MubbleBlocks.SMB_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_OPEN_SMB;
 		}
-		else if (block == MubbleBlocks.SMB3_DOOR)
-		{
+		else if(block == MubbleBlocks.SMB3_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_OPEN_SMB3;
 		}
-		else if (block == MubbleBlocks.SMW_DOOR)
-		{
+		else if(block == MubbleBlocks.SMW_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_OPEN_SMW;
 		}
-		else if (block == MubbleBlocks.NSMBU_DOOR)
-		{
+		else if(block == MubbleBlocks.NSMBU_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_OPEN_NSMBU;
 		}
-		else
-		{
+		else {
 			return MubbleSounds.BLOCK_DOOR_OPEN_SMB;
 		}
 	}
 
-	public SoundEvent getCloseSound(Block block)
-	{
-		if (block == MubbleBlocks.SMB_DOOR)
-		{
+	public SoundEvent getCloseSound(Block block) {
+		if(block == MubbleBlocks.SMB_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_CLOSE_SMB;
 		}
-		else if (block == MubbleBlocks.SMB3_DOOR)
-		{
+		else if(block == MubbleBlocks.SMB3_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_CLOSE_SMB3;
 		}
-		else if (block == MubbleBlocks.SMW_DOOR)
-		{
+		else if(block == MubbleBlocks.SMW_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_CLOSE_SMW;
 		}
-		else if (block == MubbleBlocks.NSMBU_DOOR)
-		{
+		else if(block == MubbleBlocks.NSMBU_DOOR) {
 			return MubbleSounds.BLOCK_DOOR_CLOSE_NSMBU;
 		}
-		else
-		{
+		else {
 			return MubbleSounds.BLOCK_DOOR_CLOSE_SMB;
 		}
 	}

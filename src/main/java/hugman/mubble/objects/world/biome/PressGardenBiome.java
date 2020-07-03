@@ -17,10 +17,8 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
-public class PressGardenBiome extends Biome
-{
-	public PressGardenBiome()
-	{
+public class PressGardenBiome extends Biome {
+	public PressGardenBiome() {
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
 				.precipitation(Biome.RainType.SNOW)
 				.category(Biome.Category.TAIGA)
@@ -69,14 +67,12 @@ public class PressGardenBiome extends Biome
 	}
 
 	@Override
-	public int getGrassColorAt(double x, double z)
-	{
+	public int getGrassColorAt(double x, double z) {
 		return 15594485;
 	}
 
 	@Override
-	public int getFoliageColor()
-	{
+	public int getFoliageColor() {
 		return 15594485;
 	}
 }

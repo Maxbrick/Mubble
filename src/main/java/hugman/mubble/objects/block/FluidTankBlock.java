@@ -25,8 +25,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class FluidTankBlock extends Block implements IBucketPickupHandler, ILiquidContainer
-{
+public class FluidTankBlock extends Block implements IBucketPickupHandler, ILiquidContainer {
 	public static final BooleanProperty UP = SixWayBlock.UP;
 	public static final BooleanProperty DOWN = SixWayBlock.DOWN;
 	public static final BooleanProperty NORTH = SixWayBlock.NORTH;
@@ -44,206 +43,187 @@ public class FluidTankBlock extends Block implements IBucketPickupHandler, ILiqu
 	private static final VoxelShape FULL_SHAPE = VoxelShapes.combineAndSimplify(VoxelShapes.fullCube(), Block.makeCuboidShape(1.0D, 1.0D, 1.0D, 15.0D, 15.0D, 15.0D), IBooleanFunction.ONLY_FIRST);
 
 
-	public FluidTankBlock(Properties builder)
-	{
+	public FluidTankBlock(Properties builder) {
 		super(builder);
 		this.setDefaultState(this.stateContainer.getBaseState().with(FLUIDLOG, FluidLog.EMPTY));
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
-	{
+	public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		return FULL_SHAPE;
 	}
 
 	@Override
-	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
-	{
+	public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
 		VoxelShape shape = FULL_SHAPE;
-		if (!state.get(UP)) shape = VoxelShapes.combineAndSimplify(shape, GLASS_UP, IBooleanFunction.ONLY_FIRST);
-		if (!state.get(DOWN)) shape = VoxelShapes.combineAndSimplify(shape, GLASS_DOWN, IBooleanFunction.ONLY_FIRST);
-		if (!state.get(NORTH)) shape = VoxelShapes.combineAndSimplify(shape, GLASS_NORTH, IBooleanFunction.ONLY_FIRST);
-		if (!state.get(SOUTH)) shape = VoxelShapes.combineAndSimplify(shape, GLASS_SOUTH, IBooleanFunction.ONLY_FIRST);
-		if (!state.get(EAST)) shape = VoxelShapes.combineAndSimplify(shape, GLASS_EAST, IBooleanFunction.ONLY_FIRST);
-		if (!state.get(WEST)) shape = VoxelShapes.combineAndSimplify(shape, GLASS_WEST, IBooleanFunction.ONLY_FIRST);
+		if(!state.get(UP)) {
+			shape = VoxelShapes.combineAndSimplify(shape, GLASS_UP, IBooleanFunction.ONLY_FIRST);
+		}
+		if(!state.get(DOWN)) {
+			shape = VoxelShapes.combineAndSimplify(shape, GLASS_DOWN, IBooleanFunction.ONLY_FIRST);
+		}
+		if(!state.get(NORTH)) {
+			shape = VoxelShapes.combineAndSimplify(shape, GLASS_NORTH, IBooleanFunction.ONLY_FIRST);
+		}
+		if(!state.get(SOUTH)) {
+			shape = VoxelShapes.combineAndSimplify(shape, GLASS_SOUTH, IBooleanFunction.ONLY_FIRST);
+		}
+		if(!state.get(EAST)) {
+			shape = VoxelShapes.combineAndSimplify(shape, GLASS_EAST, IBooleanFunction.ONLY_FIRST);
+		}
+		if(!state.get(WEST)) {
+			shape = VoxelShapes.combineAndSimplify(shape, GLASS_WEST, IBooleanFunction.ONLY_FIRST);
+		}
 		return shape;
 	}
 
 	@Override
-	protected void fillStateContainer(Builder<Block, BlockState> builder)
-	{
+	protected void fillStateContainer(Builder<Block, BlockState> builder) {
 		builder.add(UP, DOWN, NORTH, EAST, SOUTH, WEST, FLUIDLOG);
 	}
 
 	@Override
-	public IFluidState getFluidState(BlockState state)
-	{
-		if (state.get(FLUIDLOG) == FluidLog.WATER)
-		{
+	public IFluidState getFluidState(BlockState state) {
+		if(state.get(FLUIDLOG) == FluidLog.WATER) {
 			return Fluids.WATER.getStillFluidState(false);
 		}
-		else if (state.get(FLUIDLOG) == FluidLog.LAVA)
-		{
+		else if(state.get(FLUIDLOG) == FluidLog.LAVA) {
 			return Fluids.LAVA.getStillFluidState(false);
 		}
-		else
-		{
+		else {
 			return Fluids.EMPTY.getDefaultState();
 		}
 	}
 
 	@Override
-	public Fluid pickupFluid(IWorld worldIn, BlockPos pos, BlockState state)
-	{
-		if (state.get(FLUIDLOG) == FluidLog.WATER)
-		{
+	public Fluid pickupFluid(IWorld worldIn, BlockPos pos, BlockState state) {
+		if(state.get(FLUIDLOG) == FluidLog.WATER) {
 			worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.EMPTY), 3);
 			return Fluids.WATER;
 		}
-		else if (state.get(FLUIDLOG) == FluidLog.LAVA)
-		{
+		else if(state.get(FLUIDLOG) == FluidLog.LAVA) {
 			worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.EMPTY), 3);
 			return Fluids.LAVA;
 		}
-		else
-		{
+		else {
 			return Fluids.EMPTY;
 		}
 	}
 
 	@Override
-	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn)
-	{
-		if (state.get(FLUIDLOG) == FluidLog.EMPTY)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn) {
+		return state.get(FLUIDLOG) == FluidLog.EMPTY;
 	}
 
 	@Override
-	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn)
-	{
+	public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn) {
 		Fluid fluid = fluidStateIn.getFluid();
-		if (state.get(FLUIDLOG) == FluidLog.EMPTY && (fluid == Fluids.WATER || fluid == Fluids.LAVA))
-		{
-			if (!worldIn.isRemote())
-			{
-				if (fluid == Fluids.WATER)
-				{
+		if(state.get(FLUIDLOG) == FluidLog.EMPTY && (fluid == Fluids.WATER || fluid == Fluids.LAVA)) {
+			if(!worldIn.isRemote()) {
+				if(fluid == Fluids.WATER) {
 					worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.WATER), 3);
 				}
-				else if (fluid == Fluids.LAVA) worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.LAVA), 3);
+				else if(fluid == Fluids.LAVA) {
+					worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.LAVA), 3);
+				}
 				worldIn.getPendingFluidTicks().scheduleTick(pos, fluid, fluid.getTickRate(worldIn));
 			}
 			return true;
 		}
-		else
-		{
+		else {
 			return false;
 		}
 	}
 
 	@Override
-	public BlockState getStateForPlacement(BlockItemUseContext context)
-	{
+	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		Fluid fluid = context.getWorld().getFluidState(context.getPos()).getFluid();
 		BlockState blockState = this.getDefaultState();
-		if (fluid == Fluids.WATER)
-		{
+		if(fluid == Fluids.WATER) {
 			return blockState.with(FLUIDLOG, FluidLog.WATER);
 		}
-		else if (fluid == Fluids.LAVA)
-		{
+		else if(fluid == Fluids.LAVA) {
 			return blockState.with(FLUIDLOG, FluidLog.LAVA);
 		}
-		else
-		{
+		else {
 			return blockState.with(FLUIDLOG, FluidLog.EMPTY);
 		}
 	}
 
 	@Override
-	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
-	{
+	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		ItemStack itemStackIn = player.getHeldItem(handIn);
 		Item itemIn = itemStackIn.getItem();
-		if (itemIn instanceof BucketItem)
-		{
+		if(itemIn instanceof BucketItem) {
 			BucketItem bucket = (BucketItem) itemIn;
-			if (bucket.getFluid() == Fluids.EMPTY && state.get(FLUIDLOG) != FluidLog.EMPTY)
-			{
+			if(bucket.getFluid() == Fluids.EMPTY && state.get(FLUIDLOG) != FluidLog.EMPTY) {
 				return ActionResultType.PASS;
 			}
-			else if (bucket.getFluid() != Fluids.EMPTY && state.get(FLUIDLOG) == FluidLog.EMPTY)
-			{
+			else if(bucket.getFluid() != Fluids.EMPTY && state.get(FLUIDLOG) == FluidLog.EMPTY) {
 				return ActionResultType.PASS;
 			}
 		}
-		if (itemIn instanceof BlockItem)
-		{
+		if(itemIn instanceof BlockItem) {
 			BlockItem blockItem = (BlockItem) itemIn;
-			if (blockItem.getBlock() instanceof FluidTankBlock)
-			{
+			if(blockItem.getBlock() instanceof FluidTankBlock) {
 				return ActionResultType.PASS;
 			}
 		}
-		else
-		{
+		else {
 			float a = 0.0626f;
 			float b = 0.9374f;
 			double hitX = hit.getHitVec().getX() - (double) pos.getX();
 			double hitY = hit.getHitVec().getY() - (double) pos.getY();
 			double hitZ = hit.getHitVec().getZ() - (double) pos.getZ();
-			if (hitY > b)
-			{
-				if (!worldIn.isRemote) permuteSide(state, worldIn, pos, UP);
+			if(hitY > b) {
+				if(!worldIn.isRemote) {
+					permuteSide(state, worldIn, pos, UP);
+				}
 				return ActionResultType.SUCCESS;
 			}
-			if (hitY < a)
-			{
-				if (!worldIn.isRemote) permuteSide(state, worldIn, pos, DOWN);
+			if(hitY < a) {
+				if(!worldIn.isRemote) {
+					permuteSide(state, worldIn, pos, DOWN);
+				}
 				return ActionResultType.SUCCESS;
 			}
-			if (hitZ < a)
-			{
-				if (!worldIn.isRemote) permuteSide(state, worldIn, pos, NORTH);
+			if(hitZ < a) {
+				if(!worldIn.isRemote) {
+					permuteSide(state, worldIn, pos, NORTH);
+				}
 				return ActionResultType.SUCCESS;
 			}
-			if (hitZ > b)
-			{
-				if (!worldIn.isRemote) permuteSide(state, worldIn, pos, SOUTH);
+			if(hitZ > b) {
+				if(!worldIn.isRemote) {
+					permuteSide(state, worldIn, pos, SOUTH);
+				}
 				return ActionResultType.SUCCESS;
 			}
-			if (hitX > b)
-			{
-				if (!worldIn.isRemote) permuteSide(state, worldIn, pos, EAST);
+			if(hitX > b) {
+				if(!worldIn.isRemote) {
+					permuteSide(state, worldIn, pos, EAST);
+				}
 				return ActionResultType.SUCCESS;
 			}
-			if (hitX < a)
-			{
-				if (!worldIn.isRemote) permuteSide(state, worldIn, pos, WEST);
+			if(hitX < a) {
+				if(!worldIn.isRemote) {
+					permuteSide(state, worldIn, pos, WEST);
+				}
 				return ActionResultType.SUCCESS;
 			}
 		}
 		return ActionResultType.PASS;
 	}
 
-	private void permuteSide(BlockState state, World worldIn, BlockPos pos, BooleanProperty property)
-	{
+	private void permuteSide(BlockState state, World worldIn, BlockPos pos, BooleanProperty property) {
 		IFluidState fluidState = worldIn.getFluidState(pos);
-		if (state.get(property))
-		{
+		if(state.get(property)) {
 			worldIn.setBlockState(pos, state.with(property, false), 3);
 		}
-		else
-		{
+		else {
 			worldIn.setBlockState(pos, state.with(property, true), 3);
 		}
 		worldIn.getPendingFluidTicks().scheduleTick(pos, fluidState.getFluid(), fluidState.getFluid().getTickRate(worldIn));
-		worldIn.playSound((PlayerEntity) null, pos, SoundEvents.BLOCK_GLASS_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		worldIn.playSound(null, pos, SoundEvents.BLOCK_GLASS_HIT, SoundCategory.BLOCKS, 1.0F, 1.0F);
 	}
 }

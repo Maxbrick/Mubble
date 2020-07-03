@@ -20,8 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class StripWoodHandler
-{
+public class StripWoodHandler {
 	public static final Map<Block, Block> BLOCK_STRIPPING_MAP = (new Builder<Block, Block>())
 			.put(MubbleBlocks.PALM_LOG, MubbleBlocks.STRIPPED_PALM_LOG)
 			.put(MubbleBlocks.PALM_WOOD, MubbleBlocks.STRIPPED_PALM_WOOD)
@@ -34,22 +33,18 @@ public class StripWoodHandler
 			.build();
 
 	@SubscribeEvent
-	public static void onRightClick(RightClickBlock event)
-	{
+	public static void onRightClick(RightClickBlock event) {
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
 		BlockState state = world.getBlockState(pos);
 		Block block = BLOCK_STRIPPING_MAP.get(state.getBlock());
 		PlayerEntity player = event.getPlayer();
 		ItemStack stack = event.getItemStack();
-		if (block != null && stack.getItem() instanceof AxeItem)
-		{
+		if(block != null && stack.getItem() instanceof AxeItem) {
 			world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
-			if (!world.isRemote)
-			{
+			if(!world.isRemote) {
 				world.setBlockState(pos, block.getDefaultState().with(LogBlock.AXIS, state.get(LogBlock.AXIS)), 11);
-				if (player != null)
-				{
+				if(player != null) {
 					stack.damageItem(1, player, (entity) ->
 					{
 						entity.sendBreakAnimation(event.getHand());
@@ -59,8 +54,7 @@ public class StripWoodHandler
 			event.setCancellationResult(ActionResultType.SUCCESS);
 			event.setCanceled(true);
 		}
-		else
-		{
+		else {
 			event.setCancellationResult(ActionResultType.PASS);
 		}
 	}

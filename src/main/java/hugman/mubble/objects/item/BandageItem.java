@@ -16,33 +16,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class BandageItem extends Item
-{
+public class BandageItem extends Item {
 	public static final List<Effect> CURABLE_EFFECTS = new ArrayList<>(Arrays.asList(Effects.MINING_FATIGUE, Effects.NAUSEA, Effects.POISON, Effects.WITHER));
 
-	public BandageItem(Item.Properties builder)
-	{
+	public BandageItem(Item.Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand hand)
-	{
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		boolean doesCure = false;
-		for (Effect effect : CURABLE_EFFECTS)
-		{
-			if (player.isPotionActive(effect))
-			{
+		for(Effect effect : CURABLE_EFFECTS) {
+			if(player.isPotionActive(effect)) {
 				doesCure = true;
 				player.removeActivePotionEffect(effect);
 			}
 		}
-		if (doesCure)
-		{
+		if(doesCure) {
 			worldIn.playSound((PlayerEntity) null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_ARMOR_EQUIP_LEATHER, SoundCategory.PLAYERS, 0.5F, 1F);
-			if (!player.abilities.isCreativeMode)
-			{
+			if(!player.abilities.isCreativeMode) {
 				stack.shrink(1);
 			}
 			player.addStat(Stats.ITEM_USED.get(this));

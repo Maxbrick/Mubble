@@ -17,8 +17,7 @@ import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraftforge.common.IPlantable;
 
-public class MubbleFeatureConfigs
-{
+public class MubbleFeatureConfigs {
 	private static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
 	private static final BlockState BIRCH_LOG = Blocks.BIRCH_LOG.getDefaultState();
 
@@ -111,8 +110,7 @@ public class MubbleFeatureConfigs
 	public static final BlockClusterFeatureConfig SCARLET_MUSHROOM_CONFIG = mushroomConfig(MubbleBlocks.SCARLET_MUSHROOM);
 	public static final BlockClusterFeatureConfig SCARLET_ORCHID_CONFIG = (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(SCARLET_ORCHID), new SimpleBlockPlacer())).tries(64).build();
 
-	public static BlockClusterFeatureConfig mushroomConfig(Block block)
-	{
+	public static BlockClusterFeatureConfig mushroomConfig(Block block) {
 		return (new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(block.getDefaultState()), new SimpleBlockPlacer())).tries(64).cannotProject().build();
 	}
 }

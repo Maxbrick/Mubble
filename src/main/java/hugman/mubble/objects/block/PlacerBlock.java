@@ -9,30 +9,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class PlacerBlock extends DispenserBlock
-{
+public class PlacerBlock extends DispenserBlock {
 	private static final IDispenseItemBehavior PLACE_BEHAVIOR = new PlaceBlockBehavior();
 
-	public PlacerBlock(Properties builder)
-	{
+	public PlacerBlock(Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public boolean hasTileEntity(BlockState state)
-	{
+	public boolean hasTileEntity(BlockState state) {
 		return true;
 	}
 
 	@Override
-	public TileEntity createTileEntity(BlockState state, IBlockReader world)
-	{
+	public TileEntity createTileEntity(BlockState state, IBlockReader world) {
 		return new PlacerTileEntity();
 	}
 
 	@Override
-	protected IDispenseItemBehavior getBehavior(ItemStack stack)
-	{
+	protected IDispenseItemBehavior getBehavior(ItemStack stack) {
 		return PLACE_BEHAVIOR;
 	}
 }

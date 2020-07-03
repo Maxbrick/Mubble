@@ -18,10 +18,8 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
-public class PinkCherryOakForestBiome extends Biome
-{
-	public PinkCherryOakForestBiome()
-	{
+public class PinkCherryOakForestBiome extends Biome {
+	public PinkCherryOakForestBiome() {
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
 				.precipitation(Biome.RainType.RAIN)
 				.category(Biome.Category.FOREST)
@@ -70,8 +68,7 @@ public class PinkCherryOakForestBiome extends Biome
 	}
 
 	@Override
-	public int getFoliageColor()
-	{
+	public int getFoliageColor() {
 		return 15768259;
 	}
 }

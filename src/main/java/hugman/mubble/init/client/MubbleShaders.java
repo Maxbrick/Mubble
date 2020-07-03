@@ -6,8 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleShaders
-{
+public class MubbleShaders {
 	public static final List<ResourceLocation> SHADERS = new ArrayList<ResourceLocation>();
 	public static final List<ResourceLocation> RETRO_SHADERS = new ArrayList<ResourceLocation>();
 
@@ -54,15 +53,13 @@ public class MubbleShaders
 	public static final ResourceLocation MAGENTA_RETRO = register(Mubble.MOD_ID, "retro/magenta", RETRO_SHADERS);
 	public static final ResourceLocation PINK_RETRO = register(Mubble.MOD_ID, "retro/pink", RETRO_SHADERS);
 
-	private static ResourceLocation register(String namespace, String name)
-	{
+	private static ResourceLocation register(String namespace, String name) {
 		ResourceLocation shaderRL = new ResourceLocation(namespace, "shaders/post/" + name + ".json");
 		SHADERS.add(shaderRL);
 		return shaderRL;
 	}
 
-	private static ResourceLocation register(String namespace, String name, List<ResourceLocation> aditionalList)
-	{
+	private static ResourceLocation register(String namespace, String name, List<ResourceLocation> aditionalList) {
 		ResourceLocation shaderRL = new ResourceLocation(namespace, "shaders/post/" + name + ".json");
 		SHADERS.add(shaderRL);
 		aditionalList.add(shaderRL);

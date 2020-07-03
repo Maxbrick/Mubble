@@ -9,12 +9,10 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class AutumnBirchTree extends Tree
-{
+public class AutumnBirchTree extends Tree {
 	@Nullable
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean canHaveBeeHive)
-	{
+	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean canHaveBeeHive) {
 		return random.nextInt(10) == 0 ? Feature.FANCY_TREE.configure(canHaveBeeHive ? MubbleFeatureConfigs.FANCY_AUTUMN_BIRCH_B1_CONFIG : MubbleFeatureConfigs.FANCY_AUTUMN_BIRCH_TREE_CONFIG) : Feature.NORMAL_TREE.configure(canHaveBeeHive ? MubbleFeatureConfigs.AUTUMN_BIRCH_TREE_B1_CONFIG : MubbleFeatureConfigs.AUTUMN_BIRCH_TREE_CONFIG);
 	}
 }

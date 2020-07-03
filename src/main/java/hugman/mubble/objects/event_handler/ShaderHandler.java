@@ -16,37 +16,28 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
-public class ShaderHandler
-{
+public class ShaderHandler {
 	@SubscribeEvent
-	public static void onArmorChange(LivingUpdateEvent event)
-	{
+	public static void onArmorChange(LivingUpdateEvent event) {
 		LivingEntity entity = event.getEntityLiving();
 		ItemStack headItem = entity.getItemStackFromSlot(EquipmentSlotType.HEAD);
-		if (entity instanceof PlayerEntity && entity.world.isRemote)
-		{
+		if(entity instanceof PlayerEntity && entity.world.isRemote) {
 			GameRenderer renderer = Minecraft.getInstance().gameRenderer;
 			ShaderGroup shaderGroup = renderer.getShaderGroup();
-			if (!(headItem.getItem() instanceof Costume) && !(headItem.getItem() instanceof BlockCostume))
-			{
-				if (shaderGroup != null)
-				{
+			if(!(headItem.getItem() instanceof Costume) && !(headItem.getItem() instanceof BlockCostume)) {
+				if(shaderGroup != null) {
 					renderer.stopUseShader();
 				}
 			}
-			if (headItem.getItem() instanceof Costume)
-			{
+			if(headItem.getItem() instanceof Costume) {
 				ResourceLocation shader = ((Costume) headItem.getItem()).getShader();
-				if (shaderGroup != null && shader == null)
-				{
+				if(shaderGroup != null && shader == null) {
 					renderer.stopUseShader();
 				}
 			}
-			if (headItem.getItem() instanceof BlockCostume)
-			{
+			if(headItem.getItem() instanceof BlockCostume) {
 				ResourceLocation shader = ((BlockCostume) headItem.getItem()).getShader();
-				if (shaderGroup != null && shader == null)
-				{
+				if(shaderGroup != null && shader == null) {
 					renderer.stopUseShader();
 				}
 			}

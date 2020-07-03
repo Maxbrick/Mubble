@@ -13,8 +13,7 @@ import java.util.List;
 
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
-public class MubbleBiomes
-{
+public class MubbleBiomes {
 	public static final List<Biome> BIOMES = new ArrayList<Biome>();
 
 	public static final Biome PUMPKIN_PASTURES = register("pumpkin_pastures", new PumpkinPasturesBiome());
@@ -27,15 +26,13 @@ public class MubbleBiomes
 
 	public static final Biome SCARLET_FOREST = register("scarlet_forest", new ScarletForestBiome());
 
-	public static Biome register(String name, Biome biome)
-	{
+	public static Biome register(String name, Biome biome) {
 		Biome fBiome = biome.setRegistryName(Mubble.MOD_ID, name);
 		BIOMES.add(fBiome);
 		return fBiome;
 	}
 
-	public static void registerGenerations()
-	{
+	public static void registerGenerations() {
 		BiomeDictionary.addTypes(PUMPKIN_PASTURES, FOREST);
 		BiomeManager.addBiome(BiomeType.WARM, new BiomeEntry(PUMPKIN_PASTURES, 10));
 		BiomeManager.addSpawnBiome(PUMPKIN_PASTURES);

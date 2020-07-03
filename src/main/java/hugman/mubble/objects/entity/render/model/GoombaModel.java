@@ -9,16 +9,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class GoombaModel<T extends Entity> extends AgeableModel<T>
-{
+public class GoombaModel<T extends Entity> extends AgeableModel<T> {
 	private final ModelRenderer headTop;
 	private final ModelRenderer headBottom;
 	private final ModelRenderer body;
 	private final ModelRenderer leftFoot;
 	private final ModelRenderer rightFoot;
 
-	public GoombaModel()
-	{
+	public GoombaModel() {
 		super(false, 24.0F, 0.0F);
 		textureWidth = 64;
 		textureHeight = 64;
@@ -37,20 +35,17 @@ public class GoombaModel<T extends Entity> extends AgeableModel<T>
 	}
 
 	@Override
-	protected Iterable<ModelRenderer> getHeadParts()
-	{
+	protected Iterable<ModelRenderer> getHeadParts() {
 		return ImmutableList.of(headTop, headBottom, body);
 	}
 
 	@Override
-	protected Iterable<ModelRenderer> getBodyParts()
-	{
+	protected Iterable<ModelRenderer> getBodyParts() {
 		return ImmutableList.of(leftFoot, rightFoot);
 	}
 
 	@Override
-	public void setAngles(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_)
-	{
+	public void setAngles(T p_225597_1_, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
 		getHeadParts().forEach((part) ->
 		{
 			part.setRotationPoint(0.0F, 24.0F, 0.0F);

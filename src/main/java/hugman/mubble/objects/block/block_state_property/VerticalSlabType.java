@@ -2,8 +2,7 @@ package hugman.mubble.objects.block.block_state_property;
 
 import net.minecraft.util.IStringSerializable;
 
-public enum VerticalSlabType implements IStringSerializable
-{
+public enum VerticalSlabType implements IStringSerializable {
 	NORTH("north"),
 	SOUTH("south"),
 	EAST("east"),
@@ -12,18 +11,15 @@ public enum VerticalSlabType implements IStringSerializable
 
 	private final String name;
 
-	private VerticalSlabType(String name)
-	{
+	VerticalSlabType(String name) {
 		this.name = name;
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		return this.name;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return this.name;
 	}
 }

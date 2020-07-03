@@ -17,26 +17,22 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class TimeswapTableBlock extends Block
-{
+public class TimeswapTableBlock extends Block {
 	private static final TranslationTextComponent CONTAINER_NAME = new TranslationTextComponent("container." + Mubble.MOD_ID + ".timeswap_table");
 
-	public TimeswapTableBlock(Block.Properties builder)
-	{
+	public TimeswapTableBlock(Block.Properties builder) {
 		super(builder);
 	}
 
 	@Override
-	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
-	{
+	public ActionResultType onUse(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
 		player.openContainer(state.getContainer(worldIn, pos));
 		return ActionResultType.SUCCESS;
 	}
 
 	@Override
 	@Nullable
-	public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos)
-	{
+	public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
 		return new SimpleNamedContainerProvider((windowId, inventory, playerIn) ->
 		{
 			return new TimeswapTableContainer(windowId, inventory, IWorldPosCallable.of(worldIn, pos));

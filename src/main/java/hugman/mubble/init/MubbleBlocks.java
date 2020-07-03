@@ -32,8 +32,7 @@ import net.minecraft.potion.Effects;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleBlocks
-{
+public class MubbleBlocks {
 	/* All Content Bag */
 	public static final List<Block> BLOCKS = new ArrayList<Block>();
 
@@ -1104,23 +1103,19 @@ public class MubbleBlocks
 	public static final Block KORETATO_BLOCK = register("koretato_block", new KoretatoBlock());
 	public static final Block POTATO_FLOWER = register("potato_flower", new FlowerBlock(Effects.HUNGER, 9, Properties.create(Material.PLANTS).doesNotBlockMovement().hardnessAndResistance(0.0F).sound(SoundType.PLANT)), ItemGroup.DECORATIONS, FLOWERS, 60, 100);
 
-	private static Block register(String name, Block block)
-	{
+	private static Block register(String name, Block block) {
 		Block fBlock = block.setRegistryName(Mubble.MOD_ID, name);
 		BLOCKS.add(fBlock);
 		return fBlock;
 	}
 
-	private static Block register(String name, Block block, ItemGroup group, List<BlockItem> itemList)
-	{
+	private static Block register(String name, Block block, ItemGroup group, List<BlockItem> itemList) {
 		Block fBlock = register(name, block);
-		if (itemList == FLOWERS || itemList == SAPLINGS)
-		{
+		if(itemList == FLOWERS || itemList == SAPLINGS) {
 			Block fullFlowerPot = new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT.delegate.get(), () -> fBlock.delegate.get(), Properties.from(Blocks.FLOWER_POT).lightValue(fBlock.getDefaultState().getLightValue())).setRegistryName(Mubble.MOD_ID, "potted_" + name);
 			BLOCKS.add(fullFlowerPot);
 			POTTED_PLANTS.add(fullFlowerPot);
-			if (Blocks.FLOWER_POT != null)
-			{
+			if(Blocks.FLOWER_POT != null) {
 				((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(fBlock.getRegistryName(), () -> fullFlowerPot);
 			}
 		}
@@ -1128,16 +1123,14 @@ public class MubbleBlocks
 		return fBlock;
 	}
 
-	private static Block register(String name, Block block, int fireEncouragement, int flammability)
-	{
+	private static Block register(String name, Block block, int fireEncouragement, int flammability) {
 		Block fBlock = register(name, block);
 		FireBlock fireblock = (FireBlock) Blocks.FIRE;
 		fireblock.setFireInfo(block, fireEncouragement, flammability);
 		return fBlock;
 	}
 
-	private static Block register(String name, Block block, ItemGroup group, List<BlockItem> itemList, int fireEncouragement, int flammability)
-	{
+	private static Block register(String name, Block block, ItemGroup group, List<BlockItem> itemList, int fireEncouragement, int flammability) {
 		Block fBlock = register(name, block, group, itemList);
 		FireBlock fireblock = (FireBlock) Blocks.FIRE;
 		fireblock.setFireInfo(block, fireEncouragement, flammability);

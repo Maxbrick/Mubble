@@ -10,19 +10,16 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class ScarletTree extends BigTree
-{
+public class ScarletTree extends BigTree {
 	@Nullable
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random rand, boolean canHaveBeeHive)
-	{
+	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random rand, boolean canHaveBeeHive) {
 		return rand.nextInt(10) == 0 ? Feature.FANCY_TREE.configure(MubbleFeatureConfigs.FANCY_SCARLET_TREE_CONFIG) : Feature.NORMAL_TREE.configure(MubbleFeatureConfigs.SCARLET_TREE_CONFIG);
 	}
 
 	@Nullable
 	@Override
-	protected ConfiguredFeature<HugeTreeFeatureConfig, ?> createLargeTreeFeature(Random rand)
-	{
+	protected ConfiguredFeature<HugeTreeFeatureConfig, ?> createLargeTreeFeature(Random rand) {
 		return Feature.DARK_OAK_TREE.configure(MubbleFeatureConfigs.HUGE_SCARLET_TREE_CONFIG);
 	}
 }

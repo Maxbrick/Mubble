@@ -8,14 +8,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChinchoModel<T extends LivingEntity> extends BipedModel<T>
-{
+public class ChinchoModel<T extends LivingEntity> extends BipedModel<T> {
 	public ModelRenderer rightTeeth;
 	public ModelRenderer middleTeeth;
 	public ModelRenderer leftTeeth;
 
-	public ChinchoModel()
-	{
+	public ChinchoModel() {
 		super(0.0F, 8.0F, 64, 64);
 		this.bipedHead = new ModelRenderer(this, 0, 0);
 		this.bipedHead.addCuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, 0.0F);
@@ -40,20 +38,17 @@ public class ChinchoModel<T extends LivingEntity> extends BipedModel<T>
 	}
 
 	@Override
-	protected Iterable<ModelRenderer> getHeadParts()
-	{
+	protected Iterable<ModelRenderer> getHeadParts() {
 		return ImmutableList.of(this.bipedHead, this.rightTeeth, this.middleTeeth, this.leftTeeth);
 	}
 
 	@Override
-	protected Iterable<ModelRenderer> getBodyParts()
-	{
+	protected Iterable<ModelRenderer> getBodyParts() {
 		return ImmutableList.of(this.bipedBody, this.bipedRightArm, this.bipedLeftArm, this.bipedRightLeg, this.bipedLeftLeg, this.bipedHeadwear);
 	}
 
 	@Override
-	public void setAngles(T entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_)
-	{
+	public void setAngles(T entity, float p_225597_2_, float p_225597_3_, float p_225597_4_, float p_225597_5_, float p_225597_6_) {
 		super.setAngles(entity, p_225597_2_, p_225597_3_, p_225597_4_, p_225597_5_, p_225597_6_);
 		this.bipedHead.setRotationPoint(0.0F, 13.0F, 0.0F);
 		this.bipedBody.setRotationPoint(0.0F, 8.0F, 0.0F);

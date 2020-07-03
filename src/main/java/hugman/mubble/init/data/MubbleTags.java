@@ -11,10 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleTags
-{
-	public static class Blocks
-	{
+public class MubbleTags {
+	public static class Blocks {
 		public static final Tag<Block> FREEZABLE_TO_PACKED_ICE = tag("freezable/packed_ice");
 		public static final Tag<Block> MELTABLE_TO_AIR = tag("meltable/air");
 		public static final Tag<Block> MELTABLE_TO_ICE = tag("meltable/ice");
@@ -22,14 +20,12 @@ public class MubbleTags
 		public static final Tag<Block> CLOUD_BLOCKS = tag("cloud_blocks");
 		public static final Tag<Block> PALM_SAPLING_VALID_GROUND = tag("valid_ground/palm_sapling");
 
-		private static Tag<Block> tag(String name)
-		{
+		private static Tag<Block> tag(String name) {
 			return new BlockTags.Wrapper(new ResourceLocation(Mubble.MOD_ID, name));
 		}
 	}
 
-	public static class Items
-	{
+	public static class Items {
 		public static final List<Tag<Item>> TIMESWAP_TAGS = new ArrayList<Tag<Item>>();
 
 		public static final Tag<Item> COINS = tag("coins");
@@ -58,35 +54,29 @@ public class MubbleTags
 		public static final Tag<Item> TIMESWAP_KEY_DOORS = timeswapTag("timeswap/key_doors");
 		public static final Tag<Item> TIMESWAP_KEYS = timeswapTag("timeswap/keys");
 
-		private static Tag<Item> tag(String name)
-		{
+		private static Tag<Item> tag(String name) {
 			return new ItemTags.Wrapper(new ResourceLocation(Mubble.MOD_ID, name));
 		}
 
-		private static Tag<Item> timeswapTag(String name)
-		{
+		private static Tag<Item> timeswapTag(String name) {
 			Tag<Item> fTag = new ItemTags.Wrapper(new ResourceLocation(Mubble.MOD_ID, name));
 			TIMESWAP_TAGS.add(fTag);
 			return fTag;
 		}
 	}
 
-	public static class EntityTypes
-	{
+	public static class EntityTypes {
 		public static final Tag<EntityType<?>> CAN_WEAR_HELMET = tag("can_wear_helmet");
 
-		private static Tag<EntityType<?>> tag(String name)
-		{
+		private static Tag<EntityType<?>> tag(String name) {
 			return new EntityTypeTags.Wrapper(new ResourceLocation(Mubble.MOD_ID, name));
 		}
 	}
 
-	public static class Fluids
-	{
+	public static class Fluids {
 		public static final Tag<Fluid> FREEZABLE_TO_ICE = tag("freezable/ice");
 
-		private static Tag<Fluid> tag(String name)
-		{
+		private static Tag<Fluid> tag(String name) {
 			return new FluidTags.Wrapper(new ResourceLocation(Mubble.MOD_ID, name));
 		}
 	}

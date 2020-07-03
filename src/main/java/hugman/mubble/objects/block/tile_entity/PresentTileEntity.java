@@ -21,51 +21,41 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class PresentTileEntity extends LockableLootTileEntity
-{
+public class PresentTileEntity extends LockableLootTileEntity {
 	private NonNullList<ItemStack> content = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
 	private int numPlayersUsing;
 
-	public PresentTileEntity()
-	{
+	public PresentTileEntity() {
 		super(MubbleTileEntityTypes.PRESENT);
 	}
 
 	@Override
-	public CompoundNBT write(CompoundNBT compound)
-	{
+	public CompoundNBT write(CompoundNBT compound) {
 		super.write(compound);
-		if (!this.checkLootAndWrite(compound))
-		{
+		if(!this.checkLootAndWrite(compound)) {
 			ItemStackHelper.saveAllItems(compound, this.content);
 		}
 		return compound;
 	}
 
 	@Override
-	public void read(CompoundNBT compound)
-	{
+	public void read(CompoundNBT compound) {
 		super.read(compound);
 		this.content = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-		if (!this.checkLootAndRead(compound))
-		{
+		if(!this.checkLootAndRead(compound)) {
 			ItemStackHelper.loadAllItems(compound, this.content);
 		}
 	}
 
 	@Override
-	public int getSizeInventory()
-	{
+	public int getSizeInventory() {
 		return 9 * 2;
 	}
 
 	@Override
-	public boolean isEmpty()
-	{
-		for (ItemStack itemstack : this.content)
-		{
-			if (!itemstack.isEmpty())
-			{
+	public boolean isEmpty() {
+		for(ItemStack itemstack : this.content) {
+			if(!itemstack.isEmpty()) {
 				return false;
 			}
 		}
@@ -73,83 +63,68 @@ public class PresentTileEntity extends LockableLootTileEntity
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int index)
-	{
+	public ItemStack getStackInSlot(int index) {
 		return this.content.get(index);
 	}
 
 	@Override
-	public ItemStack decrStackSize(int index, int count)
-	{
+	public ItemStack decrStackSize(int index, int count) {
 		this.scheduleTick();
 		return ItemStackHelper.getAndSplit(this.content, index, count);
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int index)
-	{
+	public ItemStack removeStackFromSlot(int index) {
 		this.scheduleTick();
 		return ItemStackHelper.getAndRemove(this.content, index);
 	}
 
 	@Override
-	public void setInventorySlotContents(int index, ItemStack stack)
-	{
+	public void setInventorySlotContents(int index, ItemStack stack) {
 		this.content.set(index, stack);
-		if (stack.getCount() > this.getInventoryStackLimit())
-		{
+		if(stack.getCount() > this.getInventoryStackLimit()) {
 			stack.setCount(this.getInventoryStackLimit());
 		}
 		this.scheduleTick();
 	}
 
 	@Override
-	public void clear()
-	{
+	public void clear() {
 		this.content.clear();
 	}
 
 	@Override
-	protected NonNullList<ItemStack> getItems()
-	{
+	protected NonNullList<ItemStack> getItems() {
 		return this.content;
 	}
 
 	@Override
-	protected void setItems(NonNullList<ItemStack> itemsIn)
-	{
+	protected void setItems(NonNullList<ItemStack> itemsIn) {
 		this.content = itemsIn;
 	}
 
 	@Override
-	protected ITextComponent getDefaultName()
-	{
+	protected ITextComponent getDefaultName() {
 		return new TranslationTextComponent("container." + Mubble.MOD_ID + ".present");
 	}
 
 	@Override
-	protected Container createMenu(int id, PlayerInventory player)
-	{
+	protected Container createMenu(int id, PlayerInventory player) {
 		return new ChestContainer(ContainerType.GENERIC_9X2, id, player, this, 2);
 	}
 
 	@Override
-	public void openInventory(PlayerEntity player)
-	{
-		if (!player.isSpectator())
-		{
-			if (this.numPlayersUsing < 0)
-			{
+	public void openInventory(PlayerEntity player) {
+		if(!player.isSpectator()) {
+			if(this.numPlayersUsing < 0) {
 				this.numPlayersUsing = 0;
 			}
 			++this.numPlayersUsing;
 			BlockState blockstate = this.getBlockState();
 			boolean flag1 = blockstate.get(PresentBlock.OPEN);
 			boolean flag2 = blockstate.get(PresentBlock.EMPTY);
-			if (!flag1)
-			{
-				if (!flag2)
-				{
+			if(!flag1) {
+				if(!flag2) {
 					this.playSound(blockstate, MubbleSounds.BLOCK_PRESENT_OPEN);
 				}
 				this.setOpenProperty(blockstate, true);
@@ -158,13 +133,11 @@ public class PresentTileEntity extends LockableLootTileEntity
 		}
 	}
 
-	private void scheduleTick()
-	{
+	private void scheduleTick() {
 		this.world.getPendingBlockTicks().scheduleTick(this.getPos(), this.getBlockState().getBlock(), 5);
 	}
 
-	public void presentTick()
-	{
+	public void presentTick() {
 		int i = this.pos.getX();
 		int j = this.pos.getY();
 		int k = this.pos.getZ();
@@ -173,21 +146,16 @@ public class PresentTileEntity extends LockableLootTileEntity
 		boolean flag1 = blockstate.get(PresentBlock.OPEN);
 		boolean flag2 = this.isEmpty();
 		this.setEmptyProperty(blockstate, flag2);
-		if (this.numPlayersUsing > 0)
-		{
+		if(this.numPlayersUsing > 0) {
 			this.scheduleTick();
 		}
-		else
-		{
-			if (!(blockstate.getBlock() instanceof PresentBlock))
-			{
+		else {
+			if(!(blockstate.getBlock() instanceof PresentBlock)) {
 				this.remove();
 				return;
 			}
-			if (flag1)
-			{
-				if (!flag2)
-				{
+			if(flag1) {
+				if(!flag2) {
 					this.playSound(blockstate, MubbleSounds.BLOCK_PRESENT_CLOSE);
 				}
 				this.setOpenProperty(blockstate.with(PresentBlock.EMPTY, flag2), false);
@@ -196,29 +164,24 @@ public class PresentTileEntity extends LockableLootTileEntity
 	}
 
 	@Override
-	public void closeInventory(PlayerEntity player)
-	{
-		if (!player.isSpectator())
-		{
+	public void closeInventory(PlayerEntity player) {
+		if(!player.isSpectator()) {
 			--this.numPlayersUsing;
 		}
 	}
 
-	private void setOpenProperty(BlockState state, boolean open)
-	{
+	private void setOpenProperty(BlockState state, boolean open) {
 		this.world.setBlockState(this.getPos(), state.with(PresentBlock.OPEN, Boolean.valueOf(open)), 3);
 	}
 
-	private void setEmptyProperty(BlockState state, boolean empty)
-	{
+	private void setEmptyProperty(BlockState state, boolean empty) {
 		this.world.setBlockState(this.getPos(), state.with(PresentBlock.EMPTY, Boolean.valueOf(empty)), 3);
 	}
 
-	private void playSound(BlockState state, SoundEvent sound)
-	{
+	private void playSound(BlockState state, SoundEvent sound) {
 		double d0 = (double) this.pos.getX() + 0.5D;
 		double d1 = (double) this.pos.getY() + 0.5D;
 		double d2 = (double) this.pos.getZ() + 0.5D;
-		this.world.playSound((PlayerEntity) null, d0, d1, d2, sound, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
+		this.world.playSound(null, d0, d1, d2, sound, SoundCategory.BLOCKS, 0.5F, this.world.rand.nextFloat() * 0.1F + 0.9F);
 	}
 }

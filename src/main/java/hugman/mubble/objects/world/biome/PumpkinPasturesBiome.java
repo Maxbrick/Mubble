@@ -18,10 +18,8 @@ import net.minecraft.world.gen.placement.FrequencyConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraft.world.gen.surfacebuilders.SurfaceBuilder;
 
-public class PumpkinPasturesBiome extends Biome
-{
-	public PumpkinPasturesBiome()
-	{
+public class PumpkinPasturesBiome extends Biome {
+	public PumpkinPasturesBiome() {
 		super((new Biome.Builder()).surfaceBuilder(SurfaceBuilder.DEFAULT, SurfaceBuilder.GRASS_DIRT_GRAVEL_CONFIG)
 				.precipitation(Biome.RainType.RAIN)
 				.category(Biome.Category.FOREST)
@@ -71,8 +69,7 @@ public class PumpkinPasturesBiome extends Biome
 	}
 
 	@Override
-	public int getGrassColorAt(double x, double z)
-	{
+	public int getGrassColorAt(double x, double z) {
 		return 15443554;
 	}
 }

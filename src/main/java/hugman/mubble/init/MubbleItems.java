@@ -10,8 +10,7 @@ import net.minecraft.item.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleItems
-{
+public class MubbleItems {
 	/* All Content Bag */
 	public static final List<Item> ITEMS = new ArrayList<Item>();
 
@@ -102,8 +101,7 @@ public class MubbleItems
 	public static final Item CHINCHO_SPAWN_EGG = register("chincho_spawn_egg", new SpawnEggItem(MubbleEntities.CHINCHO, 7527671, 4903, new Item.Properties().group(ItemGroup.MISC)));
 	public static final Item GOOMBA_SPAWN_EGG = register("goomba_spawn_egg", new SpawnEggItem(MubbleEntities.GOOMBA, 10839375, 12097909, new Item.Properties().group(ItemGroup.MISC)));
 
-	private static Item register(String name, Item item)
-	{
+	private static Item register(String name, Item item) {
 		Item fItem = item.setRegistryName(Mubble.MOD_ID, name);
 		ITEMS.add(fItem);
 		return fItem;

@@ -10,31 +10,25 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class WingCapCostume extends HeadCostume
-{
-	public WingCapCostume(Item.Properties builder)
-	{
+public class WingCapCostume extends HeadCostume {
+	public WingCapCostume(Item.Properties builder) {
 		super(builder, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
 	}
 
 	@Override
-	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair)
-	{
+	public boolean getIsRepairable(ItemStack toRepair, ItemStack repair) {
 		return repair.getItem() == Items.FEATHER;
 	}
 
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
-		if (isUsable(stack) && player.isSprinting())
-		{
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+		if(isUsable(stack) && player.isSprinting()) {
 			stack.damageItem(1, player, (p_214023_1_) ->
 			{
 				p_214023_1_.sendBreakAnimation(EquipmentSlotType.HEAD);
 			});
 		}
-		if (!world.isRemote && isUsable(stack) && player.isSprinting())
-		{
+		if(!world.isRemote && isUsable(stack) && player.isSprinting()) {
 			player.addPotionEffect(new EffectInstance(Effects.LEVITATION, 1, 2));
 			player.fallDistance = 0f;
 		}

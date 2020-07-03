@@ -6,8 +6,7 @@ import net.minecraft.util.LazyValue;
 
 import java.util.function.Supplier;
 
-public enum MubbleItemTiers implements IItemTier
-{
+public enum MubbleItemTiers implements IItemTier {
 	VANADIUM(3, 1756, 10.0F, 3.5F, 12, () ->
 	{
 		return Ingredient.fromTag(MubbleTags.Items.GEMS_KYBER);
@@ -27,8 +26,7 @@ public enum MubbleItemTiers implements IItemTier
 	private final int enchantability;
 	private final LazyValue<Ingredient> repairMaterial;
 
-	private MubbleItemTiers(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn)
-	{
+	MubbleItemTiers(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
 		this.harvestLevel = harvestLevelIn;
 		this.maxUses = maxUsesIn;
 		this.efficiency = efficiencyIn;
@@ -37,33 +35,27 @@ public enum MubbleItemTiers implements IItemTier
 		this.repairMaterial = new LazyValue<>(repairMaterialIn);
 	}
 
-	public int getMaxUses()
-	{
+	public int getMaxUses() {
 		return this.maxUses;
 	}
 
-	public float getEfficiency()
-	{
+	public float getEfficiency() {
 		return this.efficiency;
 	}
 
-	public float getAttackDamage()
-	{
+	public float getAttackDamage() {
 		return this.attackDamage;
 	}
 
-	public int getHarvestLevel()
-	{
+	public int getHarvestLevel() {
 		return this.harvestLevel;
 	}
 
-	public int getEnchantability()
-	{
+	public int getEnchantability() {
 		return this.enchantability;
 	}
 
-	public Ingredient getRepairMaterial()
-	{
+	public Ingredient getRepairMaterial() {
 		return this.repairMaterial.getValue();
 	}
 }

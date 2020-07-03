@@ -1,7 +1,10 @@
 package hugman.mubble.objects.entity;
 
 import hugman.mubble.init.MubbleSounds;
-import net.minecraft.entity.*;
+import net.minecraft.entity.CreatureAttribute;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.Pose;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.OcelotEntity;
@@ -17,16 +20,13 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ChinchoEntity extends MonsterEntity
-{
-	public ChinchoEntity(EntityType<? extends ChinchoEntity> type, World worldIn)
-	{
+public class ChinchoEntity extends MonsterEntity {
+	public ChinchoEntity(EntityType<? extends ChinchoEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
 	@Override
-	protected void registerGoals()
-	{
+	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, false));
 		this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, OcelotEntity.class, 6.0F, 1.0D, 1.2D));
@@ -34,14 +34,13 @@ public class ChinchoEntity extends MonsterEntity
 		this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, new Class[]{ChinchoEntity.class}));
+		this.targetSelector.addGoal(1, new HurtByTargetGoal(this, ChinchoEntity.class));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ToadEntity.class, true));
 	}
 
 	@Override
-	protected void registerAttributes()
-	{
+	protected void registerAttributes() {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
@@ -51,47 +50,37 @@ public class ChinchoEntity extends MonsterEntity
 	}
 
 	@Override
-	public CreatureAttribute getCreatureAttribute()
-	{
+	public CreatureAttribute getCreatureAttribute() {
 		return CreatureAttribute.UNDEAD;
 	}
 
 	@Override
-	public float getEyeHeight(Pose p_213307_1_)
-	{
+	public float getEyeHeight(Pose p_213307_1_) {
 		return 1f;
 	}
 
-	protected boolean shouldBurnInDay()
-	{
+	protected boolean shouldBurnInDay() {
 		return true;
 	}
 
 	@Override
-	public void livingTick()
-	{
-		if (this.world.isDaytime() && !this.world.isRemote && this.shouldBurnInDay())
-		{
+	public void livingTick() {
+		if(this.world.isDaytime() && !this.world.isRemote && this.shouldBurnInDay()) {
 			float f = this.getBrightness();
-			if (f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canBlockSeeSky(new BlockPos(this.getX(), this.getY() + (double) this.getEyeHeight(), this.getZ())))
-			{
+			if(f > 0.5F && this.rand.nextFloat() * 30.0F < (f - 0.4F) * 2.0F && this.world.canBlockSeeSky(new BlockPos(this.getX(), this.getY() + (double) this.getEyeHeight(), this.getZ()))) {
 				boolean flag = true;
 				ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-				if (!itemstack.isEmpty())
-				{
-					if (itemstack.isDamageable())
-					{
+				if(!itemstack.isEmpty()) {
+					if(itemstack.isDamageable()) {
 						itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
-						if (itemstack.getDamage() >= itemstack.getMaxDamage())
-						{
+						if(itemstack.getDamage() >= itemstack.getMaxDamage()) {
 							this.sendBreakAnimation(EquipmentSlotType.HEAD);
 							this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
 						}
 					}
 					flag = false;
 				}
-				if (flag)
-				{
+				if(flag) {
 					this.setFire(8);
 				}
 			}
@@ -100,25 +89,21 @@ public class ChinchoEntity extends MonsterEntity
 	}
 
 	@Override
-	protected SoundEvent getAmbientSound()
-	{
+	protected SoundEvent getAmbientSound() {
 		return MubbleSounds.ENTITY_CHINCHO_AMBIENT;
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource source)
-	{
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return MubbleSounds.ENTITY_CHINCHO_HURT;
 	}
 
 	@Override
-	protected SoundEvent getDeathSound()
-	{
+	protected SoundEvent getDeathSound() {
 		return MubbleSounds.ENTITY_CHINCHO_DEATH;
 	}
 
-	public static boolean canSpawn(EntityType<ChinchoEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand)
-	{
+	public static boolean canSpawn(EntityType<ChinchoEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 		return world.getDifficulty() != Difficulty.PEACEFUL;
 	}
 }

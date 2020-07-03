@@ -14,8 +14,7 @@ import net.minecraft.util.SoundEvents;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MubbleCostumes
-{
+public class MubbleCostumes {
 	/* All Content Bag */
 	public static final List<Item> COSTUMES = new ArrayList<Item>();
 
@@ -105,8 +104,7 @@ public class MubbleCostumes
 	public static final Item KORETATO_BLOCK = register("koretato_block", new BlockCostume(pBlockDecorations, SoundEvents.BLOCK_SNOW_PLACE, EquipmentSlotType.HEAD, MubbleBlocks.KORETATO_BLOCK));
 	public static final Item NOTEBLOCK_HEAD = register("noteblock_head", new HeadCostume(pSimple, SoundEvents.ITEM_ARMOR_EQUIP_IRON));
 
-	private static Item register(String name, Item item)
-	{
+	private static Item register(String name, Item item) {
 		Item fCostume = item.setRegistryName(Mubble.MOD_ID, name);
 		COSTUMES.add(fCostume);
 		return fCostume;

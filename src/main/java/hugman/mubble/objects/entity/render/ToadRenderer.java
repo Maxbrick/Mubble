@@ -10,8 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ToadRenderer extends MobRenderer<ToadEntity, ToadModel<ToadEntity>>
-{
+public class ToadRenderer extends MobRenderer<ToadEntity, ToadModel<ToadEntity>> {
 	private static final ResourceLocation BLUE_TOAD_TEXTURES = new ResourceLocation(Mubble.MOD_PREFIX + "textures/entity/toad/species/blue.png");
 	private static final ResourceLocation LIGHT_BLUE_TOAD_TEXTURES = new ResourceLocation(Mubble.MOD_PREFIX + "textures/entity/toad/species/light_blue.png");
 	private static final ResourceLocation CYAN_TOAD_TEXTURES = new ResourceLocation(Mubble.MOD_PREFIX + "textures/entity/toad/species/cyan.png");
@@ -36,16 +35,13 @@ public class ToadRenderer extends MobRenderer<ToadEntity, ToadModel<ToadEntity>>
 	private static final ResourceLocation PARTY_TOAD_TEXTURES = new ResourceLocation(Mubble.MOD_PREFIX + "textures/entity/toad/party.png");
 	private static final ResourceLocation KISEKAE_TOAD_TEXTURES = new ResourceLocation(Mubble.MOD_PREFIX + "textures/entity/toad/kisekae.png");
 
-	public ToadRenderer(EntityRendererManager manager)
-	{
+	public ToadRenderer(EntityRendererManager manager) {
 		super(manager, new ToadModel<>(), 0.5F);
 	}
 
 	@Override
-	public ResourceLocation getEntityTexture(ToadEntity entity)
-	{
-		switch (entity.getVariant())
-		{
+	public ResourceLocation getEntityTexture(ToadEntity entity) {
+		switch(entity.getVariant()) {
 			case 0:
 				return WHITE_TOAD_TEXTURES;
 			case 1:

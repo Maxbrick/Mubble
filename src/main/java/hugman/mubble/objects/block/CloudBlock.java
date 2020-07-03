@@ -21,71 +21,57 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class CloudBlock extends AbstractGlassBlock implements IBeaconBeamColorProvider
-{
+public class CloudBlock extends AbstractGlassBlock implements IBeaconBeamColorProvider {
 	private final DyeColor color;
 
-	public CloudBlock(DyeColor colorIn)
-	{
+	public CloudBlock(DyeColor colorIn) {
 		super(Properties.create(Material.PLANTS, colorIn).sound(SoundType.CLOTH).hardnessAndResistance(0f).doesNotBlockMovement().nonOpaque());
 		this.color = colorIn;
 	}
 
 	@Override
-	public DyeColor getColor()
-	{
+	public DyeColor getColor() {
 		return this.color;
 	}
 
 	@Override
-	public PushReaction getPushReaction(BlockState state)
-	{
+	public PushReaction getPushReaction(BlockState state) {
 		return PushReaction.DESTROY;
 	}
 
 	@Override
-	public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos)
-	{
+	public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos) {
 		return 0;
 	}
 
 	@OnlyIn(Dist.CLIENT)
 	@Override
-	public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side)
-	{
+	public boolean isSideInvisible(BlockState state, BlockState adjacentBlockState, Direction side) {
 		return false;
 	}
 
 	@Override
-	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn)
-	{
+	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		Vec3d vec3d = entityIn.getMotion();
-		if (entityIn instanceof LivingEntity)
-		{
+		if(entityIn instanceof LivingEntity) {
 			LivingEntity entity = (LivingEntity) entityIn;
 			ItemStack armor = entity.getItemStackFromSlot(EquipmentSlotType.HEAD);
-			if (MubbleTags.Items.CROWNS.contains(armor.getItem()) && !entity.isSneaking())
-			{
-				if (!entity.isSprinting())
-				{
+			if(MubbleTags.Items.CROWNS.contains(armor.getItem()) && !entity.isSneaking()) {
+				if(!entity.isSprinting()) {
 					entity.setMotion(vec3d.x, (this.RANDOM.nextInt(31) + 40) / 100D, vec3d.z);
 				}
-				else
-				{
+				else {
 					entity.setMotion(vec3d.x, 0.7D, vec3d.z);
 				}
 				entity.fallDistance = 0f;
 			}
 		}
-		if (entityIn instanceof ItemEntity)
-		{
+		if(entityIn instanceof ItemEntity) {
 			ItemEntity entity = (ItemEntity) entityIn;
-			if (MubbleTags.Items.CROWNS.contains(entity.getItem().getItem()))
-			{
+			if(MubbleTags.Items.CROWNS.contains(entity.getItem().getItem())) {
 				entity.setMotion(vec3d.x, 0.3D, vec3d.z);
 			}
-			if (MubbleTags.Items.WEIGHT_LIGHT.contains(entity.getItem().getItem()))
-			{
+			if(MubbleTags.Items.WEIGHT_LIGHT.contains(entity.getItem().getItem())) {
 				entity.setMotion(vec3d.x, 0.1D, vec3d.z);
 			}
 		}

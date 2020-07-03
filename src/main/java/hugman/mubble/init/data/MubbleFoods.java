@@ -4,8 +4,7 @@ import net.minecraft.item.Food;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
-public class MubbleFoods
-{
+public class MubbleFoods {
 	public static final int crepeHunger = 3;
 	public static final float crepeSaturation = 0.5f;
 

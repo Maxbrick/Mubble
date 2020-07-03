@@ -8,18 +8,14 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
-public class VanishCapCostume extends HeadCostume
-{
-	public VanishCapCostume(Item.Properties builder)
-	{
+public class VanishCapCostume extends HeadCostume {
+	public VanishCapCostume(Item.Properties builder) {
 		super(builder, SoundEvents.ITEM_ARMOR_EQUIP_LEATHER);
 	}
 
 	@Override
-	public void onArmorTick(ItemStack stack, World world, PlayerEntity player)
-	{
-		if (!world.isRemote && player.isSneaking())
-		{
+	public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+		if(!world.isRemote && player.isSneaking()) {
 			player.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 2, 0));
 		}
 		super.onArmorTick(stack, world, player);

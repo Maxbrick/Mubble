@@ -13,11 +13,9 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.Collection;
 
-public class MotionCommand implements ICommand
-{
+public class MotionCommand implements ICommand {
 	@Override
-	public void register(CommandDispatcher<CommandSource> dispatcher)
-	{
+	public void register(CommandDispatcher<CommandSource> dispatcher) {
 		dispatcher.register(
 				LiteralArgumentBuilder.<CommandSource>literal("motion")
 						.requires((source) ->
@@ -47,39 +45,30 @@ public class MotionCommand implements ICommand
 		);
 	}
 
-	private static int setMotion(CommandSource source, Collection<? extends Entity> targets, double x, double y, double z, boolean sum)
-	{
-		for (Entity entity : targets)
-		{
-			if (sum == true)
-			{
+	private static int setMotion(CommandSource source, Collection<? extends Entity> targets, double x, double y, double z, boolean sum) {
+		for(Entity entity : targets) {
+			if(sum == true) {
 				entity.setMotion(entity.getMotion().add(x, y, z));
 			}
-			else
-			{
+			else {
 				entity.setMotion(x, y, z);
 			}
-			if (entity instanceof ServerPlayerEntity)
-			{
+			if(entity instanceof ServerPlayerEntity) {
 				ServerPlayerEntity player = (ServerPlayerEntity) entity;
 				player.connection.sendPacket(new SEntityVelocityPacket(entity));
 			}
 		}
 		final String parameter;
-		if (sum == true)
-		{
+		if(sum == true) {
 			parameter = "add";
 		}
-		else
-		{
+		else {
 			parameter = "set";
 		}
-		if (targets.size() == 1)
-		{
+		if(targets.size() == 1) {
 			source.sendFeedback(new TranslationTextComponent("commands.motion." + parameter + ".success.single", x, y, z, targets.iterator().next().getDisplayName()), true);
 		}
-		else
-		{
+		else {
 			source.sendFeedback(new TranslationTextComponent("commands.motion." + parameter + ".success.multiple", x, y, z, targets.size()), true);
 		}
 		return targets.size();

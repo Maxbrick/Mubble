@@ -29,31 +29,27 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ToadEntity extends AnimalEntity
-{
+public class ToadEntity extends AnimalEntity {
 	private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(ToadEntity.class, DataSerializers.VARINT);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.fromTag(MubbleTags.Items.TOAD_FEEDING);
 
-	public ToadEntity(EntityType<? extends ToadEntity> type, World worldIn)
-	{
+	public ToadEntity(EntityType<? extends ToadEntity> type, World worldIn) {
 		super(type, worldIn);
 	}
 
 	@Override
-	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, ILivingEntityData spawnDataIn, CompoundNBT dataTag)
-	{
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, ILivingEntityData spawnDataIn, CompoundNBT dataTag) {
 		this.setVariant(this.world.rand.nextInt(16));
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
 	@Override
-	protected void registerGoals()
-	{
+	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ChinchoEntity.class, 10f, 1.2d, 1.45d, EntityPredicates.IS_ALIVE::test));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(((LivingEntity) checkedEntity).getHeldItemMainhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(((LivingEntity) checkedEntity).getHeldItemOffhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(((LivingEntity) checkedEntity).getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(checkedEntity.getHeldItemMainhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(checkedEntity.getHeldItemOffhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(checkedEntity.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
 		this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
 		this.goalSelector.addGoal(2, new PanicGoal(this, 1.6D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
@@ -68,81 +64,69 @@ public class ToadEntity extends AnimalEntity
 	}
 
 	@Override
-	protected void registerAttributes()
-	{
+	protected void registerAttributes() {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(9.0D);
 		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
 	@Override
-	public float getEyeHeight(Pose pose)
-	{
-		if (this.isChild()) return 0.75f;
+	public float getEyeHeight(Pose pose) {
+		if(this.isChild()) {
+			return 0.75f;
+		}
 		return 1.35f;
 	}
 
 	@Override
-	protected SoundEvent getAmbientSound()
-	{
-		if (CalendarEvents.isAprilFools)
-		{
+	protected SoundEvent getAmbientSound() {
+		if(CalendarEvents.isAprilFools) {
 			return MubbleSounds.ENTITY_TOAD_BUP;
 		}
-		else
-		{
+		else {
 			return MubbleSounds.ENTITY_TOAD_AMBIENT;
 		}
 	}
 
 	@Override
-	protected SoundEvent getHurtSound(DamageSource source)
-	{
+	protected SoundEvent getHurtSound(DamageSource source) {
 		return MubbleSounds.ENTITY_TOAD_HURT;
 	}
 
 	@Override
-	protected SoundEvent getDeathSound()
-	{
+	protected SoundEvent getDeathSound() {
 		return MubbleSounds.ENTITY_TOAD_DEATH;
 	}
 
-	public int getVariant()
-	{
+	public int getVariant() {
 		return this.dataManager.get(VARIANT);
 	}
 
-	public void setVariant(int variantIn)
-	{
+	public void setVariant(int variantIn) {
 		this.dataManager.set(VARIANT, variantIn);
 	}
 
 	@Override
-	protected void registerData()
-	{
+	protected void registerData() {
 		super.registerData();
 		this.dataManager.register(VARIANT, 0);
 	}
 
 	@Override
-	public void writeAdditional(CompoundNBT compound)
-	{
+	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 		compound.putInt("Variant", this.getVariant());
 	}
 
 	@Override
-	public void readAdditional(CompoundNBT compound)
-	{
+	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 		this.setVariant(compound.getInt("Variant"));
 	}
 
 	@Override
-	protected ResourceLocation getLootTable()
-	{
-		switch (this.getVariant())
-		{
+	protected ResourceLocation getLootTable() {
+		switch(this.getVariant()) {
 			case 0:
 				return MubbleLootTables.WHITE_TOAD;
 			case 1:
@@ -190,21 +174,18 @@ public class ToadEntity extends AnimalEntity
 	}
 
 	@Override
-	public AgeableEntity createChild(AgeableEntity ageable)
-	{
+	public AgeableEntity createChild(AgeableEntity ageable) {
 		ToadEntity childToad = new ToadEntity(MubbleEntities.TOAD, this.world);
 		childToad.setVariant(this.world.rand.nextInt(16));
 		return childToad;
 	}
 
 	@Override
-	public boolean isBreedingItem(ItemStack stack)
-	{
+	public boolean isBreedingItem(ItemStack stack) {
 		return TEMPTATION_ITEMS.test(stack);
 	}
 
-	public static boolean canSpawn(EntityType<ToadEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand)
-	{
+	public static boolean canSpawn(EntityType<ToadEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
 		return true;
 	}
 }

@@ -2,11 +2,9 @@ package hugman.mubble.objects.block;
 
 import net.minecraft.block.Block;
 
-public class WoodButtonBlock extends net.minecraft.block.WoodButtonBlock
-{
+public class WoodButtonBlock extends net.minecraft.block.WoodButtonBlock {
 	/* Extension for internal publicity */
-	public WoodButtonBlock(Block.Properties builder)
-	{
+	public WoodButtonBlock(Block.Properties builder) {
 		super(builder);
 	}
 }

@@ -14,22 +14,17 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class PufferfishAeughHandler
-{
+public class PufferfishAeughHandler {
 	@SubscribeEvent
-	public static void onRightClick(EntityInteract event)
-	{
+	public static void onRightClick(EntityInteract event) {
 		PlayerEntity player = event.getPlayer();
 		Entity entity = event.getTarget();
 		Hand hand = event.getHand();
 		ItemStack itemStack = player.getHeldItem(hand);
-		if (itemStack.getItem() == Items.CARROT && entity.getType() == EntityType.PUFFERFISH)
-		{
+		if(itemStack.getItem() == Items.CARROT && entity.getType() == EntityType.PUFFERFISH) {
 			PufferfishEntity pufferfish = (PufferfishEntity) entity;
-			if (pufferfish.getPuffState() >= 1 && pufferfish.isAlive())
-			{
-				if (!player.abilities.isCreativeMode)
-				{
+			if(pufferfish.getPuffState() >= 1 && pufferfish.isAlive()) {
+				if(!player.abilities.isCreativeMode) {
 					itemStack.shrink(1);
 				}
 				player.swingArm(hand);
