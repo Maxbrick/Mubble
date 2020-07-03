@@ -68,7 +68,7 @@ public abstract class BallEntity extends ProjectileItemEntity {
 				remove();
 			}
 			if(!removeOnImpact && cantRebound) {
-				world.playSound((PlayerEntity) null, getX(), getY(), getZ(), getDeathSound(), SoundCategory.NEUTRAL, 0.5F, 1.0F);
+				world.playSound(null, getPosX(), getPosY(), getPosZ(), getDeathSound(), SoundCategory.NEUTRAL, 0.5F, 1.0F);
 			}
 		}
 		else {
@@ -89,7 +89,7 @@ public abstract class BallEntity extends ProjectileItemEntity {
 			float s1 = rand.nextFloat() * 0.2F - 0.1F;
 			float s2 = rand.nextFloat() * 0.2F - 0.1F;
 			float s3 = rand.nextFloat() * 0.2F - 0.1F;
-			world.addParticle(getDeathParticle(), this.getX(), this.getY(), this.getZ(), s1, s2, s3);
+			world.addParticle(getDeathParticle(), getPosX(), getPosY(), getPosZ(), s1, s2, s3);
 		}
 	}
 

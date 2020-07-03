@@ -16,7 +16,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class KirbyBallEntity extends BallEntity {
@@ -53,24 +53,24 @@ public class KirbyBallEntity extends BallEntity {
 	@Override
 	protected boolean onEntityImpact(EntityRayTraceResult result) {
 		Entity entity = result.getEntity();
-		boolean flag = entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.owner), 2.5F);
+		boolean flag = entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), 2.5F);
 		if(flag) {
-			this.applyEnchantments(this.owner, entity);
+			this.applyEnchantments((LivingEntity) this.func_234616_v_(), entity);
 		}
-		world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_KIRBY_BALL_HIT_ENTITY, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		world.playSound((PlayerEntity) null, getPosX(), getPosY(), getPosZ(), MubbleSounds.ENTITY_KIRBY_BALL_HIT_ENTITY, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		return true;
 	}
 
 	@Override
 	protected boolean onBlockImpact(BlockRayTraceResult result) {
 		Direction face = result.getFace();
-		Vec3d motion = getMotion();
+		Vector3d motion = getMotion();
 		if(face == Direction.UP || face == Direction.DOWN) {
 			motion = motion.subtract(0.0D, getMotion().y * 1.25D, 0.0D);
 			if(face == Direction.UP) {
 				double minY = 0.3D;
 				if(motion.y < minY) {
-					motion = new Vec3d(motion.x, minY, motion.z);
+					motion = new Vector3d(motion.x, minY, motion.z);
 				}
 			}
 		}
@@ -81,7 +81,7 @@ public class KirbyBallEntity extends BallEntity {
 			motion = motion.subtract(0.0D, 0.0D, getMotion().z * 1.25D);
 		}
 		setMotion(motion);
-		world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_KIRBY_BALL_REBOUND, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		world.playSound(null, getPosX(), getPosY(), getPosZ(), MubbleSounds.ENTITY_KIRBY_BALL_REBOUND, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		return false;
 	}
 }

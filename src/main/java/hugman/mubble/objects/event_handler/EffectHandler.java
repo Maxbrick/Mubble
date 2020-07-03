@@ -6,7 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
@@ -19,7 +19,7 @@ public class EffectHandler {
 	public static void onJump(LivingJumpEvent event) {
 		LivingEntity entity = event.getEntityLiving();
 		if(entity.isPotionActive(MubbleEffects.HEAVINESS)) {
-			Vec3d vec3d = entity.getMotion();
+			Vector3d vec3d = entity.getMotion();
 			entity.setMotion(vec3d.x, vec3d.y - (float) (entity.getActivePotionEffect(MubbleEffects.HEAVINESS).getAmplifier() + 1) * 0.05F, vec3d.z);
 		}
 	}
@@ -30,7 +30,7 @@ public class EffectHandler {
 		World world = entity.getEntityWorld();
 		ItemStack headItem = entity.getItemStackFromSlot(EquipmentSlotType.HEAD);
 		if(!world.isRemote) {
-			if(MubbleTags.Items.WEIGHT_HEAVY.contains(headItem.getItem())) {
+			if(headItem.getItem().isIn(MubbleTags.Items.WEIGHT_HEAVY)) {
 				entity.addPotionEffect(new EffectInstance(MubbleEffects.HEAVINESS, 25, 0));
 			}
 		}

@@ -4,13 +4,14 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import hugman.mubble.objects.entity.CustomTNTEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.TNTMinecartRenderer;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.inventory.container.PlayerContainer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,16 +35,16 @@ public class CustomTNTRenderer extends EntityRenderer<CustomTNTEntity> {
 			float f1 = 1.0F + f * 0.3F;
 			matrix.scale(f1, f1, f1);
 		}
-		matrix.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(-90.0F));
+		matrix.rotate(Vector3f.YP.rotationDegrees(-90.0F));
 		matrix.translate(-0.5D, -0.5D, 0.5D);
-		matrix.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(90.0F));
-		TNTMinecartRenderer.func_229127_a_(state, matrix, buffer, p_225623_6_, entity.getFuse() / 5 % 2 == 0);
+		matrix.rotate(Vector3f.YP.rotationDegrees(90.0F));
+		TNTMinecartRenderer.renderTntFlash(state, matrix, buffer, p_225623_6_, entity.getFuse() / 5 % 2 == 0);
 		matrix.pop();
 		super.render(entity, p_225623_2_, p_225623_3_, matrix, buffer, p_225623_6_);
 	}
 
 	@Override
 	public ResourceLocation getEntityTexture(CustomTNTEntity entity) {
-		return PlayerContainer.BLOCK_ATLAS_TEXTURE;
+		return AtlasTexture.LOCATION_BLOCKS_TEXTURE;
 	}
 }

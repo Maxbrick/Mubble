@@ -3,9 +3,11 @@ package hugman.mubble.objects.entity;
 import hugman.mubble.init.MubbleSounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.Pose;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.BeeEntity;
@@ -20,7 +22,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -48,14 +50,12 @@ public class GoombaEntity extends MonsterEntity {
 		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ToadEntity.class, true));
 	}
 
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(12.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-		this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(25.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
+	public static AttributeModifierMap.MutableAttribute createGoombaAttributes() {
+		return MobEntity.func_233666_p_()
+				.func_233815_a_(Attributes.field_233818_a_, 12.0D)
+				.func_233815_a_(Attributes.field_233821_d_, 0.3D)
+				.func_233815_a_(Attributes.field_233819_b_, 25.0D)
+				.func_233815_a_(Attributes.field_233823_f_, 2.0D);
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class GoombaEntity extends MonsterEntity {
 	@Override
 	public void onCollideWithPlayer(PlayerEntity playerIn) {
 		AxisAlignedBB hitbox = this.getBoundingBox().contract(0, -1, 0).grow(-0.4, 0, -0.4);
-		Vec3d motion = playerIn.getMotion();
+		Vector3d motion = playerIn.getMotion();
 		if(!this.world.isRemote() && !playerIn.isSpectator() && hitbox.intersects(playerIn.getBoundingBox()) && motion.y < 0.3D && this.isAlive()) {
 			playerIn.setMotion(motion.x, 0.5D, motion.z);
 			((ServerPlayerEntity) playerIn).connection.sendPacket(new SEntityVelocityPacket(playerIn));

@@ -26,7 +26,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class IceballEntity extends BallEntity {
@@ -61,9 +61,9 @@ public class IceballEntity extends BallEntity {
 	protected boolean onEntityImpact(EntityRayTraceResult result) {
 		Entity entity = result.getEntity();
 		float damage = entity instanceof SnowGolemEntity ? 1.0F : 3.0F;
-		boolean flag = entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.owner), damage);
+		boolean flag = entity.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_234616_v_()), damage);
 		if(flag) {
-			this.applyEnchantments(this.owner, entity);
+			this.applyEnchantments((LivingEntity) this.func_234616_v_(), entity);
 		}
 		if(!world.isRemote) {
 			if(!(entity instanceof SnowGolemEntity) && entity instanceof LivingEntity) {
@@ -72,7 +72,7 @@ public class IceballEntity extends BallEntity {
 				livingEntity.addPotionEffect(new EffectInstance(MubbleEffects.HEAVINESS, 40));
 			}
 		}
-		world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_ICEBALL_HIT_ENTITY, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+		world.playSound(null, getPosX(), getPosY(), getPosZ(), MubbleSounds.ENTITY_ICEBALL_HIT_ENTITY, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 		return true;
 	}
 
@@ -95,20 +95,20 @@ public class IceballEntity extends BallEntity {
 					world.neighborChanged(pos, resultBlock, pos);
 				}
 			}
-			world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_ICEBALL_HIT_BLOCK, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+			world.playSound(null, getPosX(), getPosY(), getPosZ(), MubbleSounds.ENTITY_ICEBALL_HIT_BLOCK, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 			return true;
 		}
 		if(face == Direction.UP) {
-			Vec3d motion = getMotion().subtract(0.0D, getMotion().y * 1.25D, 0.0D);
+			Vector3d motion = getMotion().subtract(0.0D, getMotion().y * 1.25D, 0.0D);
 			double minY = 0.3D;
 			if(motion.y < minY) {
-				motion = new Vec3d(motion.x, minY, motion.z);
+				motion = new Vector3d(motion.x, minY, motion.z);
 			}
 			setMotion(motion);
 			return false;
 		}
 		else {
-			world.playSound((PlayerEntity) null, getX(), getY(), getZ(), MubbleSounds.ENTITY_ICEBALL_HIT_BLOCK, SoundCategory.NEUTRAL, 0.5F, 1.0F);
+			world.playSound(null, getPosX(), getPosY(), getPosZ(), MubbleSounds.ENTITY_ICEBALL_HIT_BLOCK, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 			return true;
 		}
 	}

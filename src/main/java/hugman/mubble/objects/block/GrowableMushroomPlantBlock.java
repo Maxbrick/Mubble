@@ -22,10 +22,10 @@ public class GrowableMushroomPlantBlock extends net.minecraft.block.MushroomBloc
 	}
 
 	@Override
-	public boolean trySpawningBigMushroom(ServerWorld serverWorld, BlockPos pos, BlockState state, Random random) {
+	public boolean func_226940_a_(ServerWorld serverWorld, BlockPos pos, BlockState state, Random random) {
 		serverWorld.removeBlock(pos, false);
-		ConfiguredFeature hugeMushroomFeature = Feature.HUGE_RED_MUSHROOM.configure(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(this.hatBlock.getDefaultState().with(HugeMushroomBlock.DOWN, false)), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.getDefaultState()), 2));
-		if(hugeMushroomFeature.place(serverWorld, serverWorld.getChunkProvider().getChunkGenerator(), random, pos)) {
+		ConfiguredFeature hugeMushroomFeature = Feature.HUGE_RED_MUSHROOM.withConfiguration(new BigMushroomFeatureConfig(new SimpleBlockStateProvider(this.hatBlock.getDefaultState().with(HugeMushroomBlock.DOWN, false)), new SimpleBlockStateProvider(Blocks.MUSHROOM_STEM.getDefaultState()), 2));
+		if(hugeMushroomFeature.func_236265_a_(serverWorld, serverWorld.func_241112_a_(), serverWorld.getChunkProvider().getChunkGenerator(), random, pos)) {
 			return true;
 		}
 		else {

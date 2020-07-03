@@ -6,7 +6,11 @@ import hugman.mubble.init.data.MubbleLootTables;
 import hugman.mubble.init.data.MubbleTags;
 import hugman.mubble.util.CalendarEvents;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.ChickenEntity;
@@ -47,9 +51,9 @@ public class ToadEntity extends AnimalEntity {
 	protected void registerGoals() {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, ChinchoEntity.class, 10f, 1.2d, 1.45d, EntityPredicates.IS_ALIVE::test));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(checkedEntity.getHeldItemMainhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(checkedEntity.getHeldItemOffhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
-		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.contains(checkedEntity.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.func_230235_a_(checkedEntity.getHeldItemMainhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.func_230235_a_(checkedEntity.getHeldItemOffhand().getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
+		this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, LivingEntity.class, checkedEntity -> MubbleTags.Items.TOAD_FEAR.func_230235_a_(checkedEntity.getItemStackFromSlot(EquipmentSlotType.HEAD).getItem()), 10f, 1.2f, 1.45f, EntityPredicates.CAN_AI_TARGET::test));
 		this.goalSelector.addGoal(1, new OpenDoorGoal(this, true));
 		this.goalSelector.addGoal(2, new PanicGoal(this, 1.6D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
@@ -63,11 +67,10 @@ public class ToadEntity extends AnimalEntity {
 		this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 	}
 
-	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(9.0D);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+	public static AttributeModifierMap.MutableAttribute createToadAttributes() {
+		return MobEntity.func_233666_p_()
+				.func_233815_a_(Attributes.field_233818_a_, 9.0D)
+				.func_233815_a_(Attributes.field_233821_d_, 0.25D);
 	}
 
 	@Override

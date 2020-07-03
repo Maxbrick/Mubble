@@ -27,6 +27,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.*;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -56,7 +57,7 @@ public class FlyingBlockEntity extends Entity implements IEntityAdditionalSpawnD
 		this.flyTile = flyingBlockState;
 		this.preventEntitySpawning = true;
 		this.setPosition(x, y + (double) ((1.0F - this.getHeight()) / 2.0F), z);
-		this.setMotion(Vec3d.ZERO);
+		this.setMotion(Vector3d.ZERO);
 		this.prevPosX = x;
 		this.prevPosY = y;
 		this.prevPosZ = z;

@@ -3,13 +3,15 @@ package hugman.mubble.objects.entity;
 import hugman.mubble.init.MubbleSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.monster.ZombiePigmanEntity;
+import net.minecraft.entity.monster.ZombifiedPiglinEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -26,9 +28,9 @@ import net.minecraft.world.World;
 import java.util.Random;
 import java.util.UUID;
 
-public class ZombieCowmanEntity extends ZombiePigmanEntity {
+public class ZombieCowmanEntity extends ZombifiedPiglinEntity {
 	private static final UUID ATTACK_SPEED_BOOST_MODIFIER_UUID = UUID.fromString("49455A49-7EC5-45BA-B886-3B90B23A1718");
-	private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = (new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, AttributeModifier.Operation.ADDITION)).setSaved(false);
+	private static final AttributeModifier ATTACK_SPEED_BOOST_MODIFIER = new AttributeModifier(ATTACK_SPEED_BOOST_MODIFIER_UUID, "Attacking speed boost", 0.05D, AttributeModifier.Operation.ADDITION);
 	private int angerLevel;
 	private int randomSoundDelay;
 	private UUID angerTargetUUID;
@@ -66,11 +68,16 @@ public class ZombieCowmanEntity extends ZombiePigmanEntity {
 		this.targetSelector.addGoal(2, new ZombieCowmanEntity.TargetAggressorGoal(this));
 	}
 
+	public static AttributeModifierMap.MutableAttribute createZombieCowmanAttributes() {
+		return ZombifiedPiglinEntity.func_234352_eU_()
+				.func_233815_a_(Attributes.field_233821_d_, 0.35D);
+	}
+
 	@Override
-	protected void registerAttributes() {
-		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.34F);
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+	protected void func_230291_eT_() {
+		super.func_230291_eT_();
+		this.getAttribute(Attributes.field_233821_d_).setBaseValue(0.34D);
+		this.getAttribute(Attributes.field_233823_f_).setBaseValue(5.0D);
 	}
 
 	public static boolean canSpawn(EntityType<ZombieCowmanEntity> entity, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
@@ -84,15 +91,15 @@ public class ZombieCowmanEntity extends ZombiePigmanEntity {
 
 	@Override
 	protected void updateAITasks() {
-		IAttributeInstance iattributeinstance = this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED);
+		ModifiableAttributeInstance attribute = this.getAttribute(Attributes.field_233821_d_);
 		if(this.isAngry()) {
-			if(!this.isChild() && !iattributeinstance.hasModifier(ATTACK_SPEED_BOOST_MODIFIER)) {
-				iattributeinstance.applyModifier(ATTACK_SPEED_BOOST_MODIFIER);
+			if(!this.isChild() && !attribute.hasModifier(ATTACK_SPEED_BOOST_MODIFIER)) {
+				attribute.func_233767_b_(ATTACK_SPEED_BOOST_MODIFIER);
 			}
 			--this.angerLevel;
 		}
-		else if(iattributeinstance.hasModifier(ATTACK_SPEED_BOOST_MODIFIER)) {
-			iattributeinstance.removeModifier(ATTACK_SPEED_BOOST_MODIFIER);
+		else if(attribute.hasModifier(ATTACK_SPEED_BOOST_MODIFIER)) {
+			attribute.removeModifier(ATTACK_SPEED_BOOST_MODIFIER);
 		}
 		if(this.randomSoundDelay > 0 && --this.randomSoundDelay == 0) {
 			this.playSound(MubbleSounds.ENTITY_ZOMBIE_COWMAN_ANGRY, this.getSoundVolume() * 2.0F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F) * 1.8F);

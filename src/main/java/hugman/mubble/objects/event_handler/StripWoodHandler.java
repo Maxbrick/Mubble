@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap.Builder;
 import hugman.mubble.init.MubbleBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LogBlock;
+import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
@@ -43,7 +43,7 @@ public class StripWoodHandler {
 		if(block != null && stack.getItem() instanceof AxeItem) {
 			world.playSound(player, pos, SoundEvents.ITEM_AXE_STRIP, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			if(!world.isRemote) {
-				world.setBlockState(pos, block.getDefaultState().with(LogBlock.AXIS, state.get(LogBlock.AXIS)), 11);
+				world.setBlockState(pos, block.getDefaultState().with(RotatedPillarBlock.AXIS, state.get(RotatedPillarBlock.AXIS)), 11);
 				if(player != null) {
 					stack.damageItem(1, player, (entity) ->
 					{

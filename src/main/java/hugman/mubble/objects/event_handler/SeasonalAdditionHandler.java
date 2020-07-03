@@ -21,7 +21,7 @@ public class SeasonalAdditionHandler {
 		Random rand = new Random();
 		if(fEntity instanceof MobEntity) {
 			MobEntity entity = (MobEntity) fEntity;
-			if(MubbleTags.EntityTypes.CAN_WEAR_HELMET.contains(entity.getType())) {
+			if(entity.getType().isContained(MubbleTags.EntityTypes.CAN_WEAR_HELMET)) {
 				if(entity.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty() && CalendarEvents.isChristmasSeason) {
 					if(rand.nextFloat() < (float) CalendarEvents.getDayToday() / 25.0f) {
 						entity.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(MubbleCostumes.CHRISTMAS_HAT));
