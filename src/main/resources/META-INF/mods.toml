@@ -1,11 +1,11 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[32,)"
 issueTrackerURL="https://github.com/Hugman76/Mubble/issues"
-logoFile="logo.png"
+logoFile="assets/mubble/textures/icon.png"
 
 [[mods]]
 modId="mubble"
-version="3.1.1"
+version="4.0-pre2"
 displayName="Mubble"
 updateJSONURL="https://raw.githubusercontent.com/Hugman76/MyAssets/master/mubble/forge-updates.json"
 displayURL="https://sites.google.com/view/mubblemc"
@@ -20,14 +20,14 @@ Visit the official website for more information.
 [[dependencies.mubble]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.15.2]"
+versionRange="[1.16.1]"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.mubble]]
 modId="forge"
 mandatory=true
-versionRange="[31,)"
+versionRange="[32,)"
 ordering="NONE"
 side="BOTH"
 
