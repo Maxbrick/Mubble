@@ -1,29 +1,23 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"group": "christmas_bauble",
-	"pattern":
-	[
+	"pattern": [
 		"X#X",
 		"#O#",
 		"X#X"
 	],
-	"key":
-	{
-		"#":
-		{
-			"tag": "forge:nuggets/iron"
+	"key": {
+		"#": {
+			"item": "minecraft:iron_nugget"
 		},
-		"X":
-		{
-			"tag": "forge:dusts/glowstone"
+		"X": {
+			"item": "minecraft:glowstone_dust"
 		},
-		"O":
-		{
-			"tag": "forge:dyes/orange"
+		"O": {
+			"item": "minecraft:orange_dye"
 		}
 	},
-	"result":
-	{
+	"result": {
 		"item": "mubble:orange_christmas_bauble"
 	}
 }

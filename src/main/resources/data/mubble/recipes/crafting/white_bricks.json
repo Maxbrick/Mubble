@@ -1,21 +1,17 @@
 {
 	"type": "minecraft:crafting_shaped",
 	"group": "mubble:bricks",
-	"pattern":
-	[
+	"pattern": [
 		"XXX",
 		"XOX",
 		"XXX"
 	],
-	"key":
-	{
-		"X": 
-		{
+	"key": {
+		"X": {
 			"item": "minecraft:bricks"
 		},
-		"O":
-		{
-			"tag": "forge:dyes/white"
+		"O": {
+			"item": "minecraft:white_dye"
 		}
 	},
 	"result": {
