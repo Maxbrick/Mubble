@@ -3,9 +3,12 @@ package com.hugman.mubble.mixin;
 import com.hugman.dawn.mod.init.DawnEffects;
 import com.hugman.mubble.init.data.MubbleTags;
 import com.hugman.mubble.object.item.LightsaberItem;
+import com.hugman.mubble.object.item.costume.BlockCostume;
+import com.hugman.mubble.object.item.costume.Costume;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
@@ -13,6 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
@@ -34,6 +38,19 @@ public abstract class LivingEntityMixin {
 		ItemStack stack = entity.getMainHandStack();
 		if(stack.getItem() instanceof LightsaberItem) {
 			((LightsaberItem) stack.getItem()).onSwing(entity, false);
+		}
+	}
+
+	@Inject(method = "method_32326", at = @At(value = "TAIL"), cancellable = true)
+	private static void mubble_getPreferredEquipmentSlot(ItemStack stack, CallbackInfoReturnable<EquipmentSlot> info) {
+		Item item = stack.getItem();
+		if(item instanceof Costume) {
+			Costume costume = (Costume) item;
+			info.setReturnValue(costume.getArmorType());
+		}
+		else if(item instanceof BlockCostume) {
+			BlockCostume costume = (BlockCostume) item;
+			info.setReturnValue(costume.getArmorType());
 		}
 	}
 }
