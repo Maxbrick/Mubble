@@ -59,7 +59,7 @@ public class CustomTNTEntity extends Entity {
 
 	@Override
 	public boolean collides() {
-		return !this.removed;
+		return !this.isRemoved();
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class CustomTNTEntity extends Entity {
 		}
 		--this.fuse;
 		if(this.fuse <= 0) {
-			this.remove();
+			this.discard();
 			if(!this.world.isClient) {
 				this.explode();
 			}

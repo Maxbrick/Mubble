@@ -21,7 +21,7 @@ public class FlyingBlock extends Block {
 	public static boolean canFlyThrough(BlockState state) {
 		Block block = state.getBlock();
 		Material material = state.getMaterial();
-		return block instanceof AirBlock || block == Blocks.FIRE || block.isIn(MubbleTags.Blocks.CLOUD_BLOCKS) || material.isLiquid() || material.isReplaceable();
+		return block instanceof AirBlock || block == Blocks.FIRE || state.isIn(MubbleTags.Blocks.CLOUD_BLOCKS) || material.isLiquid() || material.isReplaceable();
 	}
 
 	@Override

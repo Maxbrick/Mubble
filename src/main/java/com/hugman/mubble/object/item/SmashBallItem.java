@@ -33,7 +33,7 @@ public class SmashBallItem extends Item {
 		playerIn.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 25, 0));
 		playerIn.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 900, 3));
 		playerIn.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 900, 4));
-		if(!playerIn.abilities.creativeMode) {
+		if(!playerIn.getAbilities().creativeMode) {
 			stack.decrement(1);
 		}
 		playerIn.getItemCooldownManager().set(this, 25);

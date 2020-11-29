@@ -23,7 +23,7 @@ public class PlayerEntityMixin {
 		if(stack.getItem() == Items.CARROT && entity.getType() == EntityType.PUFFERFISH) {
 			PufferfishEntity pufferfish = (PufferfishEntity) entity;
 			if(pufferfish.getPuffState() >= 1 && pufferfish.isAlive()) {
-				if(!player.abilities.creativeMode) {
+				if(!player.getAbilities().creativeMode) {
 					stack.decrement(1);
 				}
 				player.swingHand(hand);

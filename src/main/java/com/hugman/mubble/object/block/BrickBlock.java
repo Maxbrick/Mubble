@@ -29,7 +29,7 @@ public class BrickBlock extends Block {
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.05D, 0.0D, 16.0D, 16.0D, 16.0D);
 
 	public BrickBlock(BlockSoundGroup soundType) {
-		super(FabricBlockSettings.of(Material.STONE, MaterialColor.RED).strength(2.0F, 6.0F).sounds(soundType));
+		super(FabricBlockSettings.of(Material.STONE, MapColor.RED).strength(2.0F, 6.0F).sounds(soundType));
 	}
 
 	@Override

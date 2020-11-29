@@ -31,7 +31,7 @@ public class CapeFeatherItem extends Item {
 		}
 		playerIn.setVelocity(vec3d.x, 0.7D, vec3d.z);
 		playerIn.fallDistance = 0f;
-		if(!playerIn.abilities.creativeMode && this != MubbleItems.SUPER_CAPE_FEATHER) {
+		if(!playerIn.getAbilities().creativeMode && this != MubbleItems.SUPER_CAPE_FEATHER) {
 			stack.decrement(1);
 		}
 		playerIn.incrementStat(Stats.USED.getOrCreateStat(this));

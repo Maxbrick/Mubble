@@ -14,7 +14,7 @@ public class RotatingBlock extends Block {
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.05D, 0.0D, 16.0D, 16.0D, 16.0D);
 
 	public RotatingBlock(BlockSoundGroup soundType) {
-		super(FabricBlockSettings.of(Material.STONE, MaterialColor.STONE).strength(1.5F, 6.0F).sounds(soundType));
+		super(FabricBlockSettings.of(Material.STONE, MapColor.STONE).strength(1.5F, 6.0F).sounds(soundType));
 	}
 
 	@Override

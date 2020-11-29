@@ -73,13 +73,13 @@ public class FireballEntity extends BallEntity {
 		Direction face = result.getSide();
 		//AbstractFireBlock fire = (AbstractFireBlock) Blocks.FIRE;
 		Block resultBlock = null;
-		if(state.getBlock().isIn(MubbleTags.Blocks.MELTABLE_TO_AIR)) {
+		if(state.isIn(MubbleTags.Blocks.MELTABLE_TO_AIR)) {
 			resultBlock = Blocks.AIR;
 		}
-		else if(state.getBlock().isIn(MubbleTags.Blocks.MELTABLE_TO_ICE)) {
+		else if(state.isIn(MubbleTags.Blocks.MELTABLE_TO_ICE)) {
 			resultBlock = Blocks.ICE;
 		}
-		else if(state.getBlock().isIn(MubbleTags.Blocks.MELTABLE_TO_WATER)) {
+		else if(state.isIn(MubbleTags.Blocks.MELTABLE_TO_WATER)) {
 			resultBlock = Blocks.WATER;
 		}
 		if(resultBlock != null) {
@@ -95,7 +95,7 @@ public class FireballEntity extends BallEntity {
 			world.playSound(null, getX(), getY(), getZ(), MubbleSounds.ENTITY_FIREBALL_HIT_MELTABLE, SoundCategory.NEUTRAL, 0.5F, 1.0F);
 			return true;
 		}
-		if(state.method_27851(BlockTags.CAMPFIRES, (abstractBlockState) -> abstractBlockState.contains(CampfireBlock.LIT) && abstractBlockState.contains(CampfireBlock.WATERLOGGED))) {
+		if(state.isIn(BlockTags.CAMPFIRES, (abstractBlockState) -> abstractBlockState.contains(CampfireBlock.LIT) && abstractBlockState.contains(CampfireBlock.WATERLOGGED))) {
 			if(!state.get(CampfireBlock.LIT) && !state.get(CampfireBlock.WATERLOGGED)) {
 				if(!world.isClient) {
 					world.setBlockState(pos, state.with(CampfireBlock.LIT, true));

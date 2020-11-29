@@ -90,7 +90,7 @@ public class QuestionBlock extends Block {
 			List<ItemStack> items = lootTable.generateLoot(lootContext);
 			for(ItemStack item : items) {
 				worldIn.spawnEntity(new ItemEntity(worldIn, x, y, z, item));
-				if(item.getItem().isIn(MubbleTags.Items.COINS)) {
+				if(item.isIn(MubbleTags.Items.COINS)) {
 					worldIn.playSound(null, x, y - 0.6D, z, coinLootSound, SoundCategory.BLOCKS, 1f, 1f);
 				}
 				else {

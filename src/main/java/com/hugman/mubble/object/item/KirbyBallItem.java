@@ -44,7 +44,7 @@ public class KirbyBallItem extends Item {
 			world.spawnEntity(entity);
 		}
 		player.incrementStat(Stats.USED.getOrCreateStat(this));
-		if(!player.abilities.creativeMode) {
+		if(!player.getAbilities().creativeMode) {
 			stack.decrement(1);
 		}
 		return TypedActionResult.success(stack);

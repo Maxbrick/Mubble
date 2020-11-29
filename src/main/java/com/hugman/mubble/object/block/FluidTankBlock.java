@@ -9,6 +9,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager.Builder;
 import net.minecraft.state.property.BooleanProperty;
@@ -25,7 +26,9 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class FluidTankBlock extends Block implements FluidDrainable, FluidFillable {
+import java.util.Optional;
+
+public class FluidTankBlock extends Block implements Waterloggable {
 	public static final BooleanProperty UP = Properties.UP;
 	public static final BooleanProperty DOWN = Properties.DOWN;
 	public static final BooleanProperty NORTH = Properties.NORTH;
@@ -96,17 +99,17 @@ public class FluidTankBlock extends Block implements FluidDrainable, FluidFillab
 	}
 
 	@Override
-	public Fluid tryDrainFluid(WorldAccess worldIn, BlockPos pos, BlockState state) {
+	public ItemStack tryDrainFluid(WorldAccess worldIn, BlockPos pos, BlockState state) {
 		if(state.get(FLUIDLOG) == FluidLog.WATER) {
 			worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.EMPTY), 3);
-			return Fluids.WATER;
+			return new ItemStack(Items.WATER_BUCKET);
 		}
 		else if(state.get(FLUIDLOG) == FluidLog.LAVA) {
 			worldIn.setBlockState(pos, state.with(FLUIDLOG, FluidLog.EMPTY), 3);
-			return Fluids.LAVA;
+			return new ItemStack(Items.LAVA_BUCKET);
 		}
 		else {
-			return Fluids.EMPTY;
+			return ItemStack.EMPTY;
 		}
 	}
 

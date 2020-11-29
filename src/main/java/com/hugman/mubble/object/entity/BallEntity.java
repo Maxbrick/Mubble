@@ -66,7 +66,7 @@ public abstract class BallEntity extends ThrownItemEntity {
 		if(removeOnImpact || cantRebound) {
 			if(!this.world.isClient) {
 				this.world.sendEntityStatus(this, (byte) 3);
-				this.remove();
+				this.discard();
 			}
 			if(!removeOnImpact && cantRebound) {
 				this.world.playSound(null, getX(), getY(), getZ(), MubbleSounds.ENTITY_FIREBALL_HIT_BLOCK, SoundCategory.NEUTRAL, 0.5F, 1.0F);

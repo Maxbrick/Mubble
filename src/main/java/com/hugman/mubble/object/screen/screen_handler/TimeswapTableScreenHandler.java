@@ -93,7 +93,7 @@ public class TimeswapTableScreenHandler extends ScreenHandler {
 
 	private static Tag<Item> correspondingTag(Item item) {
 		for(Tag<Item> tag : MubbleTags.Items.TIMESWAP_TAGS) {
-			if(item.isIn(tag)) {
+			if(item.getDefaultStack().isIn(tag)) {
 				return tag;
 			}
 		}
@@ -158,7 +158,7 @@ public class TimeswapTableScreenHandler extends ScreenHandler {
 			if(tag != null) {
 				this.availableRecipes = Lists.newArrayList();
 				for(Item item : Registry.ITEM) {
-					if(item.isIn(tag)) {
+					if(item.getDefaultStack().isIn(tag)) {
 						this.availableRecipes.add(item);
 					}
 				}
@@ -239,7 +239,7 @@ public class TimeswapTableScreenHandler extends ScreenHandler {
 		super.close(player);
 		this.output.removeStack(1);
 		this.context.run((world, blockPos) -> {
-			this.dropInventory(player, player.world, this.input);
+			this.dropInventory(player, this.input);
 		});
 	}
 }

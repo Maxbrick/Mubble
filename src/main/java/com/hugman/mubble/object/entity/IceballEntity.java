@@ -81,7 +81,7 @@ public class IceballEntity extends BallEntity {
 		BlockState state = world.getBlockState(pos);
 		Direction face = result.getSide();
 		Block resultBlock = null;
-		if(state.getBlock().isIn(MubbleTags.Blocks.FREEZABLE_TO_PACKED_ICE)) {
+		if(state.isIn(MubbleTags.Blocks.FREEZABLE_TO_PACKED_ICE)) {
 			resultBlock = Blocks.PACKED_ICE;
 		}
 		if(resultBlock != null) {

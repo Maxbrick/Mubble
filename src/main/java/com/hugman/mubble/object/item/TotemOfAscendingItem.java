@@ -29,7 +29,7 @@ public class TotemOfAscendingItem extends Item {
 			playerIn.updatePosition(playerIn.getX(), desPos.getY() + 2D, playerIn.getZ());
 		}
 		playerIn.fallDistance = 0f;
-		if(!playerIn.abilities.creativeMode) {
+		if(!playerIn.getAbilities().creativeMode) {
 			stack.decrement(1);
 		}
 		playerIn.getItemCooldownManager().set(this, 25);

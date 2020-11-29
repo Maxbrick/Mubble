@@ -62,7 +62,7 @@ public class BlockCostume extends BlockItem {
 			PlayerEntity player = (PlayerEntity) entity;
 			ShaderEffect shaderEffect = renderer.getShader();
 			Identifier shader = this.getShader();
-			if(player.inventory.getArmorStack(3).equals(stack)) {
+			if(player.getInventory().getArmorStack(3).equals(stack)) {
 				if(shader != null) {
 					if(shaderEffect != null) {
 						if(!shaderEffect.getName().equals(shader.toString())) {

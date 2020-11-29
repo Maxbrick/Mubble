@@ -99,13 +99,13 @@ public class FlyingBlockEntity extends Entity {
 
 	@Override
 	public boolean collides() {
-		return !this.removed;
+		return !this.isRemoved();
 	}
 
 	@Override
 	public void tick() {
 		if(this.block.isAir()) {
-			this.remove();
+			this.discard();
 		}
 		else {
 			Block block = this.block.getBlock();
@@ -116,7 +116,7 @@ public class FlyingBlockEntity extends Entity {
 					this.world.breakBlock(blockPos2, false);
 				}
 				else if(!this.world.isClient) {
-					this.remove();
+					this.discard();
 					return;
 				}
 			}
@@ -141,14 +141,14 @@ public class FlyingBlockEntity extends Entity {
 						if(this.dropItem && this.world.getGameRules().getBoolean(GameRules.DO_ENTITY_DROPS)) {
 							this.dropItem(block);
 						}
-						this.remove();
+						this.discard();
 					}
 				}
 				else {
 					BlockState blockState = this.world.getBlockState(blockPos2);
 					this.setVelocity(this.getVelocity().multiply(0.7D, 0.4D, 0.7D));
 					if(!blockState.isOf(Blocks.MOVING_PISTON)) {
-						this.remove();
+						this.discard();
 						if(!this.destroyedOnLanding) {
 							boolean bl3 = blockState.canReplace(new AutomaticItemPlacementContext(this.world, blockPos2, Direction.UP, ItemStack.EMPTY, Direction.DOWN));
 							boolean bl4 = this.block.canPlaceAt(this.world, blockPos2);
@@ -172,7 +172,7 @@ public class FlyingBlockEntity extends Entity {
 													compoundTag.put(string, tag.copy());
 												}
 											}
-											blockEntity.fromTag(this.block, compoundTag);
+											blockEntity.fromTag(compoundTag);
 											blockEntity.markDirty();
 										}
 									}
