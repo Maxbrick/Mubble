@@ -6,6 +6,7 @@ import com.hugman.mubble.init.MubbleSounds;
 import com.hugman.mubble.object.block.PresentBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.entity.ChestStateManager;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -20,13 +21,14 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class PresentBlockEntity extends LootableContainerBlockEntity {
 	private DefaultedList<ItemStack> inventory;
-	private int viewerCount;
 
-	public PresentBlockEntity() {
-		super(MubbleBlocks.PRESENT_ENTITY);
+	public PresentBlockEntity(BlockPos pos, BlockState state) {
+		super(MubbleBlocks.PRESENT_ENTITY, pos, state);
 		this.inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
 	}
 
@@ -40,8 +42,8 @@ public class PresentBlockEntity extends LootableContainerBlockEntity {
 	}
 
 	@Override
-	public void fromTag(BlockState state, CompoundTag tag) {
-		super.fromTag(state, tag);
+	public void fromTag(CompoundTag tag) {
+		super.fromTag(tag);
 		this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
 		if(!this.deserializeLootTable(tag)) {
 			Inventories.fromTag(tag, this.inventory);
@@ -74,10 +76,6 @@ public class PresentBlockEntity extends LootableContainerBlockEntity {
 	@Override
 	public void onOpen(PlayerEntity player) {
 		if(!player.isSpectator()) {
-			if(this.viewerCount < 0) {
-				this.viewerCount = 0;
-			}
-			++this.viewerCount;
 			BlockState blockstate = this.getCachedState();
 			boolean flag1 = blockstate.get(PresentBlock.OPEN);
 			boolean flag2 = blockstate.get(PresentBlock.EMPTY);
@@ -95,36 +93,24 @@ public class PresentBlockEntity extends LootableContainerBlockEntity {
 		this.world.getBlockTickScheduler().schedule(this.getPos(), this.getCachedState().getBlock(), 5);
 	}
 
-	public void tick() {
-		int i = this.pos.getX();
-		int j = this.pos.getY();
-		int k = this.pos.getZ();
-		this.viewerCount = ChestBlockEntity.countViewers(this.world, this, i, j, k);
-		BlockState blockstate = this.getCachedState();
+	public static void serverTick(World world, BlockPos pos, BlockState state, PresentBlockEntity presentBlockEntity) {
+		int i = presentBlockEntity.pos.getX();
+		int j = presentBlockEntity.pos.getY();
+		int k = presentBlockEntity.pos.getZ();
+		BlockState blockstate = presentBlockEntity.getCachedState();
 		boolean flag1 = blockstate.get(PresentBlock.OPEN);
-		boolean flag2 = this.isEmpty() && this.lootTableId == null;
-		this.setEmptyProperty(blockstate, flag2);
-		if(this.viewerCount > 0) {
-			this.scheduleTick();
+		boolean flag2 = presentBlockEntity.isEmpty() && presentBlockEntity.lootTableId == null;
+		presentBlockEntity.setEmptyProperty(blockstate, flag2);
+		presentBlockEntity.scheduleTick();
+		if(!(blockstate.getBlock() instanceof PresentBlock)) {
+			presentBlockEntity.markRemoved();
+			return;
 		}
-		else {
-			if(!(blockstate.getBlock() instanceof PresentBlock)) {
-				this.markRemoved();
-				return;
+		if(flag1) {
+			if(!flag2) {
+				presentBlockEntity.playSound(blockstate, MubbleSounds.BLOCK_PRESENT_CLOSE);
 			}
-			if(flag1) {
-				if(!flag2) {
-					this.playSound(blockstate, MubbleSounds.BLOCK_PRESENT_CLOSE);
-				}
-				this.setOpenProperty(blockstate.with(PresentBlock.EMPTY, flag2), false);
-			}
-		}
-	}
-
-	@Override
-	public void onClose(PlayerEntity player) {
-		if(!player.isSpectator()) {
-			--this.viewerCount;
+			presentBlockEntity.setOpenProperty(blockstate.with(PresentBlock.EMPTY, flag2), false);
 		}
 	}
 

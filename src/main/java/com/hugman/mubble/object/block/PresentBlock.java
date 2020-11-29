@@ -5,6 +5,8 @@ import com.hugman.mubble.init.data.MubbleStats;
 import com.hugman.mubble.object.block.block_entity.PresentBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -26,6 +28,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -80,16 +83,13 @@ public class PresentBlock extends BlockWithEntity implements Waterloggable {
 	}
 
 	@Override
-	public void scheduledTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-		BlockEntity blockEntity = worldIn.getBlockEntity(pos);
-		if(blockEntity instanceof PresentBlockEntity) {
-			((PresentBlockEntity) blockEntity).tick();
-		}
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new PresentBlockEntity(pos, state);
 	}
 
 	@Override
-	public BlockEntity createBlockEntity(BlockView worldIn) {
-		return new PresentBlockEntity();
+	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return world.isClient ? null : checkType(type, MubbleBlocks.PRESENT_ENTITY, PresentBlockEntity::serverTick);
 	}
 
 	@Override
