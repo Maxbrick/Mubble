@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.EntityRenderer;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.TntMinecartEntityRenderer;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.math.MatrixStack;
@@ -16,8 +17,8 @@ import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class CustomTNTEntityRenderer extends EntityRenderer<CustomTNTEntity> {
-	public CustomTNTEntityRenderer(EntityRenderDispatcher dispatcher) {
-		super(dispatcher);
+	public CustomTNTEntityRenderer(EntityRendererFactory.Context context) {
+		super(context);
 		this.shadowRadius = 0.5F;
 	}
 

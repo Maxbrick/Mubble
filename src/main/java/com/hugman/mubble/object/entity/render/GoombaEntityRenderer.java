@@ -6,6 +6,7 @@ import com.hugman.mubble.object.entity.model.GoombaEntityModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
@@ -14,8 +15,8 @@ public class GoombaEntityRenderer extends MobEntityRenderer<GoombaEntity, Goomba
 	private static final Identifier NORMAL_GOOMBA_TEXTURES = Mubble.MOD_DATA.id("textures/entity/goomba/normal.png");
 	private static final Identifier GOLDEN_GOOMBA_TEXTURES = Mubble.MOD_DATA.id("textures/entity/goomba/golden.png");
 
-	public GoombaEntityRenderer(EntityRenderDispatcher dispatcher) {
-		super(dispatcher, new GoombaEntityModel<>(), 0.3F);
+	public GoombaEntityRenderer(EntityRendererFactory.Context context) {
+		super(context, new GoombaEntityModel<>(context.getPart(null)), 0.3F);
 	}
 
 	@Override

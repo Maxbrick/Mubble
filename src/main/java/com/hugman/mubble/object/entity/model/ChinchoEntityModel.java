@@ -3,7 +3,7 @@ package com.hugman.mubble.object.entity.model;
 import com.google.common.collect.ImmutableList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.model.ModelPart;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.CompositeEntityModel;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
@@ -20,38 +20,31 @@ public class ChinchoEntityModel<T extends Entity> extends CompositeEntityModel<T
 	public ModelPart middleTooth;
 	public ModelPart leftTooth;
 
-	public ChinchoEntityModel() {
-		this.textureWidth = 64;
-		this.textureHeight = 64;
-		this.head = new ModelPart(this, 0, 0);
-		this.head.setPivot(0.0F, 13.0F, 0.0F);
-		this.head.addCuboid(-4.0F, -8.0F, -4.0F, 8, 8, 8, 0.0F);
-		this.torso = new ModelPart(this, 16, 16);
-		this.torso.setPivot(0.0F, 8.0F, 0.0F);
-		this.torso.addCuboid(-4.0F, 5.0F, -2F, 8, 7, 4, 0.0F);
-		this.rightTooth = new ModelPart(this, 0, 24);
-		this.rightTooth.setPivot(0.0F, 13.0F, 0.0F);
-		this.rightTooth.addCuboid(1.8F, -2.0F, -5.0F, 3, 3, 2, 0.0F);
-		this.middleTooth = new ModelPart(this, 0, 34);
-		this.middleTooth.setPivot(0.0F, 13.0F, 0.0F);
-		this.middleTooth.addCuboid(-1.5F, -2.0F, -5.0F, 3, 3, 2, 0.0F);
-		this.leftTooth = new ModelPart(this, 0, 29);
-		this.leftTooth.setPivot(0.0F, 13.0F, 0.0F);
-		this.leftTooth.addCuboid(-4.8F, -2.0F, -5.0F, 3, 3, 2, 0.0F);
-		this.rightArm = new ModelPart(this, 40, 16);
-		this.rightArm.setPivot(-5.0F, 15.0F, 0.0F);
-		this.rightArm.addCuboid(-2.0F, -2.0F, -2.0F, 3, 6, 4, 0.0F);
-		this.leftArm = new ModelPart(this, 40, 16);
-		this.leftArm.mirror = true;
-		this.leftArm.setPivot(5.0F, 15.0F, 0.0F);
-		this.leftArm.addCuboid(-1.0F, -2.0F, -2.0F, 3, 6, 4, 0.0F);
-		this.rightLeg = new ModelPart(this, 0, 16);
-		this.rightLeg.setPivot(-2F, 17.0F, 0.0F);
-		this.rightLeg.addCuboid(-2.0F, 3.0F, -2.0F, 4, 4, 4, 0.0F);
-		this.leftLeg = new ModelPart(this, 0, 16);
-		this.leftLeg.mirror = true;
-		this.leftLeg.setPivot(2F, 17.0F, 0.0F);
-		this.leftLeg.addCuboid(-2.0F, 3.0F, -2.0F, 4, 4, 4, 0.0F);
+	public ChinchoEntityModel(ModelPart root) {
+		this.head = root.getChild("head");
+		this.torso = root.getChild("torso");
+		this.rightArm = root.getChild("right_arm");
+		this.leftArm = root.getChild("left_arm");
+		this.rightLeg = root.getChild("right_leg");
+		this.leftLeg = root.getChild("left_leg");
+		this.rightTooth = root.getChild("right_tooth");
+		this.middleTooth = root.getChild("middle_tooth");
+		this.leftTooth = root.getChild("left_tooth");
+	}
+
+	public static TexturedModelData getTexturedModelData() {
+		ModelData modelData = new ModelData();
+		ModelPartData modelPartData = modelData.getRoot();
+		modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8, 8, 8), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
+		modelPartData.addChild("torso", ModelPartBuilder.create().uv(16, 16).cuboid(-4.0F, 5.0F, -2F, 8, 7, 4), ModelTransform.pivot(0.0F, 8.0F, 0.0F));
+		modelPartData.addChild("right_tooth", ModelPartBuilder.create().uv(0, 24).cuboid(1.8F, -2.0F, -5.0F, 3, 3, 2), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
+		modelPartData.addChild("middle_tooth", ModelPartBuilder.create().uv(0, 34).cuboid(-1.5F, -2.0F, -5.0F, 3, 3, 2), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
+		modelPartData.addChild("left_tooth", ModelPartBuilder.create().uv(0, 29).cuboid(-4.8F, -2.0F, -5.0F, 3, 3, 2), ModelTransform.pivot(0.0F, 13.0F, 0.0F));
+		modelPartData.addChild("right_arm", ModelPartBuilder.create().uv(40, 16).cuboid(-2.0F, -2.0F, -2.0F, 3, 6, 4), ModelTransform.pivot(-5.0F, 15.0F, 0.0F));
+		modelPartData.addChild("left_arm", ModelPartBuilder.create().uv(40, 16).cuboid(-1.0F, -2.0F, -2.0F, 3, 6, 4).mirrored(), ModelTransform.pivot(5.0F, 15.0F, 0.0F));
+		modelPartData.addChild("right_leg", ModelPartBuilder.create().uv(0, 16).cuboid(-2.0F, 3.0F, -2.0F, 4, 4, 4), ModelTransform.pivot(-2F, 17.0F, 0.0F));
+		modelPartData.addChild("left_leg", ModelPartBuilder.create().uv(0, 16).cuboid(-2.0F, 3.0F, -2.0F, 4, 4, 4).mirrored(), ModelTransform.pivot(2F, 17.0F, 0.0F));
+		return TexturedModelData.of(modelData, 64, 64);
 	}
 
 	@Override

@@ -6,13 +6,14 @@ import com.hugman.mubble.object.entity.model.ToadEntityModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class ToadEntityRenderer extends MobEntityRenderer<ToadEntity, ToadEntityModel<ToadEntity>> {
-	public ToadEntityRenderer(EntityRenderDispatcher dispatcher) {
-		super(dispatcher, new ToadEntityModel<>(), 0.5F);
+	public ToadEntityRenderer(EntityRendererFactory.Context context) {
+		super(context, new ToadEntityModel<>(context.getPart(null)), 0.5F);
 	}
 
 	@Override
