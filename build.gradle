@@ -1,12 +1,11 @@
 plugins {
-    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'fabric-loom' version '1.9.2'
 }
 
 apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-21.gradle'
 
 repositories {
     maven { url 'https://jitpack.io' }                // Required for Dawn API
-
     maven { url 'https://maven.terraformersmc.com/' } // Required for Mod Menu
     maven { url 'https://maven.shedaniel.me/' }       // Required for Cloth Config
     maven { url 'https://maven.ryanliptak.com/' }     // Required for AppleSkin

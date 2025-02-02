@@ -1,7 +1,7 @@
+
 package fr.hugman.mubble.block;
 
-import fr.hugman.mubble.registry.SuperMario;
-import fr.hugman.mubble.tag.MubbleBlockTags;
+
 import net.minecraft.block.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -18,7 +18,7 @@ import net.minecraft.world.*;
  * @author MaxBrick
  * @since v4.0.0
  */
-
+/*
 public class BeanstalkBlock extends Block implements Fertilizable {
     public BeanstalkBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -100,3 +100,4 @@ public class BeanstalkBlock extends Block implements Fertilizable {
         }
     }
 }
+*/

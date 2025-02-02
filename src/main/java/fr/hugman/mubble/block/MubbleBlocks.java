@@ -36,6 +36,7 @@ public class MubbleBlocks {
     public static final SnakeBlock SLOW_SNAKE_BLOCK = of(MubbleBlockKeys.SLOW_SNAKE_BLOCK, SnakeBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).mapColor(MapColor.RED));
     public static final BeepBlock RED_BEEP_BLOCK = of(MubbleBlockKeys.RED_BEEP_BLOCK, s -> new BeepBlock(s, false), BeepBlock.settings(MapColor.RED));
     public static final BeepBlock BLUE_BEEP_BLOCK = of(MubbleBlockKeys.BLUE_BEEP_BLOCK, s -> new BeepBlock(s, true), BeepBlock.settings(MapColor.BLUE));
+    public static final WarpBlock WARP_PIPE = warpBlock(MubbleBlockKeys.WARP_PIPE, MapColor.GREEN);
 
     // YOSHI'S ISLAND
     public static final DecoratedBumpableBlock BLUE_EGG_BLOCK = eggBlock(MubbleBlockKeys.BLUE_EGG_BLOCK, MapColor.BLUE);
@@ -92,5 +93,9 @@ public class MubbleBlocks {
     private static DecoratedBumpableBlock eggBlock(RegistryKey<Block> key, MapColor mapColor) {
         //TODO: change settings
         return decoratedBumpableBlock(key, AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).mapColor(mapColor));
+    }
+
+    private static WarpBlock warpBlock(RegistryKey<Block> key, MapColor mapColor) {
+        return of(key, WarpBlock::new, AbstractBlock.Settings.copy(Blocks.IRON_BLOCK).mapColor(mapColor));
     }
 }

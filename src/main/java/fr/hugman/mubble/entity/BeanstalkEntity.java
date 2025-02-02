@@ -1,5 +1,5 @@
 package fr.hugman.mubble.entity;
-
+/*
 import fr.hugman.mubble.registry.SuperMario;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -8,7 +8,7 @@ import net.minecraft.entity.MovementType;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.World;
-
+*/
 /**
  * This class is made by copying and modifying
  * methods from FallingBlockEntity
@@ -17,7 +17,7 @@ import net.minecraft.world.World;
  * @author MaxBrick
  * @since v4.0.0
  */
-
+/*
 public class BeanstalkEntity extends Entity {
 
     //This will determine how high the entity will grow. It should be set upon spawning
@@ -73,4 +73,4 @@ public class BeanstalkEntity extends Entity {
     public boolean isAttackable() {
         return false;
     }
-}
+}*/

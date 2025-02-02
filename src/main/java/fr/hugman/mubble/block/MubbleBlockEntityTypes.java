@@ -3,6 +3,7 @@ package fr.hugman.mubble.block;
 import com.mojang.datafixers.types.Type;
 import fr.hugman.mubble.Mubble;
 import fr.hugman.mubble.block.entity.BumpableBlockEntity;
+import fr.hugman.mubble.block.entity.WarpBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -35,6 +36,10 @@ public class MubbleBlockEntityTypes {
             MubbleBlocks.PINK_EGG_BLOCK,
             MubbleBlocks.BLACK_EGG_BLOCK,
             MubbleBlocks.WHITE_EGG_BLOCK
+    ));
+
+    public static final BlockEntityType<WarpBlockEntity> WARP_BLOCK = of("warp_block", FabricBlockEntityTypeBuilder.create(WarpBlockEntity::new,
+            MubbleBlocks.WARP_PIPE
     ));
 
     private static <T extends BlockEntity> BlockEntityType<T> of(String path, FabricBlockEntityTypeBuilder<T> blockEntityType) {

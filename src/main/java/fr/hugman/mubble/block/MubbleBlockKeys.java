@@ -26,6 +26,7 @@ public class MubbleBlockKeys {
     public static final RegistryKey<Block> SLOW_SNAKE_BLOCK = of("slow_snake_block");
     public static final RegistryKey<Block> RED_BEEP_BLOCK = of("red_beep_block");
     public static final RegistryKey<Block> BLUE_BEEP_BLOCK = of("blue_beep_block");
+    public static final RegistryKey<Block> WARP_PIPE = of("warp_pipe");
 
     // YOSHI'S ISLAND
     public static final RegistryKey<Block> BLUE_EGG_BLOCK = of("blue_egg_block");

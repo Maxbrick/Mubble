@@ -1,11 +1,12 @@
 package fr.hugman.mubble.block.entity;
 
-import fr.hugman.mubble.registry.SuperMario;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtHelper;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
+import fr.hugman.mubble.block.MubbleBlockEntityTypes;
 
 /**
  * @author MaxBrick
@@ -13,24 +14,27 @@ import net.minecraft.util.math.BlockPos;
  */
 
 public class WarpBlockEntity extends BlockEntity {
-    private BlockPos destinationPos = pos;
+    private BlockPos destinationPos;
 
     //Copied code from BumpableBlockEntity. Sorry, Hugman X)
     public WarpBlockEntity(BlockPos pos, BlockState state) {
-        super(SuperMario.WARP_BLOCK_ENTITY_TYPE, pos, state);
+        super(MubbleBlockEntityTypes.WARP_BLOCK, pos, state);
     }
 
+    /*=======*/
+    /*  NBT  */
+    /*=======*/
+
     @Override
-    public void writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
+        super.writeNbt(nbt, registryLookup);
         nbt.put("DestinationPos", NbtHelper.fromBlockPos(this.destinationPos));
-
-        super.writeNbt(nbt);
     }
     @Override
-    public void readNbt(NbtCompound nbt) {
-        super.readNbt(nbt);
-
-        this.destinationPos = NbtHelper.toBlockPos(nbt.getCompound("DestinationPos"));
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
+        super.readNbt(nbt, registries);
+        nbt = nbt.getCompound("DestinationPos");
+        this.destinationPos = NbtHelper.toBlockPos(nbt, "DestinationPos").get();
     }
 
     /*=====================*/
