@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 public class MubbleItems {
     // SUPER MARIO
-    public static final Item MAKER_GLOVE = of(MubbleItemKeys.MAKER_GLOVE, new Item.Settings().maxCount(1));
+    public static final MakerGloveItem MAKER_GLOVE = of(MubbleItemKeys.MAKER_GLOVE, s -> new MakerGloveItem(s, false));
     public static final CapeFeatherItem CAPE_FEATHER = of(MubbleItemKeys.CAPE_FEATHER, s -> new CapeFeatherItem(s, false));
     public static final CapeFeatherItem SUPER_CAPE_FEATHER = of(MubbleItemKeys.SUPER_CAPE_FEATHER, s -> new CapeFeatherItem(s.rarity(Rarity.EPIC), true));
 

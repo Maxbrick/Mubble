@@ -1,13 +1,20 @@
 package fr.hugman.mubble.block;
 import com.mojang.serialization.MapCodec;
 import fr.hugman.mubble.block.entity.WarpBlockEntity;
+import fr.hugman.mubble.item.MakerGloveItem;
+import fr.hugman.mubble.item.MubbleItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtHelper;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -62,33 +69,18 @@ public class WarpBlock extends BlockWithEntity {
     }
     //Copies coordinates to the Maker Glove if no coordinates are saved
     //If coordinates are saved then set destination to glove's coordinates and remove the saved coordinates from glove
-    /* @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        if(!player.getActiveItem().isOf(MubbleItems.MAKER_GLOVE)) {
-            return ActionResult.PASS;
-        }
+    @Override
+    public ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.isClient) {
-            return ActionResult.SUCCESS;
-        }
-        if(world.getBlockEntity(pos) instanceof WarpBlockEntity warpBlockEntity && player.getStackInHand(hand).isOf(SuperMario.MAKER_GLOVE)) {
-            ItemStack itemStack = player.getActiveItem();
+            if(stack.getItem() instanceof MakerGloveItem gloveItem) {
+                if(gloveItem.getDestinationPos() == null) {
 
-            if(itemStack == null) {
-                itemStack.fromNbt(NbtHelper.fromBlockPos(pos));
-
-                player.sendMessage(Text.of("Copied coordinates to your Maker Glove"), true);
-
-            } else if (!NbtHelper.toBlockPos(Objects.requireNonNull(itemStack.getComponents("DestinationPos"))).equals(warpBlockEntity.getPos())) {
-                warpBlockEntity.setDestinationPos(NbtHelper.toBlockPos(Objects.requireNonNull(itemStack.getSubNbt("DestinationPos"))));
-                warpBlockEntity.markDirty();
-
-                itemStack.("DestinationPos");
-
-                player.sendMessage(Text.of("Destination set from your Maker Glove"), true);
+                }
+                return ActionResult.SUCCESS;
             }
         }
         return ActionResult.CONSUME;
-    }*/
+    }
 
     //Players need to crouch to enter pipe, hence the separate event caller thing
     //I don't know how to properly center a location, so I added .5 to x and z
