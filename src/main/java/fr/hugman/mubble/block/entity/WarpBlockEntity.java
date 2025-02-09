@@ -7,6 +7,7 @@ import net.minecraft.nbt.NbtHelper;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.math.BlockPos;
 import fr.hugman.mubble.block.MubbleBlockEntityTypes;
+import net.minecraft.world.World;
 
 /**
  * @author MaxBrick
@@ -19,6 +20,7 @@ public class WarpBlockEntity extends BlockEntity {
     //Copied code from BumpableBlockEntity. Sorry, Hugman X)
     public WarpBlockEntity(BlockPos pos, BlockState state) {
         super(MubbleBlockEntityTypes.WARP_BLOCK, pos, state);
+        this.destinationPos = pos;
     }
 
     /*=======*/
@@ -27,14 +29,16 @@ public class WarpBlockEntity extends BlockEntity {
 
     @Override
     public void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        super.writeNbt(nbt, registryLookup);
         nbt.put("DestinationPos", NbtHelper.fromBlockPos(this.destinationPos));
+        super.writeNbt(nbt, registryLookup);
     }
     @Override
     public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         super.readNbt(nbt, registries);
-        nbt = nbt.getCompound("DestinationPos");
         this.destinationPos = NbtHelper.toBlockPos(nbt, "DestinationPos").get();
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, WarpBlockEntity blockEntity) {
     }
 
     /*=====================*/

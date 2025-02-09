@@ -118,8 +118,8 @@ public class BumpableBlock extends BlockWithEntity implements HittableBlock {
         }
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof BumpableBlockEntity bumpable) {
-            ItemScatterer.spawn(world, pos, bumpable);
-            world.updateComparators(pos, this);
+            ItemScatterer.spawn(world, blockEntity.getPos(), bumpable);
+            world.updateComparators(blockEntity.getPos(), this);
         }
         super.onStateReplaced(state, world, pos, newState, moved);
     }
@@ -139,10 +139,11 @@ public class BumpableBlock extends BlockWithEntity implements HittableBlock {
     /*=============*/
 
     @Override
+    //temp disabling feature until I find modern way to do it
     @Environment(EnvType.CLIENT)
     public BlockRenderType getRenderType(BlockState state) {
-        if (MinecraftClient.isFancyGraphicsOrBetter()) return BlockRenderType.ENTITYBLOCK_ANIMATED;
-        return state.get(BUMPING) ? BlockRenderType.ENTITYBLOCK_ANIMATED : BlockRenderType.MODEL;
+        if (MinecraftClient.isFancyGraphicsOrBetter()) return BlockRenderType.MODEL;
+        return state.get(BUMPING) ? BlockRenderType.MODEL : BlockRenderType.MODEL;
     }
 
     /*============*/

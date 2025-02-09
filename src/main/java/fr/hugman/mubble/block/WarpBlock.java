@@ -1,25 +1,19 @@
 package fr.hugman.mubble.block;
-
 import com.mojang.serialization.MapCodec;
 import fr.hugman.mubble.block.entity.WarpBlockEntity;
-import fr.hugman.mubble.item.MubbleItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtHelper;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-
-import java.util.Objects;
-
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author MaxBrick
@@ -27,14 +21,17 @@ import java.util.Objects;
  */
 public class WarpBlock extends BlockWithEntity {
 
-    public static final MapCodec<WarpBlock> CODEC = createCodec(WarpBlock::new);
-
-    public MapCodec<WarpBlock> getCodec() {
-        return CODEC;
-    }
-
     public WarpBlock(Settings settings) {
         super(settings);
+    }
+
+    @Override
+    protected MapCodec<? extends WarpBlock> getCodec() {
+        return createCodec(WarpBlock::new);
+    }
+    @Override
+    protected BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
     }
 
     @Override
@@ -52,12 +49,17 @@ public class WarpBlock extends BlockWithEntity {
         );
     }
 
-
+    @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new WarpBlockEntity(pos, state);
     }
 
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        // Make sure to check world.isClient if you only want to tick only on serverside.
+        return validateTicker(type, MubbleBlockEntityTypes.WARP_BLOCK, WarpBlockEntity::tick);
+    }
     //Copies coordinates to the Maker Glove if no coordinates are saved
     //If coordinates are saved then set destination to glove's coordinates and remove the saved coordinates from glove
     /* @Override
@@ -98,8 +100,10 @@ public class WarpBlock extends BlockWithEntity {
 
             BlockEntity blockEntity = world.getBlockEntity(pos);
 
-            if (blockEntity instanceof WarpBlockEntity warpBlockEntity){
-
+            if (blockEntity instanceof WarpBlockEntity warpBlockEntity) {
+                if(entity instanceof PlayerEntity playerEntity) {
+                    playerEntity.sendMessage(Text.of(pos.toString()), true);
+                }
                 /*This long "if" statement effectively makes sure the destination block is the corresponding warp block
                   (in case the destination block is modified for example)
                   Also, it won't teleport you to the same block (which could soft-lock you)
