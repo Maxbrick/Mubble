@@ -2,7 +2,6 @@ package fr.hugman.mubble.block;
 import com.mojang.serialization.MapCodec;
 import fr.hugman.mubble.block.entity.WarpBlockEntity;
 import fr.hugman.mubble.item.MakerGloveItem;
-import fr.hugman.mubble.item.MubbleItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -10,7 +9,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtHelper;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -74,7 +72,12 @@ public class WarpBlock extends BlockWithEntity {
         if(world.isClient) {
             if(stack.getItem() instanceof MakerGloveItem gloveItem) {
                 if(gloveItem.getDestinationPos() == null) {
-
+                    gloveItem.setDestinationPos(pos);
+                } else {
+                    if(world.getBlockEntity(pos) instanceof WarpBlockEntity warpBlockEntity) {
+                        warpBlockEntity.setDestinationPos(gloveItem.getDestinationPos());
+                        gloveItem.setDestinationPos(null);
+                    }
                 }
                 return ActionResult.SUCCESS;
             }

@@ -4,7 +4,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 
 public class MakerGloveItem extends Item {
-    public BlockPos destinationPos;
+    private BlockPos destinationPos;
     public MakerGloveItem(Item.Settings builder, boolean infinite) {
         super(builder);
     }
